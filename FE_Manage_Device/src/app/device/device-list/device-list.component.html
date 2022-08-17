@@ -5,12 +5,16 @@
     <tr>
       <th>ID</th>
       <th>Tên thiết bị</th>
+      <th>QR Code</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let item of listDevices">
         <td> {{item.id}}</td>
         <td> {{item.device_name}} </td>
+        <td>
+            <img src={{item.path_qr}} alt="Image not found">
+        </td>
     </tr>
   </tbody>
 </table>

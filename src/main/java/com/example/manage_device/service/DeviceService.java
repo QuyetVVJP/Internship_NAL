@@ -7,6 +7,7 @@ import java.util.List;
 
 @Service
 public interface DeviceService {
-
     public List<Device> getAllDevice();
+
+    boolean generateQRCode(String qrCodeContent, String filePath, int width, int height);
 }

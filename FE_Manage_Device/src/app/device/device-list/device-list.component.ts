@@ -15,7 +15,13 @@ export class DeviceListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getAllDevice();
+
+    this.listDevices = [{
+      "id": 1,
+      "device_name": "Test",
+      "path_qr": "assets/image/" + "2022-08-17.png"
+    }]
+    // this.getAllDevice();
   }
 
   private getAllDevice(){
