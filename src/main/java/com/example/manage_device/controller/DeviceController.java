@@ -1,7 +1,7 @@
 package com.example.manage_device.controller;
 
 import com.example.manage_device.model.Device;
-import com.example.manage_device.repository.DeviceRepository;
+import com.example.manage_device.service.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,11 +16,11 @@ import java.util.List;
 public class DeviceController {
 
     @Autowired
-    private DeviceRepository deviceRepository;
+    public DeviceService deviceService;
 
     @GetMapping("/list")
     public List<Device> getAllDevice(){
-        List<Device> deviceList = deviceRepository.findAll();
+        List<Device> deviceList = deviceService.getAllDevice();
         return deviceList;
     }
 }
