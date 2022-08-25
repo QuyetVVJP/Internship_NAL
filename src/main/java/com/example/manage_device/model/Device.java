@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -35,15 +37,13 @@ public class Device {
     private String path_QR;
 
     @Column(name = "create_at")
-    private String create_at;
+    private Timestamp create_at;
 
     @Column(name = "update_at")
-    private String update_at;
+    private Timestamp update_at;
 
     @Column(name = "status")
     private String status;
-
-
 
 
 
