@@ -9,4 +9,6 @@ import java.util.List;
 public interface DeviceService {
 
     public List<Device> getAllDevice();
+
+    Device save(Device device);
 }

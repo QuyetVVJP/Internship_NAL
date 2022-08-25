@@ -15,4 +15,9 @@ public class DeviceServiceImp implements DeviceService {
     public List<Device> getAllDevice() {
         return deviceRepository.findAll();
     }
+
+    @Override
+    public Device save(Device device) {
+        return deviceRepository.save(device);
+    }
 }

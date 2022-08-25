@@ -46,5 +46,6 @@ public class Device {
     private String status;
 
 
-
+    public static void add(Device device) {
+    }
 }

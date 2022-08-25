@@ -1,12 +1,12 @@
 package com.example.manage_device.controller;
 
 import com.example.manage_device.model.Device;
+import com.example.manage_device.repository.DeviceRepository;
 import com.example.manage_device.service.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,18 +16,21 @@ import java.util.List;
 public class DeviceController {
 
     @Autowired
-    public DeviceService deviceService;
+    private DeviceService deviceService;
 
     @GetMapping("/list")
-    public List<Device> getAllDevice(){
+    public List<Device> getAllDevice() {
         List<Device> deviceList = deviceService.getAllDevice();
         return deviceList;
     }
 
-    @GetMapping("/device/{id}")
-    public  Device getDeviceById(){
-        return  null;
+    @GetMapping("/list/{id}")
+    public Device getDeviceById() {
+        return null;
     }
 
-
+    @PostMapping("/list")
+    public Device createDevice(@RequestBody Device device) {
+        return deviceService.save(device);
+    }
 }
