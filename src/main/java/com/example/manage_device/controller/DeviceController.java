@@ -23,4 +23,11 @@ public class DeviceController {
         List<Device> deviceList = deviceService.getAllDevice();
         return deviceList;
     }
+
+    @GetMapping("/device/{id}")
+    public  Device getDeviceById(){
+        return  null;
+    }
+
+
 }
