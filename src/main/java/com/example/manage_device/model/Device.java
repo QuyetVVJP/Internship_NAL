@@ -22,6 +22,8 @@ public class Device {
     @Column(name = "device_name")
     private String device_name;
 
+    private
+
 
 
 }
