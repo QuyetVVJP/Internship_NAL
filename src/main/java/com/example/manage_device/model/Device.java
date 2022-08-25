@@ -22,8 +22,8 @@ public class Device {
     @Column(name = "device_name")
     private String device_name;
 
-    @Column(name = "imformation")
-    private String imformation;
+    @Column(name = "information")
+    private String information;
 
     @Column(name = "OS")
     private String OS;
