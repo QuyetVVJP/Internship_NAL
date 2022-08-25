@@ -27,6 +27,7 @@ public class DeviceController {
     @GetMapping("/device/{id}")
     public  Device getDeviceById(){
         return  null;
-
     }
+
+
 }
