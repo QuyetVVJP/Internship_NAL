@@ -44,8 +44,7 @@ public class Device {
 
     @Column(name = "status")
     private String status;
-
-
-    public static void add(Device device) {
-    }
 }
+
+
+
