@@ -49,6 +49,7 @@ public class User {
     @Column(name = "updated_at")
     private Timestamp updated_at;
 
-    @Column(name = "role_id")
-    private int role_id;
+    @OneToOne
+    @JoinColumn(name = "role_id", columnDefinition = "default '1'")
+    private Role role_id;
 }
