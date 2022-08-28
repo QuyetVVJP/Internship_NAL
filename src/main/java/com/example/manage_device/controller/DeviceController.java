@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -24,20 +26,20 @@ public class DeviceController {
         return deviceList;
     }
 
-    @GetMapping("/list/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> getDeviceById(@PathVariable Long id) {
         Optional<Device> result = deviceService.getDeviceByID(id);
         return  ResponseEntity.ok(result);
     }
-    @PostMapping("/list")
+    @PostMapping("/create")
     public Device createDevice(@RequestBody Device device) {
         return deviceService.save(device);
     }
 
-    @PutMapping("/list/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Device> updateDevice(@PathVariable Long id,@RequestBody Device deviceDetails) throws Throwable {
 
-        Device device = (Device) deviceService.updateDevice(id)
+        Device device = deviceService.findById(id)
                 .orElseThrow( () -> new ResourceNotFoundException("Device khong ton tai:" + id));
         device.setCreate_at(deviceDetails.getCreate_at());
         device.setDevice_name(deviceDetails.getDevice_name());
@@ -51,5 +53,12 @@ public class DeviceController {
 
         Device updateDevice = deviceService.save(device);
         return ResponseEntity.ok(updateDevice);
+    }
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteDevice(@PathVariable Long id) throws Throwable {
+        Device device = deviceService.findById(id)
+                .orElseThrow( () -> new ResourceNotFoundException("Device khong ton tai:" + id));
+        deviceService.delete(id);
+        return ResponseEntity.ok("Delete success");
     }
 }
