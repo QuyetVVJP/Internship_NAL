@@ -1,14 +1,16 @@
 package com.example.manage_device.controller;
 
+import com.example.manage_device.exception.ResourceNotFoundException;
 import com.example.manage_device.model.Device;
 import com.example.manage_device.service.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -16,18 +18,47 @@ import java.util.List;
 public class DeviceController {
 
     @Autowired
-    public DeviceService deviceService;
+    private DeviceService deviceService;
 
     @GetMapping("/list")
-    public List<Device> getAllDevice(){
+    public List<Device> getAllDevice() {
         List<Device> deviceList = deviceService.getAllDevice();
         return deviceList;
     }
 
-    @GetMapping("/device/{id}")
-    public  Device getDeviceById(){
-        return  null;
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getDeviceById(@PathVariable Long id) {
+        Optional<Device> result = deviceService.getDeviceByID(id);
+        return  ResponseEntity.ok(result);
+    }
+    @PostMapping("/create")
+    public Device createDevice(@RequestBody Device device) {
+        return deviceService.save(device);
     }
 
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Device> updateDevice(@PathVariable Long id,@RequestBody Device deviceDetails) throws Throwable {
 
+        Device device = deviceService.findById(id)
+                .orElseThrow( () -> new ResourceNotFoundException("Device khong ton tai:" + id));
+        device.setCreate_at(deviceDetails.getCreate_at());
+        device.setDevice_name(deviceDetails.getDevice_name());
+        device.setUpdate_at(deviceDetails.getUpdate_at());
+        device.setOS(deviceDetails.getOS());
+        device.setDevice_name(deviceDetails.getDevice_name());
+        device.setInformation(deviceDetails.getInformation());
+        device.setManufacturer(deviceDetails.getManufacturer());
+        device.setStatus(deviceDetails.getStatus());
+        device.setPath_QR(device.getPath_QR());
+
+        Device updateDevice = deviceService.save(device);
+        return ResponseEntity.ok(updateDevice);
+    }
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteDevice(@PathVariable Long id) throws Throwable {
+        Device device = deviceService.findById(id)
+                .orElseThrow( () -> new ResourceNotFoundException("Device khong ton tai:" + id));
+        deviceService.delete(id);
+        return ResponseEntity.ok("Delete success");
+    }
 }
