@@ -2,14 +2,31 @@ package com.example.manage_device.service;
 
 import com.example.manage_device.model.Device;
 import com.example.manage_device.repository.DeviceRepository;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @Component
 public class DeviceServiceImp implements DeviceService {
+
+    @Value("${qr.code.directory}")
+    private String qrCodeDirectory;
+    private Logger logger = LoggerFactory.getLogger(DeviceServiceImp.class);
+
     @Autowired
     DeviceRepository deviceRepository;
     @Override
@@ -36,14 +53,30 @@ public class DeviceServiceImp implements DeviceService {
 
     @Override
     public Device save(Device device) {
+        device.setPath_QR(generateQRCode("Duong link den dang ky muon thiet bi", qrCodeDirectory+ new Timestamp(System.currentTimeMillis()).getTime() +".png", 400, 400));
+
         return deviceRepository.save(device);
 
     }
-
     @Override
     public Optional<Object> findById(Long id) {
         return Optional.empty();
     }
 
+
+    public String generateQRCode(String qrCodeContent, String filePath, int width, int height) {
+        try {
+            QRCodeWriter qrCodeWriter = new QRCodeWriter();
+            BitMatrix bitMatrix = qrCodeWriter.encode(qrCodeContent, BarcodeFormat.QR_CODE, width, height);
+            Path path = Paths.get(filePath);
+            MatrixToImageWriter.writeToPath(bitMatrix, "PNG", path);
+            return filePath;
+        } catch (WriterException e) {
+            logger.error("Error", e);
+        } catch (IOException e) {
+            logger.error("Error", e);
+        }
+        return "Error create QR code";
+    }
 
 }
