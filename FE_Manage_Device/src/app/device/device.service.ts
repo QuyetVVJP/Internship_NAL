@@ -13,4 +13,8 @@ export class DeviceService {
   getAllDevice(): Observable<Device[]>{
     return this.httpClient.get<Device[]>(`${this.baseURL+'/list'}`);
   }
+
+  addDevice(device : Device):Observable<Object>{
+    return this.httpClient.post<Device>(`${this.baseURL+'/list'}`,device);
+  }
 }
