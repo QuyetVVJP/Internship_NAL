@@ -7,17 +7,19 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public interface DeviceService<Deveice> {
+public interface DeviceService {
 
     public List<Device> getAllDevice();
 
     public Optional<Device> getDeviceByID(Long id);
     public Device createDevice();
 
-    public Optional<Device> updateDevice(Long id);
+
+    public void delete(Long id);
 
 
     Device save(Device device);
 
-    Optional<Object> findById(Long id);
+    public Optional<Device> findById(Long id);
+
 }

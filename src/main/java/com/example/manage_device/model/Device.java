@@ -44,6 +44,7 @@ public class Device {
 
     @Column(name = "status")
     private String status;
+    
 }
 
 
