@@ -22,11 +22,12 @@ export class AddDeviceComponent implements OnInit {
   savedevice(){
     this.deviceService.addDevice(this.device).subscribe(data =>{
         console.log(data);
+        this.gotolistDevices();
     },
     error => console.log(error));
   }
   gotolistDevices(){
-    this.router.navigate(['/device']);
+    this.router.navigate(['/list-device']);  // sai o cho nay?
   }
    onSubmit(){
     console.log(this.device);

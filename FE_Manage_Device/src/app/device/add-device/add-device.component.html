@@ -1,2 +1,28 @@
+<div class="col-md-8 offset-md-3">
 <h2>Thêm thiết bị</h2>
+<form (ngSubmit)="onSubmit()">
+    <div class="form-label">
+        <label>Tên thiết bị</label>
+        <input type="text" class="form-control" id="device_name"
+        [(ngModel)]="device.device_name" name="device_name">
+    </div>
+    <div class="form-label">
+        <label>Hệ đều hành</label>
+        <input type="text" class="form-control" id="os"
+        [(ngModel)]="device.os" name="os">
+    </div>
+    <div class="form-label">
+        <label>System Model</label>
+        <input type="text" class="form-control" id="manufacturer"
+        [(ngModel)]="device.manufacturer" name="manufacturer">
+    </div>
+    <div class="form-label">
+        <label>ổ cứng</label>
+        <input type="text" class="form-control" id="information"
+        [(ngModel)]="device.information" name="information">
+    </div>
+    
+    <button class="btn btn-success" type="submit">add</button>
 
+</form>
+</div>
