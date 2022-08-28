@@ -1,44 +1,55 @@
 package com.example.manage_device.controller;
 
+import com.example.manage_device.exception.ResourceNotFoundException;
 import com.example.manage_device.model.Device;
 import com.example.manage_device.service.DeviceService;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Date;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/devices")
 public class DeviceController {
-    private Logger logger = LoggerFactory.getLogger(DeviceController.class);
-    @Value("${qr.code.directory}")
-    private String qrCodeDirectory;
+
     @Autowired
-    public DeviceService deviceService;
+    private DeviceService deviceService;
 
     @GetMapping("/list")
-    public List<Device> getAllDevice(){
+    public List<Device> getAllDevice() {
         List<Device> deviceList = deviceService.getAllDevice();
-        String filePath = qrCodeDirectory + 1 + ".png";
-        String qrCodeContent = "Simple Solution " + 1;
-        int width = 400;
-        int height = 400;
-        boolean result = deviceService.generateQRCode(qrCodeContent, filePath, width, height);
-        if(result) {
-            logger.info("Generate QR code file " + filePath + " successfully");
-        }
         return deviceList;
+    }
+
+    @GetMapping("/list/{id}")
+    public ResponseEntity<?> getDeviceById(@PathVariable Long id) {
+        Optional<Device> result = deviceService.getDeviceByID(id);
+        return  ResponseEntity.ok(result);
+    }
+    @PostMapping("/list")
+    public Device createDevice(@RequestBody Device device) {
+        return deviceService.save(device);
+    }
+
+    @PutMapping("/list/{id}")
+    public ResponseEntity<Device> updateDevice(@PathVariable Long id,@RequestBody Device deviceDetails) throws Throwable {
+
+        Device device = (Device) deviceService.updateDevice(id)
+                .orElseThrow( () -> new ResourceNotFoundException("Device khong ton tai:" + id));
+        device.setCreate_at(deviceDetails.getCreate_at());
+        device.setDevice_name(deviceDetails.getDevice_name());
+        device.setUpdate_at(deviceDetails.getUpdate_at());
+        device.setOS(deviceDetails.getOS());
+        device.setDevice_name(deviceDetails.getDevice_name());
+        device.setInformation(deviceDetails.getInformation());
+        device.setManufacturer(deviceDetails.getManufacturer());
+        device.setStatus(deviceDetails.getStatus());
+        device.setPath_QR(device.getPath_QR());
+
+        Device updateDevice = deviceService.save(device);
+        return ResponseEntity.ok(updateDevice);
     }
 }

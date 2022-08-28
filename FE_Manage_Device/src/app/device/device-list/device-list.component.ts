@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Device } from '../device';
 import { DeviceService } from '../device.service';
 
@@ -11,7 +12,8 @@ export class DeviceListComponent implements OnInit {
 
   listDevices: Device[] |undefined;
   constructor(
-    private deviceService: DeviceService
+    private deviceService: DeviceService,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
@@ -29,5 +31,7 @@ export class DeviceListComponent implements OnInit {
       this.listDevices = data;
     });
   }
-
+ updateDevice(id:number){
+    this.router.navigate(['update-device',id]);
+ }
 }
