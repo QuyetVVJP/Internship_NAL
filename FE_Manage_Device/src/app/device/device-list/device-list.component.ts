@@ -17,6 +17,8 @@ export class DeviceListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
+
     this.getAllDevice();
   }
 
