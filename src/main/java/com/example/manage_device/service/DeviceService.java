@@ -13,6 +13,9 @@ public interface DeviceService {
     public Optional<Device> getDeviceByID(Long id);
     public Device createDevice();
     public void delete(Long id);
+
+//    Optional<Device> updateDevice(Long id);
+
     Device save(Device device);
     public Optional<Device> findById(Long id);
 

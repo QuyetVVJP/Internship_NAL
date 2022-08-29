@@ -45,9 +45,14 @@ public class DeviceServiceImp implements DeviceService {
     }
 
     @Override
-    public Optional<Device> updateDevice(Long id) {
-        return deviceRepository.findById(id);
+    public void delete(Long id) {
+        deviceRepository.deleteById(id);
     }
+
+//    @Override
+//    public Optional<Device> updateDevice(Long id) {
+//        return deviceRepository.findById(id);
+//    }
 
 
 
@@ -59,8 +64,8 @@ public class DeviceServiceImp implements DeviceService {
 
     }
     @Override
-    public Optional<Object> findById(Long id) {
-        return Optional.empty();
+    public Optional<Device> findById(Long id) {
+        return deviceRepository.findById(id);
     }
 
 
