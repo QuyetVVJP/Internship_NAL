@@ -1,12 +1,18 @@
 package com.example.manage_device.controller;
 
 import com.example.manage_device.exception.ResourceNotFoundException;
+import com.example.manage_device.model.Avatar;
 import com.example.manage_device.model.User;
 import com.example.manage_device.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,7 +41,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User userDetails){
+    public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody User userDetails, @ModelAttribute("avatar") Avatar avatar){
         User user = userService.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User khong ton tai"));
 
@@ -46,8 +52,22 @@ public class UserController {
         user.setEmail(userDetails.getEmail());
         user.setPhone(userDetails.getPhone());
         user.setDepartment(userDetails.getDepartment());
-        user.setAvatar(userDetails.getAvatar());
         user.setRole_id(userDetails.getRole_id());
+
+        String path = System.getProperty("{id}");
+        MultipartFile image = avatar.getImage();
+        String name = image.getOriginalFilename();
+        if (name != null && name.length() > 0) {
+            try {
+                File serverFile = new File(path + "/" + name);
+                BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
+                stream.write(image.getBytes());
+                stream.close();
+                user.setAvatar_url(serverFile.getPath());
+            } catch (Exception e) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error");
+            }
+        }
 
         User updatedUser = userService.save(user);
         return ResponseEntity.ok(updatedUser);

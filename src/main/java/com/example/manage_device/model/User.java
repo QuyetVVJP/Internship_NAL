@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -40,8 +41,8 @@ public class User {
     @Column(name = "department")
     private String department;
 
-    @Column(name = "avatar")
-    private String avatar;
+    @Column(name = "avatar_url")
+    private String avatar_url;
 
     @Column(name = "created_at")
     private Timestamp created_at;
@@ -49,7 +50,7 @@ public class User {
     @Column(name = "updated_at")
     private Timestamp updated_at;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "role_id", columnDefinition = "default '1'")
     private Role role_id;
 }
