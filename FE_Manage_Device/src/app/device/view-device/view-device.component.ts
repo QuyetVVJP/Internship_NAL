@@ -22,6 +22,7 @@ export class ViewDeviceComponent implements OnInit {
 
   this.device=new Device();
   this.devicService.getDeviceById(this.id).subscribe(data =>{
+    console.log(data);
     this.device=data;
   })
     

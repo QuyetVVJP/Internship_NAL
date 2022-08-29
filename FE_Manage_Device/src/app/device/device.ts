@@ -4,5 +4,5 @@ export class Device {
   os:string|undefined;
   manufacturer:string|undefined;
   information:string|undefined;
-  path_qr: string|undefined;
+  path_QR: string|undefined;
 }

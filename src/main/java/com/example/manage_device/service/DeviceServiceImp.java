@@ -58,7 +58,10 @@ public class DeviceServiceImp implements DeviceService {
 
     @Override
     public Device save(Device device) {
-        device.setPath_QR(generateQRCode("Duong link den dang ky muon thiet bi", qrCodeDirectory+ new Timestamp(System.currentTimeMillis()).getTime() +".png", 400, 400));
+        String path_qr = generateQRCode("Duong link den dang ky muon thiet bi", qrCodeDirectory+ new Timestamp(System.currentTimeMillis()).getTime() +".png", 400, 400);
+        path_qr = path_qr.replace("FE_Manage_Device", "..");
+        path_qr = path_qr.replace("src", "..");
+        device.setPath_QR(path_qr);
 
         return deviceRepository.save(device);
 
