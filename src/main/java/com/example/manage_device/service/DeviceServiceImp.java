@@ -44,5 +44,4 @@ public class DeviceServiceImp implements DeviceService {
     }
 
 
-
 }

@@ -4,6 +4,7 @@ import com.example.manage_device.exception.ResourceNotFoundException;
 import com.example.manage_device.model.Device;
 import com.example.manage_device.service.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -55,10 +56,12 @@ public class DeviceController {
         return ResponseEntity.ok(updateDevice);
     }
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteDevice(@PathVariable Long id) throws Throwable {
+    public ResponseEntity<Map<String, Boolean>> deleteDevice(@PathVariable Long id) throws Throwable {
         Device device = deviceService.findById(id)
                 .orElseThrow( () -> new ResourceNotFoundException("Device khong ton tai:" + id));
         deviceService.delete(id);
-        return ResponseEntity.ok("Delete success");
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return ResponseEntity.ok(response);
     }
 }
