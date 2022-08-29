@@ -10,10 +10,10 @@ import { DeviceService } from '../device.service';
 })
 export class DeviceListComponent implements OnInit {
 
-  listDevices: Device[] |undefined;
+  listDevices: Device[] | undefined;
   constructor(
     private deviceService: DeviceService,
-    private router:Router
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -22,12 +22,21 @@ export class DeviceListComponent implements OnInit {
     this.getAllDevice();
   }
 
-  private getAllDevice(){
-    this.deviceService.getAllDevice().subscribe(data =>{
+  private getAllDevice() {
+    this.deviceService.getAllDevice().subscribe(data => {
       this.listDevices = data;
     });
   }
- updateDevice(id:number){
-    this.router.navigate(['update-device',id]);
- }
+  viewDevice(id: number) {
+    this.router.navigate(['view-device', id]);
+  }
+
+  updateDevice(id: number) {
+    this.router.navigate(['update-device', id]);
+  }
+  deleteDevice(id: number) {
+    this.deviceService.deleteDevice(id).subscribe(data => {
+      this.router.navigate(['list-device']);
+    })
+  }
 }

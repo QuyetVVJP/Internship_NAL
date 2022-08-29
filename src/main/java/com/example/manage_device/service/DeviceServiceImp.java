@@ -27,22 +27,20 @@ public class DeviceServiceImp implements DeviceService {
         return deviceRepository.save(new Device());
     }
 
-    @Override
-    public Optional<Device> updateDevice(Long id) {
+    public Optional<Device> findById(Long id) {
         return deviceRepository.findById(id);
+
     }
 
-
+    @Override
+    public void delete(Long id) {
+        deviceRepository.deleteById(id);
+    }
 
     @Override
     public Device save(Device device) {
         return deviceRepository.save(device);
 
-    }
-
-    @Override
-    public Optional<Object> findById(Long id) {
-        return Optional.empty();
     }
 
 

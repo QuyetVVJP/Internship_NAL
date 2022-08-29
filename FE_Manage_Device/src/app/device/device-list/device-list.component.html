@@ -1,4 +1,11 @@
 <h2>Danh sách thiết bị</h2>
+
+
+<button class="navbar-nav">
+  <li class="nav-item">
+    <a routerLink="/add-device" routerLinkActive="active" class="nav-link">Thêm thiết bị</a>
+  </li>
+</button>
 <table class="table table-striped">
 
   <thead>
@@ -8,21 +15,26 @@
       <th>Hệ điều hành</th>
       <th>System Model</th>
       <th>Ổ cứng</th>
-      <th>cập nhật & xóa</th>
+      <th>cập nhật</th>
+      <th>xóa</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let item of listDevices">
-        <td> {{item.id}}</td>
-        <td> {{item.device_name}} </td>
-        <td> {{item.os}}</td>
-        <td> {{item.manufacturer}}</td>
-        <td>  {{item.information}}</td>
-         <td>
-         <button  (click)="updateDevice(item.id)" class = "btn btn-info">cập nhật</button>
-        </td> 
+      <td> {{item.id}}</td>
+      <td> {{item.device_name}} </td>
+      <td> {{item.os}}</td>
+      <td> {{item.manufacturer}}</td>
+      <td> {{item.information}}</td>
+      <td>
+        <button (click)="updateDevice(item.id)" class="btn btn-info">cập nhật</button>
+      </td>
+      <td>
+        <button (click)="deleteDevice(item.id)" class="btn btn-danger" style="margin-left:10px ;">xóa</button>
+      </td>
+      <td>
+        <button (click)="viewDevice(item.id)" class="btn btn-infor" style="margin-left:10px ;">xem</button>
+      </td>
     </tr>
   </tbody>
 </table>
-
-

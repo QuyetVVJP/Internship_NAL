@@ -8,13 +8,17 @@ import {HttpClientModule} from '@angular/common/http';
 import { AddDeviceComponent } from './device/add-device/add-device.component';
 import { UpdateDeviceComponent } from './device/update-device/update-device.component';
 import { FormsModule } from '@angular/forms';
+
+import { ViewDeviceComponent } from './device/view-device/view-device.component';
 @NgModule({
   // Khai bao cac component o day
   declarations: [
     AppComponent,
     DeviceListComponent,
     AddDeviceComponent,
-    UpdateDeviceComponent
+    UpdateDeviceComponent,
+
+    ViewDeviceComponent
   ],
   imports: [
     BrowserModule,

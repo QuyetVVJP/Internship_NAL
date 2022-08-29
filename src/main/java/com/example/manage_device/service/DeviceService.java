@@ -10,16 +10,10 @@ import java.util.Optional;
 public interface DeviceService {
 
     public List<Device> getAllDevice();
-
     public Optional<Device> getDeviceByID(Long id);
     public Device createDevice();
-
-
     public void delete(Long id);
-
-
     Device save(Device device);
-
     public Optional<Device> findById(Long id);
 
 }
