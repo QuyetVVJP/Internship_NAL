@@ -23,6 +23,7 @@ import java.nio.file.Paths;
 @Component
 public class DeviceServiceImp implements DeviceService {
 
+    private final static String AVAILABLE = "Available";
     @Value("${qr.code.directory}")
     private String qrCodeDirectory;
     private Logger logger = LoggerFactory.getLogger(DeviceServiceImp.class);
@@ -58,8 +59,12 @@ public class DeviceServiceImp implements DeviceService {
 
     @Override
     public Device save(Device device) {
-        device.setPath_QR(generateQRCode("Duong link den dang ky muon thiet bi", qrCodeDirectory+ new Timestamp(System.currentTimeMillis()).getTime() +".png", 400, 400));
-
+        String path_qr = generateQRCode("Duong link den dang ky muon thiet bi", qrCodeDirectory+ new Timestamp(System.currentTimeMillis()).getTime() +".png", 400, 400);
+        path_qr = path_qr.replace("FE_Manage_Device", "..");
+        path_qr = path_qr.replace("src", "..");
+        device.setPath_QR(path_qr);
+        device.setCreate_at(new Timestamp(System.currentTimeMillis()));
+        device.setStatus(AVAILABLE);
         return deviceRepository.save(device);
 
     }

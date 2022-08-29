@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,7 +52,7 @@ public class DeviceController {
         device.setManufacturer(deviceDetails.getManufacturer());
         device.setStatus(deviceDetails.getStatus());
         device.setPath_QR(device.getPath_QR());
-
+        device.setUpdate_at(new Timestamp(System.currentTimeMillis()));
         Device updateDevice = deviceService.save(device);
         return ResponseEntity.ok(updateDevice);
     }

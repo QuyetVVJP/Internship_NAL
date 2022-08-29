@@ -1,5 +1,6 @@
 package com.example.manage_device.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,5 +22,11 @@ public class Role {
 
     @Column(name = "name")
     private String name;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @MapsId
+    @JsonIgnore
+    private User user;
+
 
 }

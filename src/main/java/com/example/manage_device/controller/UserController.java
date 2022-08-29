@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,7 +53,7 @@ public class UserController {
         user.setEmail(userDetails.getEmail());
         user.setPhone(userDetails.getPhone());
         user.setDepartment(userDetails.getDepartment());
-        user.setRole_id(userDetails.getRole_id());
+        user.setRole(userDetails.getRole());
 
         String path = System.getProperty("{id}");
         MultipartFile image = avatar.getImage();
@@ -68,7 +69,7 @@ public class UserController {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error");
             }
         }
-
+        user.setUpdated_at(new Timestamp(System.currentTimeMillis()));
         User updatedUser = userService.save(user);
         return ResponseEntity.ok(updatedUser);
     }

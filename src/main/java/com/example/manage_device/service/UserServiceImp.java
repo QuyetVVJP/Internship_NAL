@@ -5,6 +5,7 @@ import com.example.manage_device.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,6 +40,7 @@ public class UserServiceImp implements UserService {
 
     @Override
     public User save(User user) {
+        user.setCreated_at(new Timestamp(System.currentTimeMillis()));
         return userRepository.save(user);
 
     }
