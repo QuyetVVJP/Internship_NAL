@@ -1,0 +1,23 @@
+<p>user-list works!</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ten</th>
+            <th>gioi tinh</th>
+            <th>msnv</th>
+            <th>email</th>
+            <th>sdt</th>
+            <th>don vij</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of listUsers">
+            <td>{{user.first_name}}</td>
+            <td>{{user.gender}}</td>
+            <td>{{user.employee_id}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.phone}}</td>
+            <td>{{user.department}}</td>
+        </tr>
+    </tbody>
+</table>

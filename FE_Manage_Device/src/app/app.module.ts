@@ -10,6 +10,8 @@ import { UpdateDeviceComponent } from './device/update-device/update-device.comp
 import { FormsModule } from '@angular/forms';
 
 import { ViewDeviceComponent } from './device/view-device/view-device.component';
+
+import { UserListComponent } from './user/user-list/user-list.component';
 @NgModule({
   // Khai bao cac component o day
   declarations: [
@@ -18,7 +20,9 @@ import { ViewDeviceComponent } from './device/view-device/view-device.component'
     AddDeviceComponent,
     UpdateDeviceComponent,
 
-    ViewDeviceComponent
+    ViewDeviceComponent,
+    
+    UserListComponent
   ],
   imports: [
     BrowserModule,

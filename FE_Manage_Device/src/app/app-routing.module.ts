@@ -4,13 +4,16 @@ import { AddDeviceComponent } from './device/add-device/add-device.component';
 import { DeviceListComponent } from './device/device-list/device-list.component';
 import { UpdateDeviceComponent } from './device/update-device/update-device.component';
 import { ViewDeviceComponent } from './device/view-device/view-device.component';
+import { UserListComponent } from './user/user-list/user-list.component';
 
 const routes: Routes = [
   {path: 'list-device', component:DeviceListComponent},
   {path:'add-device',component: AddDeviceComponent},
   {path: '', redirectTo:'list-device', pathMatch:'full'},
   {path:'update-device/:id',component:UpdateDeviceComponent},
-  {path:'view-device/:id',component:ViewDeviceComponent}
+  {path:'view-device/:id',component:ViewDeviceComponent},
+
+  {path:'user-list', component:UserListComponent}
 ];
 
 @NgModule({
