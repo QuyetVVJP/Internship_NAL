@@ -21,7 +21,11 @@
         <input type="text" class="form-control" id="information"
         [(ngModel)]="device.information" name="information">
     </div>
-    
+
+    <div >
+      <input type="file" (change)="onImageUpload($event)">
+    </div>
+
     <button class="btn btn-success" type="submit">add</button>
 
 </form>

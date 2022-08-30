@@ -26,4 +26,8 @@ export class DeviceService {
   deleteDevice(id: number): Observable<object> {
     return this.httpClient.delete(`${this.baseURL+'/delete'}/${id}`);
   }
+
+  // uploadAvatar(imageFormData: FormData): Observable<object> {
+  //   return this.httpClient.post('http://localhost:8080/users/upload/image/', imageFormData);
+  // }
 }
