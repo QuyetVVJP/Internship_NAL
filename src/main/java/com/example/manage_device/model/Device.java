@@ -5,11 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -47,8 +45,9 @@ public class Device {
     @Column(name = "status")
     private String status;
 
-    @OneToOne(mappedBy = "device")
-    private Device_loan device_loan;
+    @JsonIgnore
+    @OneToOne(mappedBy = "device", fetch = FetchType.LAZY)
+    private DeviceLoan device_loan;
 
 
 }
