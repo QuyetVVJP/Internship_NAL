@@ -12,6 +12,9 @@ import { FormsModule } from '@angular/forms';
 import { ViewDeviceComponent } from './device/view-device/view-device.component';
 
 import { UserListComponent } from './user/user-list/user-list.component';
+import { AddUserComponent } from './user/add-user/add-user.component';
+import { UpdateUserComponent } from './user/update-user/update-user.component';
+import { ViewUserComponent } from './user/view-user/view-user.component';
 @NgModule({
   // Khai bao cac component o day
   declarations: [
@@ -22,7 +25,10 @@ import { UserListComponent } from './user/user-list/user-list.component';
 
     ViewDeviceComponent,
     
-    UserListComponent
+    UserListComponent,
+          AddUserComponent,
+          UpdateUserComponent,
+          ViewUserComponent
   ],
   imports: [
     BrowserModule,

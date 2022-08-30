@@ -1,7 +1,7 @@
 import { Timestamp } from "rxjs";
 
 export class User{
-  id:number | undefined;
+  id:number = 0;
   first_name:string| undefined;
   last_name:string| undefined;
   gender:string| undefined;

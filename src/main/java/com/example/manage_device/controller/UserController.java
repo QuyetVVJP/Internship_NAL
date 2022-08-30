@@ -13,7 +13,9 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -41,10 +43,10 @@ public class UserController {
         return  ResponseEntity.ok(result);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody User userDetails, @ModelAttribute("avatar") Avatar avatar){
         User user = userService.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("User khong ton tai"));
+                .orElseThrow(() -> new ResourceNotFoundException("User khong ton tai"+id));
 
         user.setFirst_name(userDetails.getFirst_name());
         user.setLast_name(userDetails.getLast_name());
@@ -75,10 +77,12 @@ public class UserController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteUser(@PathVariable Long id){
+    public ResponseEntity<Map<String, Boolean>> deleteUser(@PathVariable Long id){
         User user = userService.findById(id)
                 .orElseThrow( () -> new ResourceNotFoundException("User khong ton tai:" + id));
         userService.delete(id);
-        return ResponseEntity.ok("User deleted");
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return ResponseEntity.ok(response);
     }
 }

@@ -1,23 +1,42 @@
 <p>user-list works!</p>
+<button class="navbar-nav">
+    <li class="nav-item">
+      <a routerLink="/add-user" routerLinkActive="active" class="nav-link">Thêm người dùng</a>
+    </li>
+  </button>
 <table class="table table-striped">
     <thead>
         <tr>
+            <th>id</th>
             <th>ten</th>
             <th>gioi tinh</th>
             <th>msnv</th>
             <th>email</th>
             <th>sdt</th>
             <th>don vij</th>
+            <th>Ổ cứng</th>
+            <th>cập nhật</th>
+            <th>xóa</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let user of listUsers">
+            <td>{{user.id}}</td>
             <td>{{user.first_name}}</td>
             <td>{{user.gender}}</td>
             <td>{{user.employee_id}}</td>
             <td>{{user.email}}</td>
             <td>{{user.phone}}</td>
             <td>{{user.department}}</td>
+            <td>
+                <button (click)="updateUser(user.id)" class="btn btn-info">cập nhật</button>
+            </td>
+            <td>
+                <button (click)="deleteUser(user.id)" class="btn btn-danger" style="margin-left:10px ;">xóa</button>
+            </td>
+            <td>
+                <button (click)="viewUser(user.id)" class="btn btn-infor" style="margin-left:10px ;">xem</button>
+            </td>
         </tr>
     </tbody>
 </table>
