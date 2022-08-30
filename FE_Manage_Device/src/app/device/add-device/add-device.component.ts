@@ -15,7 +15,7 @@ export class AddDeviceComponent implements OnInit {
   device= new Device();
   postResponse: any;
   successResponse?: string;
-  uploadedImage: File;
+  uploadedImage!: File;
   constructor(private deviceService: DeviceService,
     private router: Router,
     private httpClient: HttpClient
@@ -51,8 +51,6 @@ export class AddDeviceComponent implements OnInit {
     this.httpClient.post('http://localhost:8080/users/upload/image/', imageFormData, {  responseType: 'text'  })
       .subscribe((response) => {
 
-
-        console.log(response);
       }
       );
     }

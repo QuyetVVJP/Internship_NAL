@@ -14,14 +14,16 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/users")
 public class UserController {
-    private static String UPLOAD_DIR = System.getProperty("user.dir") + "/FE_Manage_Device/src/assets/";
+    private static String UPLOAD_DIR = System.getProperty("user.dir") + "/FE_Manage_Device/src/assets/avatar/";
 
     @Autowired
     private UserService userService;
@@ -72,7 +74,7 @@ public class UserController {
         return  ResponseEntity.ok(result);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody User userDetails, @ModelAttribute("avatar") Avatar avatar){
         User user = userService.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User khong ton tai"));
@@ -108,10 +110,12 @@ public class UserController {
 
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteUser(@PathVariable Long id){
+    public ResponseEntity<Map<String, Boolean>> deleteUser(@PathVariable Long id){
         User user = userService.findById(id)
                 .orElseThrow( () -> new ResourceNotFoundException("User khong ton tai:" + id));
         userService.delete(id);
-        return ResponseEntity.ok("User deleted");
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return ResponseEntity.ok(response);
     }
 }
