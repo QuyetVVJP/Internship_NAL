@@ -54,7 +54,7 @@ public class User {
     @JoinColumn(name = "role_id", referencedColumnName = "id")
     private Role role;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,
+    @OneToMany(mappedBy = "user",
             cascade = CascadeType.ALL)
     private List<DeviceLoan> device_loans;
 }
