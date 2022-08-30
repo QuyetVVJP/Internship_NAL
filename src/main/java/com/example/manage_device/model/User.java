@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Getter
 @Setter
@@ -50,7 +51,10 @@ public class User {
     @Column(name = "updated_at")
     private Timestamp updated_at;
 
-    @OneToOne
-    @JoinColumn(name = "role_id", columnDefinition = "default '1'")
-    private Role role_id;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "role_id", referencedColumnName = "id")
+    private Role role;
+
+    @OneToMany(mappedBy = "user")
+    private List<Device_loan> device_loans;
 }

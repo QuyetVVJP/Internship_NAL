@@ -86,7 +86,7 @@ public class UserController {
         user.setEmail(userDetails.getEmail());
         user.setPhone(userDetails.getPhone());
         user.setDepartment(userDetails.getDepartment());
-        user.setRole_id(userDetails.getRole_id());
+//        user.setRole_id(userDetails.getRole_id());
 
         String path = System.getProperty("{id}");
         MultipartFile image = avatar.getFileData();

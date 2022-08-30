@@ -23,10 +23,6 @@ public class Role {
     @Column(name = "name")
     private String name;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @MapsId
-    @JsonIgnore
+    @OneToOne(mappedBy = "role")
     private User user;
-
-
 }
