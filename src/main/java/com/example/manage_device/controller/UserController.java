@@ -13,13 +13,17 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.sql.Timestamp;
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/users")
 public class UserController {
+    private static String UPLOAD_DIR = System.getProperty("user.dir") + "/FE_Manage_Device/src/assets/avatar/";
 
     @Autowired
     private UserService userService;
@@ -35,13 +39,42 @@ public class UserController {
         return userService.save(user);
     }
 
+    @PostMapping("/upload/image")
+    public ResponseEntity<?> uploadAvatar(@RequestParam("image") MultipartFile file){
+
+        // Create folder to save file if not exist
+        File uploadDir = new File(UPLOAD_DIR);
+        if (!uploadDir.exists()) {
+            uploadDir.mkdirs();
+        }
+        MultipartFile fileData = file;
+        String name = fileData.getOriginalFilename();
+        if (name != null && name.length() > 0) {
+            try {
+                // Create file
+                File serverFile = new File(UPLOAD_DIR  + name);
+                BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
+                stream.write(fileData.getBytes());
+                stream.close();
+                return ResponseEntity.ok("Success");
+
+            } catch (Exception e) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error when uploading");
+            }
+        }
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Bad request");
+    }
+
+
+
     @GetMapping("/{id}")
     public ResponseEntity<Optional<User>> getUserById(@PathVariable Long id){
         Optional<User> result = userService.getUserByID(id);
         return  ResponseEntity.ok(result);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody User userDetails, @ModelAttribute("avatar") Avatar avatar){
         User user = userService.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User khong ton tai"));
@@ -53,10 +86,10 @@ public class UserController {
         user.setEmail(userDetails.getEmail());
         user.setPhone(userDetails.getPhone());
         user.setDepartment(userDetails.getDepartment());
-        user.setRole(userDetails.getRole());
+        user.setRole_id(userDetails.getRole_id());
 
         String path = System.getProperty("{id}");
-        MultipartFile image = avatar.getImage();
+        MultipartFile image = avatar.getFileData();
         String name = image.getOriginalFilename();
         if (name != null && name.length() > 0) {
             try {
@@ -69,16 +102,20 @@ public class UserController {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error");
             }
         }
-        user.setUpdated_at(new Timestamp(System.currentTimeMillis()));
+
         User updatedUser = userService.save(user);
         return ResponseEntity.ok(updatedUser);
     }
 
+
+
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteUser(@PathVariable Long id){
+    public ResponseEntity<Map<String, Boolean>> deleteUser(@PathVariable Long id){
         User user = userService.findById(id)
                 .orElseThrow( () -> new ResourceNotFoundException("User khong ton tai:" + id));
         userService.delete(id);
-        return ResponseEntity.ok("User deleted");
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return ResponseEntity.ok(response);
     }
 }

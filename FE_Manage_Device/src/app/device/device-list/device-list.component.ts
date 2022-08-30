@@ -29,6 +29,7 @@ export class DeviceListComponent implements OnInit {
   }
   viewDevice(id: number) {
     this.router.navigate(['view-device', id]);
+ 
   }
 
   updateDevice(id: number) {
@@ -37,6 +38,7 @@ export class DeviceListComponent implements OnInit {
   deleteDevice(id: number) {
     this.deviceService.deleteDevice(id).subscribe(data => {
       this.router.navigate(['list-device']);
+      window.location.reload();
     })
   }
 }

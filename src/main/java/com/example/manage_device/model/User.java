@@ -50,6 +50,7 @@ public class User {
     @Column(name = "updated_at")
     private Timestamp updated_at;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Role role;
+    @OneToOne
+    @JoinColumn(name = "role_id", columnDefinition = "default '1'")
+    private Role role_id;
 }
