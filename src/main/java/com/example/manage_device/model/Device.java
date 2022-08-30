@@ -1,5 +1,6 @@
 package com.example.manage_device.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,7 +8,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -44,7 +44,12 @@ public class Device {
 
     @Column(name = "status")
     private String status;
-    
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "device", fetch = FetchType.LAZY)
+    private DeviceLoan device_loan;
+
+
 }
 
 
