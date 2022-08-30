@@ -12,5 +12,5 @@ import org.springframework.web.multipart.MultipartFile;
 @NoArgsConstructor
 
 public class Avatar {
-    private MultipartFile image;
+    private MultipartFile fileData;
 }
