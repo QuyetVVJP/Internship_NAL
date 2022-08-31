@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class DeviceLoanServiceImpl implements DeviceLoanService{
@@ -26,6 +27,21 @@ public class DeviceLoanServiceImpl implements DeviceLoanService{
     public List<DeviceLoan> getAllDeviceLoan() {
         return deviceLoanRepository.findAll();
     }
+
+    @Override
+    public Optional<DeviceLoan> getDeviceLoanByID(Long id) {
+        return deviceLoanRepository.findById(id);
+    }
+
+    @Override
+    public void delete(Long id) { deviceLoanRepository.deleteById(id); }
+
+    @Override
+    public Optional<DeviceLoan> findById(Long id) {
+        return deviceLoanRepository.findById(id);
+    }
+
+    public DeviceLoan save(DeviceLoan deviceLoan) { return deviceLoanRepository.save(deviceLoan); }
 
     @Override
     public DeviceLoan save(DeviceLoanRequest deviceLoanRequest) {

@@ -24,14 +24,7 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public User createUser() {
-        return userRepository.save(new User());
-    }
-
-    public Optional<User> findById(Long id) {
-        return userRepository.findById(id);
-
-    }
+    public Optional<User> findById(Long id) { return userRepository.findById(id); }
 
     @Override
     public void delete(Long id) {
