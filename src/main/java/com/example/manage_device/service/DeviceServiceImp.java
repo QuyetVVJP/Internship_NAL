@@ -76,8 +76,8 @@ public class DeviceServiceImp implements DeviceService {
     }
 
     @Override
-    public Page<Device> searchByKeyword(String searchWord, Pageable paging) {
-        Page<Device> res = deviceRepository.searchByKeyword(searchWord, paging);
+    public Page<Device> searchByKeyword(String term, Pageable paging) {
+        Page<Device> res = deviceRepository.searchByKeyword(term, paging);
         return res;
     }
 

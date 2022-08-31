@@ -21,5 +21,5 @@ public interface DeviceService {
     Device save(Device device);
     public Optional<Device> findById(Long id);
 
-    Page<Device> searchByKeyword(String searchWord, Pageable paging);
+    Page<Device> searchByKeyword(String term, Pageable paging);
 }

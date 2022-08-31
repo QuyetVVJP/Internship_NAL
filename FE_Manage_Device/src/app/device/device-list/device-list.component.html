@@ -1,13 +1,32 @@
 <h2>Danh sách thiết bị</h2>
 
-
 <button class="navbar-nav">
   <li class="nav-item">
     <a routerLink="/add-device" routerLinkActive="active" class="nav-link">Thêm thiết bị</a>
   </li>
 </button>
-<table class="table table-striped">
 
+<div class="col-md-8">
+  <div class="input-group mb-3">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Search by title"
+      [(ngModel)]="term"
+    />
+    <div class="input-group-append">
+      <button
+        class="btn btn-outline-secondary"
+        type="button"
+        (click)="searchByTerm()"
+      >
+        Search
+      </button>
+    </div>
+  </div>
+</div>
+
+<table class="table table-striped">
   <thead>
     <tr>
       <th>ID</th>
@@ -20,7 +39,16 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of listDevices">
+    <tr  *ngFor="
+        let item of listDevices | paginate : {
+                itemsPerPage: pageSize,
+                currentPage: page,
+                totalItems: count
+              };
+        let i = index
+      "
+      [class.active]="i == currentIndex"
+      (click)="setActiveDevice(item, i)">
       <td> {{item.id}}</td>
       <td> {{item.device_name}} </td>
       <td> {{item.os}}</td>
@@ -38,4 +66,12 @@
     </tr>
   </tbody>
 </table>
+<div class="col-md-12">
+  <pagination-controls
+    previousLabel="Prev"
+    nextLabel="Next"
+    [responsive]="true"
+    (pageChange)="handlePageChange($event)"
+  ></pagination-controls>
+</div>
 

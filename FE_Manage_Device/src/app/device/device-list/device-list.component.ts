@@ -11,6 +11,12 @@ import { DeviceService } from '../device.service';
 export class DeviceListComponent implements OnInit {
 
   listDevices: Device[] | undefined;
+  count = 0;
+  pageSize = 5;
+  currentDevice: Device;
+  currentIndex = -1;
+  page = 1;;
+  term = '';
   constructor(
     private deviceService: DeviceService,
     private router: Router
@@ -19,7 +25,8 @@ export class DeviceListComponent implements OnInit {
   ngOnInit(): void {
 
 
-    this.getAllDevice();
+    // this.getAllDevice();
+    this.retrieveDevice(this.term);
   }
 
   private getAllDevice() {
@@ -29,7 +36,30 @@ export class DeviceListComponent implements OnInit {
   }
   viewDevice(id: number) {
     this.router.navigate(['view-device', id]);
- 
+
+  }
+
+  setActiveDevice(device: Device, index: number): void {
+    this.currentDevice = device;
+    this.currentIndex = index;
+  }
+
+  handlePageChange(event: number): void {
+    this.page = event;
+    this.retrieveDevice(this.term);
+  }
+
+  retrieveDevice(term?: string){
+    console.log(this.term);
+    this.deviceService.getAllDeviceWithPagination(term).subscribe(res =>{
+      console.log(res);
+      this.listDevices = res.content;
+      this.count = res.totalElements;
+    })
+  }
+
+  searchByTerm(){
+    this.retrieveDevice(this.term);
   }
 
   updateDevice(id: number) {

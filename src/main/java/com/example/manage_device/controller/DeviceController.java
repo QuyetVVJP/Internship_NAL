@@ -36,16 +36,16 @@ public class DeviceController {
     @GetMapping("/search")
     public Page<Device> search(
             @RequestParam(name = PAGE, required = true, defaultValue = "0") int page,
-            @RequestParam(name = PAGE_SIZE, required = true, defaultValue = "5" + "") int size,
-            @RequestParam(name = SEARCH, required = false, defaultValue = "") String searchWord
+            @RequestParam(name = PAGE_SIZE, required = true, defaultValue = Integer.MAX_VALUE + "") int size,
+            @RequestParam(name = TERM, required = true, defaultValue = "") String term
     ){
         Pageable paging = null;
         paging = PageRequest.of(page, size);
 
-        if (searchWord != null)
-            searchWord = searchWord.trim();
+        if (term != null)
+            term = term.trim();
 
-        Page<Device> resdto = deviceService.searchByKeyword(searchWord, paging);
+        Page<Device> resdto = deviceService.searchByKeyword(term, paging);
         return resdto;
     }
 
