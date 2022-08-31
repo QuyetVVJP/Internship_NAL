@@ -37,6 +37,7 @@ public class DeviceLoanServiceImpl implements DeviceLoanService{
         deviceLoan.setUser(user);
         deviceLoan.setDevice(device);
         deviceLoan.setStatus(WAITING);
+        deviceLoan.setReason(deviceLoanRequest.getReason());
         deviceLoan.setReturn_date(new Timestamp(System.currentTimeMillis()));
         deviceLoanRequest.setReturn_date(new Timestamp(System.currentTimeMillis()));
         return deviceLoanRepository.save(deviceLoan);
