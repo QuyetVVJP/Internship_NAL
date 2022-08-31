@@ -11,6 +11,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
@@ -64,6 +66,17 @@ public class DeviceServiceImp implements DeviceService {
     @Override
     public Optional<Device> findById(Long id) {
         return deviceRepository.findById(id);
+    }
+
+    @Override
+    public Page<Device> searchByKeyword(String term, Pageable paging) {
+        Page<Device> res = deviceRepository.searchByKeyword(term, paging);
+        return res;
+    }
+
+    @Override
+    public Long getTotal() {
+        return deviceRepository.findAll().stream().count();
     }
 
 

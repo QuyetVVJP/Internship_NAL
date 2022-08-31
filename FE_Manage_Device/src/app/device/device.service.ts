@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from 'rxjs';
 import { Device } from './device';
 @Injectable({
@@ -25,6 +25,15 @@ export class DeviceService {
   }
   deleteDevice(id: number): Observable<object> {
     return this.httpClient.delete(`${this.baseURL+'/delete'}/${id}`);
+  }
+
+  getAllDeviceWithPagination(term): Observable<any> {
+    let terms = new HttpParams().set('term', term);
+    return this.httpClient.get<Device[]>(`${this.baseURL + '/search'}`,{ params: terms } );
+  }
+
+  getTotalDevice(): Observable<number>{
+     return this.httpClient.get<number>(`${this.baseURL + '/total'}`);
   }
 
   // uploadAvatar(imageFormData: FormData): Observable<object> {

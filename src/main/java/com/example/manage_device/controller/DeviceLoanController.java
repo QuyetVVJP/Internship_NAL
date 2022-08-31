@@ -40,16 +40,11 @@ public class DeviceLoanController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<DeviceLoan> updateDeviceLoan(@PathVariable Long id,@RequestBody DeviceLoan deviceLoanDetails) throws Throwable {
+    public ResponseEntity<DeviceLoan> updateDeviceLoan(@PathVariable Long id,@RequestBody DeviceLoanRequest deviceLoanRequest) throws Throwable {
 
         DeviceLoan deviceLoan = deviceLoanService.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Yeu cau muon khong ton tai:" + id));
-        deviceLoan.setDevice(deviceLoanDetails.getDevice());
-        deviceLoan.setUser(deviceLoanDetails.getUser());
-        deviceLoan.setBorrow_date(deviceLoanDetails.getBorrow_date());
-        deviceLoan.setReturn_date(deviceLoanDetails.getReturn_date());
-        deviceLoan.setStatus(deviceLoan.getStatus());
-        DeviceLoan updatedDeviceLoan = deviceLoanService.save(deviceLoan);
+        DeviceLoan updatedDeviceLoan = deviceLoanService.update(id,deviceLoanRequest);
         return ResponseEntity.ok(updatedDeviceLoan);
     }
 
