@@ -41,14 +41,7 @@ public class DeviceServiceImp implements DeviceService {
     }
 
     @Override
-    public Device createDevice() {
-        return deviceRepository.save(new Device());
-    }
-
-    @Override
-    public void delete(Long id) {
-        deviceRepository.deleteById(id);
-    }
+    public void delete(Long id) { deviceRepository.deleteById(id); }
 
 //    @Override
 //    public Optional<Device> updateDevice(Long id) {

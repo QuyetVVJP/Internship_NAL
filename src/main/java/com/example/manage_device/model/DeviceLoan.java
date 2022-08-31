@@ -31,6 +31,10 @@ public class DeviceLoan {
     @Column(name = "status")
     private String status;
 
+    @Column(name = "reason")
+    private String reason;
+
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "device_id", referencedColumnName = "id")
     private Device device;
