@@ -1,6 +1,7 @@
 package com.example.manage_device.service;
 
 import com.example.manage_device.model.User;
+import com.example.manage_device.model.request.UserRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,4 +20,5 @@ public interface UserService {
 
     Optional<User> findById(Long id);
 
+    User register(UserRequest userRequest);
 }

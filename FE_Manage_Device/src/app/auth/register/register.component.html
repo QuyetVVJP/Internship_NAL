@@ -1,0 +1,36 @@
+<div class="col-md-8 offset-md-3">
+  <h2>thêm người dùng</h2>
+  <form (ngSubmit)="onSubmit()">
+      <div class="form-label">
+          <label>Họ : </label>
+          <input type="text" class="form-control" id="first_name"
+          [(ngModel)]="user.first_name" name="first_name">
+      </div>
+      <div class="form-label">
+        <label>Tên : </label>
+        <input type="text" class="form-control" id="last_name"
+        [(ngModel)]="user.last_name" name="last_name">
+    </div>
+
+      <div class="form-label">
+          <label>Email : </label>
+          <input type="text" class="form-control" id="email"
+          [(ngModel)]="user.email" name="email">
+      </div>
+
+      <div class="form-label">
+        <label>Mật khẩu : </label>
+        <input type="password" class="form-control" id="password"
+        [(ngModel)]="user.password" name="password">
+      </div>
+
+      <div class="form-label">
+        <label> Xác nhận mật khẩu : </label>
+        <input type="password" class="form-control" id="rePassword"
+        [(ngModel)]="user.rePassword" name="rePassword">
+      </div>
+
+      <button class="btn btn-success" type="submit">Đăng ký</button>
+
+  </form>
+  </div>

@@ -1,6 +1,9 @@
 package com.example.manage_device.service;
 
+import com.example.manage_device.model.Role;
 import com.example.manage_device.model.User;
+import com.example.manage_device.model.request.UserRequest;
+import com.example.manage_device.repository.RoleRepository;
 import com.example.manage_device.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,6 +16,8 @@ import java.util.Optional;
 public class UserServiceImp implements UserService {
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    RoleRepository roleRepository;
     @Override
     public List<User> getAllUser() {
         return userRepository.findAll();
@@ -25,6 +30,19 @@ public class UserServiceImp implements UserService {
 
     @Override
     public Optional<User> findById(Long id) { return userRepository.findById(id); }
+
+    @Override
+    public User register(UserRequest userRequest) {
+        User user = new User();
+        user.setFirst_name(userRequest.getFirst_name());
+        user.setLast_name(userRequest.getLast_name());
+        user.setPassword(userRequest.getPassword());
+        user.setEmail(userRequest.getEmail());
+        Role role = roleRepository.findById(1L).get();
+        user.setRole(role);
+        user.setCreated_at(new Timestamp(System.currentTimeMillis()));
+        return userRepository.save(user);
+    }
 
     @Override
     public void delete(Long id) {

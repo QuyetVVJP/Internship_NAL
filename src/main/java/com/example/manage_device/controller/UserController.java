@@ -3,6 +3,7 @@ package com.example.manage_device.controller;
 import com.example.manage_device.exception.ResourceNotFoundException;
 import com.example.manage_device.model.Avatar;
 import com.example.manage_device.model.User;
+import com.example.manage_device.model.request.UserRequest;
 import com.example.manage_device.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,6 +38,21 @@ public class UserController {
     @PostMapping("/create")
     public User createUser(@RequestBody User user){
         return userService.save(user);
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<Map<String, Boolean>> registerUser(@RequestBody UserRequest userRequest){
+        Map<String, Boolean> response = new HashMap<>();
+        if(userRequest.getPassword().equals(userRequest.getRePassword()) ){
+            userService.register(userRequest);
+
+            response.put("register success", Boolean.TRUE);
+            return ResponseEntity.ok(response);
+        }
+        else {
+            response.put("register fail", Boolean.TRUE);
+            return ResponseEntity.ok(response);
+        }
     }
 
     @PostMapping("/upload/image")

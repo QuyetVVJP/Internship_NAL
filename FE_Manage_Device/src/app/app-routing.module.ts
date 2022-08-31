@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { RegisterComponent } from './auth/register/register.component';
 import { AddDeviceComponent } from './device/add-device/add-device.component';
 import { DeviceListComponent } from './device/device-list/device-list.component';
 import { UpdateDeviceComponent } from './device/update-device/update-device.component';
@@ -20,7 +21,9 @@ const routes: Routes = [
   {path:'add-user',component: AddUserComponent},
   {path: '', redirectTo:'list-user', pathMatch:'full'},
   {path:'update-user/:id',component:UpdateUserComponent},
-  {path:'view-user/:id',component:ViewUserComponent}
+  {path:'view-user/:id',component:ViewUserComponent},
+
+  {path:'register',component:RegisterComponent},
 ];
 
 @NgModule({
