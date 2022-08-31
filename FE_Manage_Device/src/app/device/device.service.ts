@@ -32,6 +32,10 @@ export class DeviceService {
     return this.httpClient.get<Device[]>(`${this.baseURL + '/search'}`,{ params: terms } );
   }
 
+  getTotalDevice(): Observable<number>{
+     return this.httpClient.get<number>(`${this.baseURL + '/total'}`);
+  }
+
   // uploadAvatar(imageFormData: FormData): Observable<object> {
   //   return this.httpClient.post('http://localhost:8080/users/upload/image/', imageFormData);
   // }

@@ -16,6 +16,7 @@ import { AddUserComponent } from './user/add-user/add-user.component';
 import { UpdateUserComponent } from './user/update-user/update-user.component';
 import { ViewUserComponent } from './user/view-user/view-user.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NgApexchartsModule } from "ng-apexcharts";
 @NgModule({
   // Khai bao cac component o day
   declarations: [
@@ -36,7 +37,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgApexchartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -74,6 +74,11 @@ public class DeviceServiceImp implements DeviceService {
         return res;
     }
 
+    @Override
+    public Long getTotal() {
+        return deviceRepository.findAll().stream().count();
+    }
+
 
     public String generateQRCode(String qrCodeContent, String filePath, int width, int height) {
         try {

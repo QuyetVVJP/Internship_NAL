@@ -33,6 +33,12 @@ public class DeviceController {
         return deviceList;
     }
 
+    @GetMapping("/total")
+    public Long getTotalDevice() {
+        Long total = deviceService.getTotal();
+        return total;
+    }
+
     @GetMapping("/search")
     public Page<Device> search(
             @RequestParam(name = PAGE, required = true, defaultValue = "0") int page,

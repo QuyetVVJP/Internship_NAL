@@ -17,7 +17,7 @@ public interface DeviceRepository extends JpaRepository<Device, Long> {
 //    @Query("SELECT * FROM device WHERE "
 //            + "(:search is null or lower(s.device_name) LIKE CONCAT('%',lower(:search),'%') " //
 //            + "OR lower(s.os) LIKE CONCAT('%',lower(:search),'%')) ")
-    @Query(value = "SELECT * FROM device WHERE device_name LIKE %:term%", nativeQuery = true)
+    @Query(value = "SELECT * FROM device WHERE device_name LIKE %:term% OR os LIKE %:term%" , nativeQuery = true)
     public Page<Device> searchByKeyword(@Param("term") String term,
                                          Pageable paging);
 }
