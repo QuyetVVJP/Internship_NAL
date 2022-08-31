@@ -13,8 +13,6 @@ public interface UserService {
 
     Optional<User> getUserByID(Long id);
 
-    User createUser();
-
     void delete(Long id);
 
     User save(User user);
