@@ -4,6 +4,10 @@ import com.example.manage_device.exception.ResourceNotFoundException;
 import com.example.manage_device.model.Device;
 import com.example.manage_device.service.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +16,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
+import static com.example.manage_device.utils.ParamKey.*;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -26,6 +32,23 @@ public class DeviceController {
         List<Device> deviceList = deviceService.getAllDevice();
         return deviceList;
     }
+
+    @GetMapping("/search")
+    public Page<Device> search(
+            @RequestParam(name = PAGE, required = true, defaultValue = "0") int page,
+            @RequestParam(name = PAGE_SIZE, required = true, defaultValue = Integer.MAX_VALUE + "") int size,
+            @RequestParam(name = TERM, required = true, defaultValue = "") String term
+    ){
+        Pageable paging = null;
+        paging = PageRequest.of(page, size);
+
+        if (term != null)
+            term = term.trim();
+
+        Page<Device> resdto = deviceService.searchByKeyword(term, paging);
+        return resdto;
+    }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getDeviceById(@PathVariable Long id) {
@@ -52,8 +75,8 @@ public class DeviceController {
         device.setStatus(deviceDetails.getStatus());
         device.setPath_QR(device.getPath_QR());
         device.setUpdate_at(new Timestamp(System.currentTimeMillis()));
-        Device updatedDevice = deviceService.save(device);
-        return ResponseEntity.ok(updatedDevice);
+        Device updateDevice = deviceService.save(device);
+        return ResponseEntity.ok(updateDevice);
     }
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Map<String, Boolean>> deleteDevice(@PathVariable Long id) throws Throwable {
@@ -61,7 +84,7 @@ public class DeviceController {
                 .orElseThrow( () -> new ResourceNotFoundException("Device khong ton tai:" + id));
         deviceService.delete(id);
         Map<String, Boolean> response = new HashMap<>();
-        response.put("Deleted", Boolean.TRUE);
+        response.put("deleted", Boolean.TRUE);
         return ResponseEntity.ok(response);
     }
 }

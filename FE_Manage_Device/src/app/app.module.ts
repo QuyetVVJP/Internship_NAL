@@ -15,6 +15,7 @@ import { UserListComponent } from './user/user-list/user-list.component';
 import { AddUserComponent } from './user/add-user/add-user.component';
 import { UpdateUserComponent } from './user/update-user/update-user.component';
 import { ViewUserComponent } from './user/view-user/view-user.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
   // Khai bao cac component o day
   declarations: [
@@ -24,7 +25,7 @@ import { ViewUserComponent } from './user/view-user/view-user.component';
     UpdateDeviceComponent,
 
     ViewDeviceComponent,
-    
+
     UserListComponent,
           AddUserComponent,
           UpdateUserComponent,
@@ -34,7 +35,8 @@ import { ViewUserComponent } from './user/view-user/view-user.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
