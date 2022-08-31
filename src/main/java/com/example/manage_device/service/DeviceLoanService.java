@@ -21,4 +21,6 @@ public interface DeviceLoanService {
     Optional<DeviceLoan> findById(Long id);
 
     DeviceLoan save(DeviceLoan deviceLoan);
+
+    DeviceLoan update(Long id, DeviceLoanRequest deviceLoan);
 }

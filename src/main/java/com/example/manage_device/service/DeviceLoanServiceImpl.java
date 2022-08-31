@@ -1,5 +1,6 @@
 package com.example.manage_device.service;
 
+import com.example.manage_device.exception.ResourceNotFoundException;
 import com.example.manage_device.model.Device;
 import com.example.manage_device.model.DeviceLoan;
 import com.example.manage_device.model.User;
@@ -42,6 +43,17 @@ public class DeviceLoanServiceImpl implements DeviceLoanService{
     }
 
     public DeviceLoan save(DeviceLoan deviceLoan) { return deviceLoanRepository.save(deviceLoan); }
+
+    @Override
+    public DeviceLoan update(Long id, DeviceLoanRequest deviceLoanRequest) {
+        DeviceLoan deviceLoan = deviceLoanRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Yeu cau muon khong ton tai:" + id));
+        deviceLoan.setReason(deviceLoanRequest.getReason());
+        deviceLoan.setReturn_date(new Timestamp(System.currentTimeMillis()));
+        deviceLoanRequest.setReturn_date(new Timestamp(System.currentTimeMillis()));
+
+        return deviceLoanRepository.save(deviceLoan);
+    }
 
     @Override
     public DeviceLoan save(DeviceLoanRequest deviceLoanRequest) {
