@@ -5,6 +5,7 @@ import com.example.manage_device.model.request.DeviceLoanRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public interface DeviceLoanService {
@@ -14,4 +15,10 @@ public interface DeviceLoanService {
 
 
     DeviceLoan save(DeviceLoanRequest deviceLoanRequest);
+
+    Optional<DeviceLoan> getDeviceLoanByID(Long id);
+    void delete(Long id);
+    Optional<DeviceLoan> findById(Long id);
+
+    DeviceLoan save(DeviceLoan deviceLoan);
 }

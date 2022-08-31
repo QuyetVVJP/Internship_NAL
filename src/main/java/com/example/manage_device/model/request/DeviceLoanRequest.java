@@ -24,6 +24,8 @@ public class DeviceLoanRequest {
     private Timestamp return_date;
 
     private String status;
+
+    private String reason;
     private long device_id;
 
 }
