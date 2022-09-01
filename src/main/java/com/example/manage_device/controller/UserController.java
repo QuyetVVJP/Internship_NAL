@@ -3,6 +3,8 @@ package com.example.manage_device.controller;
 import com.example.manage_device.exception.ResourceNotFoundException;
 import com.example.manage_device.model.Avatar;
 import com.example.manage_device.model.User;
+import com.example.manage_device.model.dto.UserDto;
+import com.example.manage_device.model.request.LoginRequest;
 import com.example.manage_device.model.request.UserRequest;
 import com.example.manage_device.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +55,21 @@ public class UserController {
             response.put("register fail", Boolean.TRUE);
             return ResponseEntity.ok(response);
         }
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest){
+        UserDto userDto = new UserDto();
+         User user = userService.findByEmail(loginRequest.getEmail());
+         if(user != null && user.getPassword().equals(loginRequest.getPassword())){
+             userDto.setEmail(user.getEmail());
+             userDto.setId(user.getId());
+             userDto.setFirst_name(user.getFirst_name());
+             userDto.setLast_name(user.getLast_name());
+             return ResponseEntity.ok(userDto);
+         }
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error");
     }
 
     @PostMapping("/upload/image")

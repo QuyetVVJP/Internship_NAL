@@ -21,4 +21,6 @@ public interface UserService {
     Optional<User> findById(Long id);
 
     User register(UserRequest userRequest);
+
+    User findByEmail(String email);
 }

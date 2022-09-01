@@ -18,6 +18,7 @@ import { ViewUserComponent } from './user/view-user/view-user.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgApexchartsModule } from "ng-apexcharts";
 import { RegisterComponent } from './auth/register/register.component';
+import { LoginComponent } from './auth/login/login.component';
 @NgModule({
   // Khai bao cac component o day
   declarations: [
@@ -33,6 +34,7 @@ import { RegisterComponent } from './auth/register/register.component';
           UpdateUserComponent,
           ViewUserComponent,
           RegisterComponent,
+          LoginComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User, UserRequest } from './user';
+import { LoginRequest, User, UserDto, UserRequest } from './user';
 @Injectable({
   providedIn: 'root'
 })
@@ -27,5 +27,9 @@ export class UserService {
 
   register(userRequest: UserRequest): Observable<Object> {
     return this.httpClient.post<User>(`${this.baseURL + '/register'}`, userRequest);
+  }
+
+  login(request: LoginRequest): Observable<UserDto>{
+    return this.httpClient.post<UserDto>(`${this.baseURL + '/login'}`, request);
   }
 }

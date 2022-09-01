@@ -30,7 +30,6 @@ export class RegisterComponent implements OnInit {
     this.router.navigate(['/list-device']);
   }
    onSubmit(){
-    console.log(this.user);
     this.saveUser();
    }
 

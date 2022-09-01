@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Device } from '../device';
 import { DeviceService } from '../device.service';
 import {
@@ -15,6 +15,7 @@ import {
   ApexFill,
   ApexTooltip
 } from "ng-apexcharts";
+import { UserDto } from 'src/app/user/user';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -39,9 +40,12 @@ export class DeviceListComponent implements OnInit {
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
 
+  userDto = new UserDto();
+
   listDevices: Device[] | undefined;
   count = 0;
   total = 0;
+  user_id = 0;
   pageSize = 5;
   currentDevice: Device;
   currentIndex = -1;
@@ -49,6 +53,7 @@ export class DeviceListComponent implements OnInit {
   term = '';
   constructor(
     private deviceService: DeviceService,
+    private route: ActivatedRoute,
     private router: Router
   ) {
     this.chartOptions = {
@@ -114,6 +119,8 @@ export class DeviceListComponent implements OnInit {
 
   ngOnInit(): void {
     // this.getAllDevice();
+    this.user_id = this.route.snapshot.params['id'];
+    console.log(this.user_id);
     this.getTotalDevice();
     this.retrieveDevice(this.term);
   }
@@ -147,7 +154,6 @@ export class DeviceListComponent implements OnInit {
   }
 
   retrieveDevice(term?: string){
-    console.log(this.term);
     this.deviceService.getAllDeviceWithPagination(term).subscribe(res =>{
       console.log(res);
       this.listDevices = res.content;
