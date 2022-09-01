@@ -57,6 +57,25 @@ public class UserController {
         }
     }
 
+    @GetMapping("/userIsLogin")
+    public UserDto getUserIsLogin(){
+        UserDto userDto = new UserDto();
+        User user = userService.checkUserIsLogin();
+        userDto.setId(user.getId());
+        userDto.setEmail(user.getEmail());
+        userDto.setFirst_name(user.getFirst_name());
+        userDto.setLast_name(user.getLast_name());
+        return  userDto;
+    }
+
+    @GetMapping("/logout")
+    public ResponseEntity<Map<String, Boolean>> logout(){
+        userService.resetIsLogin();
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("logout", Boolean.TRUE);
+        return ResponseEntity.ok(response);
+    }
+
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest){
         UserDto userDto = new UserDto();
@@ -66,6 +85,8 @@ public class UserController {
              userDto.setId(user.getId());
              userDto.setFirst_name(user.getFirst_name());
              userDto.setLast_name(user.getLast_name());
+             userService.resetIsLogin();
+             userService.updateIsLogin(user.getId());
              return ResponseEntity.ok(userDto);
          }
 

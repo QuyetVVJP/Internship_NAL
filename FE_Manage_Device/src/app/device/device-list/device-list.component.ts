@@ -16,6 +16,7 @@ import {
   ApexTooltip
 } from "ng-apexcharts";
 import { UserDto } from 'src/app/user/user';
+import { UserService } from 'src/app/user/user.service';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -40,7 +41,7 @@ export class DeviceListComponent implements OnInit {
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
 
-  userDto = new UserDto();
+  userLogin= new UserDto();
 
   listDevices: Device[] | undefined;
   count = 0;
@@ -51,9 +52,11 @@ export class DeviceListComponent implements OnInit {
   currentIndex = -1;
   page = 1;;
   term = '';
+  title = 'FE_Manage_Device';
   constructor(
     private deviceService: DeviceService,
     private route: ActivatedRoute,
+    private useService : UserService,
     private router: Router
   ) {
     this.chartOptions = {
@@ -119,9 +122,8 @@ export class DeviceListComponent implements OnInit {
 
   ngOnInit(): void {
     // this.getAllDevice();
-    this.user_id = this.route.snapshot.params['id'];
-    console.log(this.user_id);
     this.getTotalDevice();
+
     this.retrieveDevice(this.term);
   }
 
@@ -141,8 +143,6 @@ export class DeviceListComponent implements OnInit {
 
   }
 
-
-
   setActiveDevice(device: Device, index: number): void {
     this.currentDevice = device;
     this.currentIndex = index;
@@ -155,10 +155,13 @@ export class DeviceListComponent implements OnInit {
 
   retrieveDevice(term?: string){
     this.deviceService.getAllDeviceWithPagination(term).subscribe(res =>{
-      console.log(res);
       this.listDevices = res.content;
       this.count = res.totalElements;
-    })
+    });
+    this.useService.getUserLogin().subscribe(res =>{
+
+      this.userLogin = res;
+  });
   }
 
   searchByTerm(){

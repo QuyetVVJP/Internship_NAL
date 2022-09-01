@@ -51,6 +51,23 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
+    public void updateIsLogin(long id) {
+        userRepository.setIsLogin(id);
+    }
+
+    @Override
+    public void resetIsLogin() {
+        userRepository.resetLogin();
+    }
+
+    @Override
+    public User checkUserIsLogin() {
+        User user = new User();
+        user = userRepository.findUserLogin();
+        return user;
+    }
+
+    @Override
     public void delete(Long id) {
         userRepository.deleteById(id);
     }

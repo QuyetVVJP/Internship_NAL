@@ -33,7 +33,7 @@ public class User {
     @Column(name = "employee_id")
     private String employee_id;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "phone")
@@ -54,6 +54,8 @@ public class User {
     @Column(name = "updated_at")
     private Timestamp updated_at;
 
+    @Column(name = "isLogin",columnDefinition = "boolean default false")
+    private boolean isLogin = false;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "role_id", referencedColumnName = "id")

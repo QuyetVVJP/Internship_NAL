@@ -32,4 +32,11 @@ export class UserService {
   login(request: LoginRequest): Observable<UserDto>{
     return this.httpClient.post<UserDto>(`${this.baseURL + '/login'}`, request);
   }
+
+  getUserLogin():Observable<UserDto>{
+    return this.httpClient.get<UserDto>(`${this.baseURL + '/userIsLogin'}`);
+  }
+  logout():Observable<any>{
+    return this.httpClient.get<any>(`${this.baseURL + '/logout'}`);
+  }
 }

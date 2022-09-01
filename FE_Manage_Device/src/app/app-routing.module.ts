@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
+import { LogoutComponent } from './auth/logout/logout.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AddDeviceComponent } from './device/add-device/add-device.component';
 import { DeviceListComponent } from './device/device-list/device-list.component';
@@ -17,6 +18,9 @@ const routes: Routes = [
   {path: '', redirectTo:'list-device', pathMatch:'full'},
   {path:'update-device/:id',component:UpdateDeviceComponent},
   {path:'view-device/:id',component:ViewDeviceComponent},
+  {path:'list-device/register',component:RegisterComponent},
+  {path:'list-device/login',component:LoginComponent},
+  {path:'list-device/logout',component:LogoutComponent},
 
   {path:'user-list', component:UserListComponent},
   {path:'add-user',component: AddUserComponent},
@@ -24,8 +28,7 @@ const routes: Routes = [
   {path:'update-user/:id',component:UpdateUserComponent},
   {path:'view-user/:id',component:ViewUserComponent},
 
-  {path:'register',component:RegisterComponent},
-  {path:'login',component:LoginComponent},
+
 ];
 
 @NgModule({
