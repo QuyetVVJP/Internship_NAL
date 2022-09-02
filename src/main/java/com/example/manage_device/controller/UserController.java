@@ -3,6 +3,9 @@ package com.example.manage_device.controller;
 import com.example.manage_device.exception.ResourceNotFoundException;
 import com.example.manage_device.model.Avatar;
 import com.example.manage_device.model.User;
+
+import com.example.manage_device.service.EmailServiceImpl;
+
 import com.example.manage_device.model.dto.UserDto;
 import com.example.manage_device.model.request.LoginRequest;
 import com.example.manage_device.model.request.UserRequest;
@@ -16,7 +19,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,11 +32,21 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private EmailServiceImpl emailService;
 
     @GetMapping("/list")
     public List<User> getAllUser() {
         List<User> userList = userService.getAllUser();
+
         return userList;
+    }
+    @GetMapping("/email")
+    public String emailService() {
+        emailService.sendEmail("doducluong14@gmail.com",
+                "Bạn đã đăng kí thành công",
+                "Mượn thiết bị <Nal>");
+        return  ("Đã gửi mail thành công!");
     }
 
     @PostMapping("/create")
