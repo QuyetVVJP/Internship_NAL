@@ -3,7 +3,12 @@ package com.example.manage_device.controller;
 import com.example.manage_device.exception.ResourceNotFoundException;
 import com.example.manage_device.model.Avatar;
 import com.example.manage_device.model.User;
+
 import com.example.manage_device.service.EmailServiceImpl;
+
+import com.example.manage_device.model.dto.UserDto;
+import com.example.manage_device.model.request.LoginRequest;
+import com.example.manage_device.model.request.UserRequest;
 import com.example.manage_device.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -47,6 +52,57 @@ public class UserController {
     @PostMapping("/create")
     public User createUser(@RequestBody User user){
         return userService.save(user);
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<Map<String, Boolean>> registerUser(@RequestBody UserRequest userRequest){
+        Map<String, Boolean> response = new HashMap<>();
+        if(userRequest.getPassword().equals(userRequest.getRePassword()) ){
+            userService.register(userRequest);
+
+            response.put("register success", Boolean.TRUE);
+            return ResponseEntity.ok(response);
+        }
+        else {
+            response.put("register fail", Boolean.TRUE);
+            return ResponseEntity.ok(response);
+        }
+    }
+
+    @GetMapping("/userIsLogin")
+    public UserDto getUserIsLogin(){
+        UserDto userDto = new UserDto();
+        User user = userService.checkUserIsLogin();
+        userDto.setId(user.getId());
+        userDto.setEmail(user.getEmail());
+        userDto.setFirst_name(user.getFirst_name());
+        userDto.setLast_name(user.getLast_name());
+        return  userDto;
+    }
+
+    @GetMapping("/logout")
+    public ResponseEntity<Map<String, Boolean>> logout(){
+        userService.resetIsLogin();
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("logout", Boolean.TRUE);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest){
+        UserDto userDto = new UserDto();
+         User user = userService.findByEmail(loginRequest.getEmail());
+         if(user != null && user.getPassword().equals(loginRequest.getPassword())){
+             userDto.setEmail(user.getEmail());
+             userDto.setId(user.getId());
+             userDto.setFirst_name(user.getFirst_name());
+             userDto.setLast_name(user.getLast_name());
+             userService.resetIsLogin();
+             userService.updateIsLogin(user.getId());
+             return ResponseEntity.ok(userDto);
+         }
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error");
     }
 
     @PostMapping("/upload/image")
