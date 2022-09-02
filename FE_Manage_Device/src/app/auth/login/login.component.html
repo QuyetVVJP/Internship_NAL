@@ -1,0 +1,19 @@
+<div class="col-md-8 offset-md-3">
+  <h2>Đăng nhập</h2>
+  <form (ngSubmit)="onSubmit()">
+
+      <div class="form-label">
+          <label>Email : </label>
+          <input type="text" class="form-control" id="email"
+          [(ngModel)]="request.email" name="email">
+      </div>
+
+      <div class="form-label">
+        <label>Mật khẩu : </label>
+        <input type="password" class="form-control" id="password"
+        [(ngModel)]="request.password" name="password">
+      </div>
+      <button class="btn btn-success" type="submit">Đăng nhập</button>
+
+  </form>
+  </div>
