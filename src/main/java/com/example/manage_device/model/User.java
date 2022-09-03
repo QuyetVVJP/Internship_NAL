@@ -1,5 +1,6 @@
 package com.example.manage_device.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,7 +33,7 @@ public class User {
     @Column(name = "employee_id")
     private String employee_id;
 
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
 
     @Column(name = "phone")
@@ -44,11 +45,17 @@ public class User {
     @Column(name = "avatar_url")
     private String avatar_url;
 
+    @Column(name = "password")
+    private String password;
+
     @Column(name = "created_at")
     private Timestamp created_at;
 
     @Column(name = "updated_at")
     private Timestamp updated_at;
+
+    @Column(name = "isLogin",columnDefinition = "boolean default false")
+    private boolean isLogin = false;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "role_id", referencedColumnName = "id")
@@ -57,4 +64,5 @@ public class User {
     @OneToMany(mappedBy = "user",
             cascade = CascadeType.ALL)
     private List<DeviceLoan> device_loans;
+
 }

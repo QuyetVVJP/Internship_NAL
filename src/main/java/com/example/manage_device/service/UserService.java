@@ -1,7 +1,9 @@
 package com.example.manage_device.service;
 
 import com.example.manage_device.model.User;
+import com.example.manage_device.model.request.UserRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,4 +21,15 @@ public interface UserService {
 
     Optional<User> findById(Long id);
 
+    User register(UserRequest userRequest);
+
+    User findByEmail(String email);
+
+    @Transactional
+    void updateIsLogin(long id);
+
+    @Transactional
+    void resetIsLogin();
+
+    User checkUserIsLogin();
 }
