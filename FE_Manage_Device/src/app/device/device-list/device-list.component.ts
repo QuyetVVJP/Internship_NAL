@@ -50,7 +50,7 @@ export class DeviceListComponent implements OnInit {
   pageSize = 5;
   currentDevice: Device;
   currentIndex = -1;
-  page = 1;;
+  page = 1;
   term = '';
   title = 'FE_Manage_Device';
   constructor(
@@ -159,7 +159,7 @@ export class DeviceListComponent implements OnInit {
       this.count = res.totalElements;
     });
     this.useService.getUserLogin().subscribe(res =>{
-
+      console.log(res);
       this.userLogin = res;
   });
   }

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../user';
@@ -12,11 +13,13 @@ export class UpdateUserComponent implements OnInit {
 
   user: User = new User();
   id!: number;
+  uploadedImage!: File;
 
   constructor(
     private userService : UserService,
    private route: ActivatedRoute,
-    private router:Router
+    private router:Router,
+    private httpClient: HttpClient
   ) { }
 
   ngOnInit(): void {
@@ -26,6 +29,9 @@ export class UpdateUserComponent implements OnInit {
       this.user=data;
     },error => console.log(error));
   }
+  public onImageUpload(event) {
+    this.uploadedImage = event.target.files[0];
+  }
     goToListUsers(){
       this.router.navigate(['/user-list']);
     }
@@ -34,6 +40,17 @@ export class UpdateUserComponent implements OnInit {
         this.goToListUsers();
       },error => console.log(error));
     }
+    imageUploadAction() {
+      const imageFormData = new FormData();
+      imageFormData.append('image', this.uploadedImage, this.uploadedImage.name);
+  
+      this.httpClient.post('http://localhost:8080/users/upload/image/', imageFormData, {  responseType: 'text'  })
+        .subscribe((response) => {
+          this.goToListUsers();
+      },error => console.log(error)
+        
+        );
+      }
   }
 
 

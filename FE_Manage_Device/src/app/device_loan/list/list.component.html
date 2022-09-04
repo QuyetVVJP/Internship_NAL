@@ -1,0 +1,28 @@
+<p>user-list works!</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>tên</th>
+            <!-- <th>msnv</th> -->
+            <th>email</th>
+            <th>thiết bị mượn</th>
+            <th>ngày mượn</th>
+            <th>ngày trả</th>
+            <th>tình trạng</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let loan of listLoans; index as i">
+            <td>{{i+1}}</td>
+            <td>{{loan.username}}</td>
+            <!-- <td>{{user.id}}</td> -->
+            <td>{{loan.email}}</td>  
+            <td>{{loan.deviceName}}</td>  
+            <td>{{loan.borrow_date}}</td>
+            <td>{{loan.return_date}}</td>
+            <td>{{loan.status}}</td>
+        </tr>
+    </tbody>
+</table>

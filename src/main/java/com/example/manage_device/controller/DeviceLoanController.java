@@ -2,29 +2,46 @@ package com.example.manage_device.controller;
 
 import com.example.manage_device.exception.ResourceNotFoundException;
 import com.example.manage_device.model.DeviceLoan;
+import com.example.manage_device.model.dto.DeviceLoanDto;
 import com.example.manage_device.model.request.DeviceLoanRequest;
 import com.example.manage_device.service.DeviceLoanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/device-loan")
+@RequestMapping("/loan")
 public class DeviceLoanController {
 
     @Autowired
     private DeviceLoanService deviceLoanService;
 
+    public DeviceLoanController(DeviceLoanService deviceLoanService) {
+        this.deviceLoanService = deviceLoanService;
+    }
+
     @GetMapping("/list")
-    public List<DeviceLoan> getAllDeviceLoan() {
-        List<DeviceLoan> deviceList = deviceLoanService.getAllDeviceLoan();
-        return deviceList;
+    public List<DeviceLoanDto> getAllDeviceLoan() {
+        List<DeviceLoan> deviceLoans = deviceLoanService.getAllDeviceLoan();
+        List<DeviceLoanDto> deviceLoanDtos = new ArrayList<>();
+        for (DeviceLoan deviceLoan: deviceLoans
+             ) {
+            DeviceLoanDto loanDto = new DeviceLoanDto();
+            loanDto.setDeviceName(deviceLoan.getDevice().getDevice_name());
+            loanDto.setUsername(deviceLoan.getUser().getFirst_name() + " " + deviceLoan.getUser().getLast_name());
+            loanDto.setEmail(deviceLoan.getUser().getEmail());
+
+            loanDto.setBorrow_date(deviceLoan.getBorrow_date());
+            loanDto.setReturn_date(deviceLoan.getReturn_date());
+            loanDto.setStatus(deviceLoan.getStatus());
+            loanDto.setReason(deviceLoan.getReason());
+
+            deviceLoanDtos.add(loanDto);
+        }
+        return deviceLoanDtos;
     }
 
     @PostMapping("/create")
