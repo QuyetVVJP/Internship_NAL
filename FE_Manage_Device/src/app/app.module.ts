@@ -20,6 +20,10 @@ import { NgApexchartsModule } from "ng-apexcharts";
 import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
 import { LogoutComponent } from './auth/logout/logout.component';
+import { ListComponent } from './device_loan/list/list.component';
+import { CreateComponent } from './device_loan/create/create.component';
+
+
 
 @NgModule({
   // Khai bao cac component o day
@@ -38,6 +42,11 @@ import { LogoutComponent } from './auth/logout/logout.component';
           RegisterComponent,
           LoginComponent,
           LogoutComponent,
+
+    ListComponent,
+    CreateComponent
+         
+         
   ],
   imports: [
     BrowserModule,

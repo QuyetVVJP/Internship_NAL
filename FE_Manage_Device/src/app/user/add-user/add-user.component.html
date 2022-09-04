@@ -2,13 +2,18 @@
 <h2>thêm người dùng</h2>
 <form (ngSubmit)="onSubmit()">
     <div class="form-label">
+        <label>Họ : </label>
+        <input type="text" class="form-control" id="first_name"
+        [(ngModel)]="user.first_name" name="last_name">
+    </div>
+    <div class="form-label">
         <label>Tên : </label>
         <input type="text" class="form-control" id="last_name"
         [(ngModel)]="user.last_name" name="last_name">
     </div>
     <div class="form-label">
         <label>Giới tính : </label>
-        <input type="number" class="form-control" id="gender"
+        <input type="text" class="form-control" id="gender"
         [(ngModel)]="user.gender" name="gender">
     </div>
     <div class="form-label">
@@ -31,6 +36,10 @@
         <input type="text" class="form-control" id="department"
         [(ngModel)]="user.department" name="department">
     </div>
+    
+    <div >
+        <input type="file" (change)="onImageUpload($event)">
+      </div>
     <button class="btn btn-success" type="submit">add</button>
     
 </form>

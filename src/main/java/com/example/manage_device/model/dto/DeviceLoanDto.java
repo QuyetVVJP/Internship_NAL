@@ -5,15 +5,22 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Timestamp;
+
 @AllArgsConstructor
-@Setter
 @NoArgsConstructor
 @Getter
-public class UserDto {
-
+@Setter
+public class DeviceLoanDto {
     private long id;
-    private String first_name;
-    private String last_name;
+    private String username;
     private String email;
-    private String name_role;
+    private String deviceName;
+    private Timestamp borrow_date;
+
+    private Timestamp return_date;
+
+    private String status;
+
+    private String reason;
 }

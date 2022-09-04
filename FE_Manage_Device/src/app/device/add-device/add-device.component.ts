@@ -50,8 +50,9 @@ export class AddDeviceComponent implements OnInit {
 
     this.httpClient.post('http://localhost:8080/users/upload/image/', imageFormData, {  responseType: 'text'  })
       .subscribe((response) => {
-
-      }
+        this.gotolistDevices();
+      },error => console.log(error)
+      
       );
     }
 }

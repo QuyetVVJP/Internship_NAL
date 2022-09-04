@@ -39,4 +39,5 @@ export class DeviceService {
   // uploadAvatar(imageFormData: FormData): Observable<object> {
   //   return this.httpClient.post('http://localhost:8080/users/upload/image/', imageFormData);
   // }
+   
 }
