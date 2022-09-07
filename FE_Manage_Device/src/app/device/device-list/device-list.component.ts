@@ -15,7 +15,7 @@ import {
   ApexFill,
   ApexTooltip
 } from "ng-apexcharts";
-import { UserDto } from 'src/app/user/user';
+import { User, UserDto } from 'src/app/user/user';
 import { UserService } from 'src/app/user/user.service';
 
 export type ChartOptions = {
@@ -42,11 +42,11 @@ export class DeviceListComponent implements OnInit {
   public chartOptions: Partial<ChartOptions>;
 
   userLogin= new UserDto();
-
+  user:User;
   listDevices: Device[] | undefined;
   count = 0;
   total = 0;
-  user_id = 0;
+  user_id:number;
   pageSize = 5;
   currentDevice: Device;
   currentIndex = -1;
@@ -59,6 +59,7 @@ export class DeviceListComponent implements OnInit {
     private useService : UserService,
     private router: Router
   ) {
+    this.user_id=this.route.snapshot.params['user_id'];
     this.chartOptions = {
       series: [
         {
@@ -123,8 +124,9 @@ export class DeviceListComponent implements OnInit {
   ngOnInit(): void {
     // this.getAllDevice();
     this.getTotalDevice();
-
+    
     this.retrieveDevice(this.term);
+    
   }
 
   getTotalDevice(){
@@ -171,6 +173,10 @@ export class DeviceListComponent implements OnInit {
   updateDevice(id: number) {
     this.router.navigate(['update-device', id]);
   }
+  updateUser(user_id: number) {
+    this.router.navigate(['update-user', user_id]);
+  }
+ 
   deleteDevice(id: number) {
     this.deviceService.deleteDevice(id).subscribe(data => {
       this.router.navigate(['list-device']);

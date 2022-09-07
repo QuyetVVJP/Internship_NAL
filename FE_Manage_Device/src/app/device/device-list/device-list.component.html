@@ -13,11 +13,11 @@
       <li  *ngIf="userLogin.id == null" class="nav-item">
         <a routerLink="register" routerLinkActive="active" class="nav-link">Đăng ký</a>
       </li>
-      <li *ngIf="userLogin.id == null" class="nav-item">
+      <li *ngIf="userLogin.id == null"  class="nav-item" >
         <a routerLink="login" routerLinkActive="active" class="nav-link">Đăng nhập</a>
       </li>
 
-      <li *ngIf="userLogin.id != null" class="nav-item">
+      <li *ngIf="userLogin.id != null" (click)="updateUser(user.id)"  class="nav-item">
          Xin chào {{userLogin.first_name}}!
       </li>
 
