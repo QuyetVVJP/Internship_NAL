@@ -22,6 +22,7 @@ export class AddUserComponent implements OnInit {
   saveUser(){
     this.userService.addUser(this.user).subscribe(data =>{
         console.log(data);
+        
         this.goToListUsers();
     },
     error => console.log(error));
@@ -36,14 +37,5 @@ export class AddUserComponent implements OnInit {
    public onImageUpload(event) {
     this.uploadedImage = event.target.files[0];
   }
-  imageUploadAction() {
-    const imageFormData = new FormData();
-    imageFormData.append('image', this.uploadedImage, this.uploadedImage.name);
-
-    // this.httpClient.post('http://localhost:8080/users/upload/image/', imageFormData, {  responseType: 'text'  })
-    //   .subscribe((response) => {
-
-    //   }
-    //   );
-    }
+ 
 }

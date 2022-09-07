@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,7 +29,7 @@ import java.util.Optional;
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/users")
 public class UserController {
-    private static String UPLOAD_DIR = System.getProperty("user.dir") + "/FE_Manage_Device/src/assets/avatar/";
+    private static String UPLOAD_DIR = "./FE_Manage_Device/src/assets/avatar/";
 
     @Autowired
     private UserService userService;
@@ -107,8 +108,10 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error");
     }
 
-    @PostMapping("/upload/image")
-    public ResponseEntity<?> uploadAvatar(@RequestParam("image") MultipartFile file){
+    @PostMapping("/upload/image/{id}")
+    public ResponseEntity<?> uploadAvatar(@PathVariable Long id, @RequestParam("image") MultipartFile file){
+
+        User user = userService.findById(id).get();
 
         // Create folder to save file if not exist
         File uploadDir = new File(UPLOAD_DIR);
@@ -124,6 +127,11 @@ public class UserController {
                 BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
                 stream.write(fileData.getBytes());
                 stream.close();
+                String avatar_url = serverFile.toString();
+                avatar_url = avatar_url.replace("FE_Manage_Device", "..");
+                avatar_url = avatar_url.replace("src", "..");
+                user.setAvatar_url(avatar_url);
+                userService.save(user);
                 return ResponseEntity.ok("Success");
 
             } catch (Exception e) {
@@ -154,23 +162,8 @@ public class UserController {
         user.setEmail(userDetails.getEmail());
         user.setPhone(userDetails.getPhone());
         user.setDepartment(userDetails.getDepartment());
-//        user.setRole_id(userDetails.getRole_id());
-
-        String path = System.getProperty("{id}");
-        MultipartFile image = avatar.getFileData();
-        String name = image.getOriginalFilename();
-        if (name != null && name.length() > 0) {
-            try {
-                File serverFile = new File(path + "/" + name);
-                BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
-                stream.write(image.getBytes());
-                stream.close();
-                user.setAvatar_url(serverFile.getPath());
-            } catch (Exception e) {
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error");
-            }
-        }
-
+//        user.setRole_id(userDetails.getRole_id()
+        user.setUpdated_at(new Timestamp(System.currentTimeMillis()));
         User updatedUser = userService.save(user);
         return ResponseEntity.ok(updatedUser);
     }
