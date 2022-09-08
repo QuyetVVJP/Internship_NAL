@@ -11,18 +11,22 @@
             <th>ngày mượn</th>
             <th>ngày trả</th>
             <th>tình trạng</th>
+            <th>phe duyet</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let loan of listLoans; index as i">
             <td>{{i+1}}</td>
             <td>{{loan.username}}</td>
-            <!-- <td>{{user.id}}</td> -->
             <td>{{loan.email}}</td>  
             <td>{{loan.deviceName}}</td>  
             <td>{{loan.borrow_date}}</td>
             <td>{{loan.return_date}}</td>
             <td>{{loan.status}}</td>
+            <td><button (click)="approveLoan(user.id)" class="btn btn-info">duoc</button></td>
+            <td><button (click)="unapproveLoan(user.id)" class="btn btn-info">ko duoc</button></td>
         </tr>
     </tbody>
 </table>
+
+
