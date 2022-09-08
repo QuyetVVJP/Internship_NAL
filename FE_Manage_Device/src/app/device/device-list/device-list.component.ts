@@ -47,7 +47,6 @@ export class DeviceListComponent implements OnInit {
   count = 0;
   total = 0;
   user_id:number;
-  avatar_url : string;
   pageSize = 5;
   currentDevice: Device;
   currentIndex = -1;
@@ -61,7 +60,6 @@ export class DeviceListComponent implements OnInit {
     private router: Router
   ) {
     this.user_id=this.route.snapshot.params['user_id'];
-    this.avatar_url=this.route.snapshot.params['avatar_url'];
     this.chartOptions = {
       series: [
         {
@@ -124,14 +122,10 @@ export class DeviceListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.useService.getUserLogin().subscribe(res =>{
-    
-      this.userLogin = res;
-     });
+    // this.getAllDevice();
     this.getTotalDevice();
-    
+
     this.retrieveDevice(this.term);
-    
 
   }
 
@@ -163,11 +157,13 @@ export class DeviceListComponent implements OnInit {
 
   retrieveDevice(term?: string){
     this.deviceService.getAllDeviceWithPagination(term).subscribe(res =>{
-      console.log(res)
       this.listDevices = res.content;
       this.count = res.totalElements;
     });
-
+    this.useService.getUserLogin().subscribe(res =>{
+      console.log(res);
+      this.userLogin = res;
+  });
   }
 
   searchByTerm(){
@@ -178,12 +174,12 @@ export class DeviceListComponent implements OnInit {
     this.router.navigate(['update-device', id]);
   }
   updateUser(user_id: number) {
-    this.router.navigate(['update-user/', user_id]);
+    this.router.navigate(['update-user', user_id]);
   }
- 
+
   deleteDevice(id: number) {
     this.deviceService.deleteDevice(id).subscribe(data => {
-      this.router.navigate(['home']);
+      this.router.navigate(['list-device']);
       window.location.reload();
     })
   }

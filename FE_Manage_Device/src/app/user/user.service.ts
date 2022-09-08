@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LoginRequest, User, UserDto, UserRequest } from './user';
@@ -38,5 +38,9 @@ export class UserService {
   }
   logout():Observable<any>{
     return this.httpClient.get<any>(`${this.baseURL + '/logout'}`);
+  }
+  getAllUserWithPagination(term): Observable<any> {
+    let terms = new HttpParams().set('term', term);
+    return this.httpClient.get<User[]>(`${this.baseURL + '/search'}`,{ params: terms } );
   }
 }
