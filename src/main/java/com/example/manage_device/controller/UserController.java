@@ -2,6 +2,7 @@ package com.example.manage_device.controller;
 
 import com.example.manage_device.exception.ResourceNotFoundException;
 import com.example.manage_device.model.Avatar;
+import com.example.manage_device.model.Device;
 import com.example.manage_device.model.User;
 
 import com.example.manage_device.service.EmailServiceImpl;
@@ -11,6 +12,9 @@ import com.example.manage_device.model.request.LoginRequest;
 import com.example.manage_device.model.request.UserRequest;
 import com.example.manage_device.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +28,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
+import static com.example.manage_device.utils.ParamKey.*;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -42,6 +48,23 @@ public class UserController {
 
         return userList;
     }
+
+    @GetMapping("/search")
+    public Page<User> search(
+            @RequestParam(name = PAGE, required = true, defaultValue = "0") int page,
+            @RequestParam(name = PAGE_SIZE, required = true, defaultValue = Integer.MAX_VALUE + "") int size,
+            @RequestParam(name = TERM, required = true, defaultValue = "") String term
+    ){
+        Pageable paging = null;
+        paging = PageRequest.of(page, size);
+
+        if (term != null)
+            term = term.trim();
+
+        Page<User> resdto = userService.searchByKeyword(term, paging);
+        return resdto;
+    }
+
     @GetMapping("/email")
     public String emailService() {
         emailService.sendEmail("doducluong14@gmail.com",

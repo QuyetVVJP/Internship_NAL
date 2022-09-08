@@ -1,11 +1,14 @@
 package com.example.manage_device.service;
 
+import com.example.manage_device.model.Device;
 import com.example.manage_device.model.Role;
 import com.example.manage_device.model.User;
 import com.example.manage_device.model.request.UserRequest;
 import com.example.manage_device.repository.RoleRepository;
 import com.example.manage_device.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
@@ -77,6 +80,12 @@ public class UserServiceImp implements UserService {
         user.setCreated_at(new Timestamp(System.currentTimeMillis()));
         return userRepository.save(user);
 
+    }
+
+    @Override
+    public Page<User> searchByKeyword(String term, Pageable paging) {
+        Page<User> res = userRepository.searchByKeyword(term, paging);
+        return res;
     }
 
 }
