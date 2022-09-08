@@ -157,6 +157,7 @@ export class DeviceListComponent implements OnInit {
 
   retrieveDevice(term?: string){
     this.deviceService.getAllDeviceWithPagination(term).subscribe(res =>{
+      console.log(res)
       this.listDevices = res.content;
       this.count = res.totalElements;
     });
