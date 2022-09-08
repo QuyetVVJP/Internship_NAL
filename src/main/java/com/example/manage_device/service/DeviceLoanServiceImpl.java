@@ -9,6 +9,8 @@ import com.example.manage_device.repository.DeviceLoanRepository;
 import com.example.manage_device.repository.DeviceRepository;
 import com.example.manage_device.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
@@ -43,6 +45,12 @@ public class DeviceLoanServiceImpl implements DeviceLoanService{
     }
 
     public DeviceLoan save(DeviceLoan deviceLoan) { return deviceLoanRepository.save(deviceLoan); }
+
+    @Override
+    public Page<DeviceLoan> searchByKeyword(String term, Pageable paging) {
+        Page<DeviceLoan> res = deviceLoanRepository.searchByKeyword(term, paging);
+        return res;
+    }
 
     @Override
     public DeviceLoan update(Long id, DeviceLoanRequest deviceLoanRequest) {
