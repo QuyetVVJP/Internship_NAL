@@ -31,7 +31,7 @@ export class AddDeviceComponent implements OnInit {
 
   savedevice(){
     this.deviceService.addDevice(this.device).subscribe(data =>{
-        this.imageUploadAction();
+       
         this.gotolistDevices();
     },
     error => console.log(error));
@@ -44,15 +44,6 @@ export class AddDeviceComponent implements OnInit {
     this.savedevice();
    }
 
-   imageUploadAction() {
-    const imageFormData = new FormData();
-    imageFormData.append('image', this.uploadedImage, this.uploadedImage.name);
-
-    this.httpClient.post('http://localhost:8080/users/upload/image/', imageFormData, {  responseType: 'text'  })
-      .subscribe((response) => {
-        this.gotolistDevices();
-      },error => console.log(error)
-      
-      );
-    }
+  
+    
 }

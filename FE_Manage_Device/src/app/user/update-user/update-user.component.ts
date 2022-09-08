@@ -37,14 +37,16 @@ export class UpdateUserComponent implements OnInit {
     }
     onSubmit(){
       this.userService.updateUser(this.id, this.user).subscribe(data =>{
-        this.goToListUsers();
+        this.imageUploadAction(this.id);
+        
+         
       },error => console.log(error));
     }
-    imageUploadAction() {
+    imageUploadAction(id: number) {
       const imageFormData = new FormData();
       imageFormData.append('image', this.uploadedImage, this.uploadedImage.name);
-  
-      this.httpClient.post('http://localhost:8080/users/upload/image/', imageFormData, {  responseType: 'text'  })
+      
+      this.httpClient.post('http://localhost:8080/users/upload/image/'+id, imageFormData, {  responseType: 'text'  })
         .subscribe((response) => {
           this.goToListUsers();
       },error => console.log(error)
