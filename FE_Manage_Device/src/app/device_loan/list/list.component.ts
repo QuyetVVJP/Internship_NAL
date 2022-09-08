@@ -61,4 +61,17 @@ user_id:number;
       this.userLogin = res;
   });
   }
+  approveLoan(id:number){
+    this.loanService.approveLoan(id).subscribe(data => {
+      this.router.navigate(['list']);
+      window.location.reload();
+    })
+  }
+  unapproveLoan(id:number){
+    this.loanService.unapproveLoan(id).subscribe(data => {
+      this.router.navigate(['list']);
+      window.location.reload();
+    })
+  }
+
 }
