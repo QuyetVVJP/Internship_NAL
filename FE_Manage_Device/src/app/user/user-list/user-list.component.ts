@@ -10,6 +10,13 @@ import { UserService } from '../user.service';
 export class UserListComponent implements OnInit {
 
   listUsers: User[] | undefined;
+  user: User;
+  pageSize = 5;
+  currentUser: User;
+  currentIndex = -1;
+  page = 1;
+  term = '';
+  count: 0;
   constructor(
     private userService: UserService,
     private router: Router
@@ -17,7 +24,9 @@ export class UserListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllUser();
+    this.retrieveUser(this.term);
   }
+
   private getAllUser() {
     this.userService.getAllUser().subscribe(data => {
       this.listUsers = data;
@@ -36,6 +45,27 @@ export class UserListComponent implements OnInit {
       this.router.navigate(['user-list']);
       window.location.reload();
     })
+  }
+
+  setActiveUser(user: User, index: number): void {
+    this.currentUser = user;
+    this.currentIndex = index;
+  }
+
+  handlePageChange(event: number): void {
+    this.page = event;
+    this.retrieveUser(this.term);
+  }
+
+  retrieveUser(term?: string){
+    this.userService.getAllUserWithPagination(term).subscribe(res =>{
+      this.listUsers = res.content;
+      this.count = res.totalElements;
+    });
+  };
+
+  searchByTerm(){
+    this.retrieveUser(this.term);
   }
 
 }
