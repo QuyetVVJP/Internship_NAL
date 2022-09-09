@@ -124,9 +124,9 @@ export class DeviceListComponent implements OnInit {
   ngOnInit(): void {
     // this.getAllDevice();
     this.getTotalDevice();
-    
+    console.log(this.user_id)
     this.retrieveDevice(this.term);
-    
+
   }
 
   getTotalDevice(){
@@ -177,7 +177,7 @@ export class DeviceListComponent implements OnInit {
   updateUser(user_id: number) {
     this.router.navigate(['update-user', user_id]);
   }
- 
+
   deleteDevice(id: number) {
     this.deviceService.deleteDevice(id).subscribe(data => {
       this.router.navigate(['list-device']);

@@ -9,7 +9,7 @@
       <li *ngIf="userLogin.name_role === 'ADMIN'" class="nav-item">
         <a routerLink="list" routerLinkActive="active" class="nav-link">Quản lý muon</a>
       </li>
-      
+
       <li  *ngIf="userLogin.id == null" class="nav-item">
         <a routerLink="register" routerLinkActive="active" class="nav-link">Đăng ký</a>
       </li>
@@ -108,7 +108,7 @@
       <td> {{item.os}}</td>
       <td> {{item.manufacturer}}</td>
       <td> {{item.information}}</td>
-      <td> {{item.status ? "San sang" : "Da cho muon"}}</td>
+      <td> {{item.status === "Đã cho mượn" ? "Đã cho mượn" : "Còn trong kho"}}</td>
       <td>
         <button *ngIf="userLogin.name_role === 'ADMIN'"  (click)="updateDevice(item.id)" class="btn btn-info">cập nhật</button>
       </td>
@@ -116,7 +116,7 @@
         <button *ngIf="userLogin.name_role === 'ADMIN'" (click)="deleteDevice(item.id)" class="btn btn-danger" style="margin-left:10px ;">xóa</button>
       </td>
       <td>
-        <button   (click)="viewDevice(item.id)" class="btn btn-infor" style="margin-left:10px ;">xem</button>
+        <button   (click)="viewDevice(item.id)" class="btn btn-success" style="margin-left:10px ;">xem</button>
       </td>
     </tr>
   </tbody>

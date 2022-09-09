@@ -75,19 +75,18 @@ public class DeviceLoanController {
         deviceLoan.setStatus(APPROVAL);
         deviceLoanService.save(deviceLoan);
 
-        deviceLoan.getDevice().setStatus(UNAVAILABLE);
-        deviceService.save(deviceLoan.getDevice());
+
+        Device device = deviceService.findById(deviceLoan.getDevice().getId()).get();
+        device.setStatus(APPROVAL);
+        deviceService.save(device);
 
     }
 
     @GetMapping("/reject/{id}")
     public void rejectRequest(@PathVariable Long id){
         DeviceLoan deviceLoan = deviceLoanService.findById(id).get();
-        deviceLoan.setStatus(APPROVAL);
+        deviceLoan.setStatus(AVAILABLE);
         deviceLoanService.save(deviceLoan);
-
-        deviceLoan.getDevice().setStatus(UNAVAILABLE);
-        deviceService.save(deviceLoan.getDevice());
 
     }
 
