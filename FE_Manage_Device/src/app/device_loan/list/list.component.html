@@ -1,5 +1,3 @@
-<p>user-list works!</p>
-
 <table class="table table-striped">
     <thead>
         <tr>
@@ -18,13 +16,13 @@
         <tr *ngFor="let loan of listLoans; index as i">
             <td>{{i+1}}</td>
             <td>{{loan.username}}</td>
-            <td>{{loan.email}}</td>  
-            <td>{{loan.deviceName}}</td>  
-            <td>{{loan.borrow_date}}</td>
-            <td>{{loan.return_date}}</td>
+            <td>{{loan.email}}</td>
+            <td>{{loan.deviceName}}</td>
+            <td>{{loan.borrow_date.toString().substring(0,10)}}</td>
+            <td>{{loan.return_date.toString().substring(0,10)}}</td>
             <td>{{loan.status}}</td>
-            <td><button (click)="approveLoan(user.id)" class="btn btn-info">duoc</button></td>
-            <td><button (click)="unapproveLoan(user.id)" class="btn btn-info">ko duoc</button></td>
+            <td><button *ngIf="loan.status === 'Chờ phê duyệt'" (click)="approval(loan.id)" class="btn btn-info">Đồng ý</button></td>
+            <td><button *ngIf="loan.status === 'Chờ phê duyệt'" (click)="reject(loan.id)" class="btn btn-danger">Từ chối</button></td>
         </tr>
     </tbody>
 </table>
