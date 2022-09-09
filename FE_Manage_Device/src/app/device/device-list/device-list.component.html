@@ -31,7 +31,7 @@
   </ul>
 </nav>
 
-<h1 class="text-center">{{title}}</h1>
+<h1 class="text-center" style="color: rgb(209, 52, 209);">{{title}}</h1>
 <div class="container">
  <router-outlet>
 
@@ -90,7 +90,7 @@
       <th>Hệ điều hành</th>
       <th>System Model</th>
       <th>Ổ cứng</th>
-      <th>Trang thai</th>
+      <th>Trạng thái</th>
       <th *ngIf="userLogin.name_role === 'ADMIN'">cập nhật</th>
       <th *ngIf="userLogin.name_role === 'ADMIN'">xóa</th>
     </tr>

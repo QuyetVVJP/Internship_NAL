@@ -1,7 +1,10 @@
 package com.example.manage_device.service;
 
+import com.example.manage_device.model.Device;
 import com.example.manage_device.model.User;
 import com.example.manage_device.model.request.UserRequest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,4 +35,5 @@ public interface UserService {
     void resetIsLogin();
 
     User checkUserIsLogin();
+    Page<User> searchByKeyword(String term, Pageable paging);
 }
