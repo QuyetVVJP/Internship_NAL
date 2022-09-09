@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit(){
     this.userService.login(this.request).subscribe(res =>{
-      this.router.navigate(['/list-device']);
+      this.router.navigate(['/home']);
     })
 
    }

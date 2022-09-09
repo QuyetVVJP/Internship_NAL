@@ -5,6 +5,7 @@
         <label>Tên thiết bị</label>
         <input type="text" class="form-control" id="device_name"
         [(ngModel)]="device.device_name" name="device_name">
+    
     </div>
     <div class="form-label">
         <label>Hệ đều hành</label>
@@ -22,9 +23,7 @@
         [(ngModel)]="device.information" name="information">
     </div>
 
-    <div >
-      <input type="file" (change)="onImageUpload($event)">
-    </div>
+    
 
     <button class="btn btn-success" type="submit">add</button>
 

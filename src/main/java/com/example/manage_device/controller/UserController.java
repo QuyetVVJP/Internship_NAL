@@ -79,6 +79,7 @@ public class UserController {
         userDto.setFirst_name(user.getFirst_name());
         userDto.setLast_name(user.getLast_name());
         userDto.setName_role(user.getRole().getName());
+        userDto.setAvatar_url(user.getAvatar_url());
         return  userDto;
     }
 
@@ -100,6 +101,7 @@ public class UserController {
              userDto.setFirst_name(user.getFirst_name());
              userDto.setLast_name(user.getLast_name());
              userDto.setName_role(user.getRole().getName());
+             userDto.setAvatar_url(user.getAvatar_url());
              userService.resetIsLogin();
              userService.updateIsLogin(user.getId());
              return ResponseEntity.ok(userDto);

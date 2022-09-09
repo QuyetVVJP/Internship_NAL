@@ -16,21 +16,21 @@ import { UserListComponent } from './user/user-list/user-list.component';
 import { ViewUserComponent } from './user/view-user/view-user.component';
 
 const routes: Routes = [
-  {path: 'list-device', component:DeviceListComponent},
+  {path: 'home', component:DeviceListComponent},
   {path:'add-device',component: AddDeviceComponent},
   {path: '', redirectTo:'list-device', pathMatch:'full'},
   {path:'update-device/:id',component:UpdateDeviceComponent},
   {path:'view-device/:id',component:ViewDeviceComponent},
-  {path:'list-device/register',component:RegisterComponent},
-  {path:'list-device/login',component:LoginComponent},
-  {path:'list-device/logout',component:LogoutComponent},
+  {path:'home/register',component:RegisterComponent},
+  {path:'home/login',component:LoginComponent},
+  {path:'home/logout',component:LogoutComponent},
 
-  {path:'list-device/user-list', component:UserListComponent},
+  {path:'home/user-list', component:UserListComponent},
   {path:'add-user',component: AddUserComponent},
   {path: '', redirectTo:'list-user', pathMatch:'full'},
   {path:'update-user/:id',component:UpdateUserComponent},
   {path:'view-user/:id',component:ViewUserComponent},
-  {path:'list-device/list',component:ListComponent},
+  {path:'home/list',component:ListComponent},
   {path:'view-device/:id/create',component:CreateComponent},
 
   

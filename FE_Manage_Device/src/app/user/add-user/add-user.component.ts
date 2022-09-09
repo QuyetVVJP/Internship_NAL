@@ -28,7 +28,7 @@ export class AddUserComponent implements OnInit {
     error => console.log(error));
   }
   goToListUsers(){
-    this.router.navigate(['list-device/user-list']);  
+    this.router.navigate(['home/user-list']);  
   }
    onSubmit(){
     console.log(this.user);
