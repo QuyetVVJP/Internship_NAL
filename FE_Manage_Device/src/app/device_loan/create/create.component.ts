@@ -86,7 +86,7 @@ onSubmit(value){
 
   this.loanService.createLoan(this.loan).subscribe(data =>{
 
-    this.router.navigate(['/list-device/list']);
+    this.router.navigate(['/home']);
   },
   error => console.log(error));
 
