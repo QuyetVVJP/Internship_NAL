@@ -28,7 +28,7 @@ export class UpdateDeviceComponent implements OnInit {
     },error => console.log(error));
   }
     gotolistDevices(){
-      this.router.navigate(['/list-device']);
+      this.router.navigate(['/home']);
     }
     onSubmit(){
       this.deviceService.updateDevice(this.id, this.device).subscribe(data =>{

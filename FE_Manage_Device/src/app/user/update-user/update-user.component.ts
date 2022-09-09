@@ -33,7 +33,7 @@ export class UpdateUserComponent implements OnInit {
     this.uploadedImage = event.target.files[0];
   }
     goToListUsers(){
-      this.router.navigate(['/user-list']);
+      this.router.navigate(['/home']);
     }
     onSubmit(){
       this.userService.updateUser(this.id, this.user).subscribe(data =>{

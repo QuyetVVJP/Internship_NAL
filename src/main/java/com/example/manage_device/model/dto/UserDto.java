@@ -16,4 +16,5 @@ public class UserDto {
     private String last_name;
     private String email;
     private String name_role;
+    private String avatar_url;
 }

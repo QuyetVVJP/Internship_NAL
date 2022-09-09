@@ -37,7 +37,7 @@ export class AddDeviceComponent implements OnInit {
     error => console.log(error));
   }
   gotolistDevices(){
-    this.router.navigate(['/list-device']);
+    this.router.navigate(['/home']);
   }
    onSubmit(){
     // console.log(this.device);
