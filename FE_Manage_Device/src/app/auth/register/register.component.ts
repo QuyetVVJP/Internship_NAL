@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
     error => console.log(error));
   }
   goToListUsers(){
-    this.router.navigate(['/list-device']);
+    this.router.navigate(['/home']);
   }
    onSubmit(){
     this.saveUser();
