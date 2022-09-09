@@ -122,7 +122,10 @@ export class DeviceListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.getAllDevice();
+    this.useService.getUserLogin().subscribe(res =>{
+
+      this.userLogin = res;
+     });
     this.getTotalDevice();
 
     this.retrieveDevice(this.term);
@@ -175,12 +178,12 @@ export class DeviceListComponent implements OnInit {
     this.router.navigate(['update-device', id]);
   }
   updateUser(user_id: number) {
-    this.router.navigate(['update-user', user_id]);
+    this.router.navigate(['update-user/', user_id]);
   }
 
   deleteDevice(id: number) {
     this.deviceService.deleteDevice(id).subscribe(data => {
-      this.router.navigate(['list-device']);
+      this.router.navigate(['home']);
       window.location.reload();
     })
   }

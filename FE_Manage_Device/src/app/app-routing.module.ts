@@ -18,7 +18,7 @@ import { ViewUserComponent } from './user/view-user/view-user.component';
 const routes: Routes = [
   {path: 'home', component:DeviceListComponent},
   {path:'add-device',component: AddDeviceComponent},
-  {path: '', redirectTo:'list-device', pathMatch:'full'},
+  {path: '', redirectTo:'home', pathMatch:'full'},
   {path:'update-device/:id',component:UpdateDeviceComponent},
   {path:'view-device/:id',component:ViewDeviceComponent},
   {path:'home/register',component:RegisterComponent},
@@ -33,8 +33,8 @@ const routes: Routes = [
   {path:'home/list',component:ListComponent},
   {path:'view-device/:id/create',component:CreateComponent},
 
-  
-  
+
+
 
 
 ];
