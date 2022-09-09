@@ -28,12 +28,12 @@
         </div>
         <div class="form-label">
             <label>Số điện thoại:</label>
-            <input type="number" class="form-control" id="phone"
+            <input type="text" class="form-control" id="phone"
             [(ngModel)]="user.phone" name="phone">
         </div>
         <div class="form-label">
             <label>Bộ phận:</label>
-            <input type="number" class="form-control" id="department"
+            <input type="text" class="form-control" id="department"
             [(ngModel)]="user.department" name="department">
         </div>
         <div >
@@ -41,6 +41,6 @@
             <input type="file" (change)="onImageUpload($event)">
           </div>
         <button class="btn btn-success" type="submit">Cập nhật</button>
-        
+
     </form>
     </div>
