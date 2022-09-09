@@ -17,9 +17,10 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
+import static com.example.manage_device.utils.ParamKey.WAITTING;
+
 @Component
 public class DeviceLoanServiceImpl implements DeviceLoanService{
-    private final static String WAITING = "Cho phe duyet";
     @Autowired
     private DeviceLoanRepository deviceLoanRepository;
     @Autowired
@@ -72,10 +73,11 @@ public class DeviceLoanServiceImpl implements DeviceLoanService{
         DeviceLoan deviceLoan = new DeviceLoan();
         deviceLoan.setUser(user);
         deviceLoan.setDevice(device);
-        deviceLoan.setStatus(WAITING);
+        deviceLoan.setStatus(WAITTING);
         deviceLoan.setReason(deviceLoanRequest.getReason());
-        deviceLoan.setReturn_date(new Timestamp(System.currentTimeMillis()));
-        deviceLoanRequest.setReturn_date(new Timestamp(System.currentTimeMillis()));
+        deviceLoan.setBorrow_date(deviceLoanRequest.getBorrow_date());
+        deviceLoan.setReturn_date(deviceLoanRequest.getReturn_date());
+
         return deviceLoanRepository.save(deviceLoan);
     }
 }

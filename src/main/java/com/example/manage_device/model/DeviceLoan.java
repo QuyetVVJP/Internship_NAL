@@ -9,6 +9,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -23,10 +25,10 @@ public class DeviceLoan {
     private long id;
 
     @Column(name = "borrow_date")
-    private Timestamp borrow_date;
+    private Date borrow_date;
 
     @Column(name = "return_date")
-    private Timestamp return_date;
+    private Date return_date;
 
     @Column(name = "status")
     private String status;

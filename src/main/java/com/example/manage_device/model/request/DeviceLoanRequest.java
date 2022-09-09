@@ -10,6 +10,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -19,9 +20,9 @@ public class DeviceLoanRequest {
 
     private long user_id;
 
-    private Timestamp borrow_date;
+    private Date borrow_date;
 
-    private Timestamp return_date;
+    private Date return_date;
 
     private String status;
 

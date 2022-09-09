@@ -18,11 +18,11 @@
             <td>{{loan.username}}</td>
             <td>{{loan.email}}</td>
             <td>{{loan.deviceName}}</td>
-            <td>{{loan.borrow_date}}</td>
-            <td>{{loan.return_date}}</td>
+            <td>{{loan.borrow_date.toString().substring(0,10)}}</td>
+            <td>{{loan.return_date.toString().substring(0,10)}}</td>
             <td>{{loan.status}}</td>
-            <td><button *ngIf="loan.status === 'waitting'" (click)="approval(loan.id)" class="btn btn-info">Approval</button></td>
-            <td><button *ngIf="loan.status === 'waitting'" (click)="reject(loan.id)" class="btn btn-danger">Reject</button></td>
+            <td><button *ngIf="loan.status === 'Chờ phê duyệt'" (click)="approval(loan.id)" class="btn btn-info">Đồng ý</button></td>
+            <td><button *ngIf="loan.status === 'Chờ phê duyệt'" (click)="reject(loan.id)" class="btn btn-danger">Từ chối</button></td>
         </tr>
     </tbody>
 </table>
