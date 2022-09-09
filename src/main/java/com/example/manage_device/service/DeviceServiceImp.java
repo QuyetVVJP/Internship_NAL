@@ -22,10 +22,11 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import static com.example.manage_device.utils.ParamKey.AVAILABLE;
+
 @Component
 public class DeviceServiceImp implements DeviceService {
 
-    private final static String AVAILABLE = "Available";
     @Value("${qr.code.directory}")
     private String qrCodeDirectory;
     private Logger logger = LoggerFactory.getLogger(DeviceServiceImp.class);
@@ -59,7 +60,9 @@ public class DeviceServiceImp implements DeviceService {
         path_qr = path_qr.replace("src", "..");
         device.setPath_QR(path_qr);
         device.setCreate_at(new Timestamp(System.currentTimeMillis()));
-        device.setStatus(AVAILABLE);
+        if(device.getStatus().isEmpty()){
+            device.setStatus(AVAILABLE);
+        }
         return deviceRepository.save(device);
 
     }

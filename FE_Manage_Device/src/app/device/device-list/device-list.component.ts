@@ -56,7 +56,7 @@ export class DeviceListComponent implements OnInit {
   constructor(
     private deviceService: DeviceService,
     private route: ActivatedRoute,
-    private useService : UserService,
+    private userService : UserService,
     private router: Router
   ) {
     this.user_id=this.route.snapshot.params['user_id'];
@@ -157,10 +157,11 @@ export class DeviceListComponent implements OnInit {
 
   retrieveDevice(term?: string){
     this.deviceService.getAllDeviceWithPagination(term).subscribe(res =>{
+      console.log(res)
       this.listDevices = res.content;
       this.count = res.totalElements;
     });
-    this.useService.getUserLogin().subscribe(res =>{
+    this.userService.getUserLogin().subscribe(res =>{
       console.log(res);
       this.userLogin = res;
   });
