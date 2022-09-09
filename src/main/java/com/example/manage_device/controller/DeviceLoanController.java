@@ -6,6 +6,7 @@ import com.example.manage_device.model.DeviceLoan;
 import com.example.manage_device.model.dto.DeviceLoanDto;
 import com.example.manage_device.model.request.DeviceLoanRequest;
 import com.example.manage_device.service.DeviceLoanService;
+import com.example.manage_device.service.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,6 +25,8 @@ public class DeviceLoanController {
 
     @Autowired
     private DeviceLoanService deviceLoanService;
+    @Autowired
+    private DeviceService deviceService;
 
     public DeviceLoanController(DeviceLoanService deviceLoanService) {
         this.deviceLoanService = deviceLoanService;
@@ -63,6 +66,28 @@ public class DeviceLoanController {
 
         Page<DeviceLoan> resdto = deviceLoanService.searchByKeyword(term, paging);
         return resdto;
+    }
+
+    @GetMapping("/approval/{id}")
+    public void approvalRequest(@PathVariable Long id){
+        DeviceLoan deviceLoan = deviceLoanService.findById(id).get();
+        deviceLoan.setStatus(APPROVAL);
+        deviceLoanService.save(deviceLoan);
+
+        deviceLoan.getDevice().setStatus(UNAVAILABLE);
+        deviceService.save(deviceLoan.getDevice());
+
+    }
+
+    @GetMapping("/approval/{id}")
+    public void rejectRequest(@PathVariable Long id){
+        DeviceLoan deviceLoan = deviceLoanService.findById(id).get();
+        deviceLoan.setStatus(APPROVAL);
+        deviceLoanService.save(deviceLoan);
+
+        deviceLoan.getDevice().setStatus(UNAVAILABLE);
+        deviceService.save(deviceLoan.getDevice());
+
     }
 
     @PostMapping("/create")

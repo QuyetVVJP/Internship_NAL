@@ -27,20 +27,20 @@ export class CreateComponent implements OnInit {
   page = 1;
   term = '';
 
-  
+
   constructor(private useService:UserService,
     private deviceService : DeviceService,
     private route: ActivatedRoute,
     private router:Router,
     private loanService:DeviceLoanService,
-    private httpClient: HttpClient) { 
+    private httpClient: HttpClient) {
     // this.device_id=this.route.snapshot.params['device_id'];
     // this.user_id=this.route.snapshot.params['user_id'];
   }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
-    
+
       this.deviceService.getDeviceById(this.id).subscribe(res =>{
         this.device =res;
       });
@@ -59,20 +59,20 @@ export class CreateComponent implements OnInit {
       //   this.loan=data;
       // },error => console.log(error));
       this.retrieveDevice(this.term);
-    
+
 }
 saveList(){
   this.loan.user_id = this.userLogin.id;
   this.loan.device_id = this.id;
   console.log(this.loan);
   this.loanService.createLoan(this.loan).subscribe(data =>{
-    
+
       this.goToList();
   },
   error => console.log(error));
 }
 goToList(){
-  this.router.navigate(['/list-device/list']);  
+  this.router.navigate(['/list-device/list']);
 }
 onSubmit(){
 

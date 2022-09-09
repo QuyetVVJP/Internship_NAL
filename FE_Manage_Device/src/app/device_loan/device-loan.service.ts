@@ -28,10 +28,10 @@ export class DeviceLoanService {
   getUserLogin():Observable<UserDto>{
     return this.httpClient.get<UserDto>(`${this.baseURL + '/userIsLogin'}`);
   }
-  approveLoan(id:number): Observable<Object> {
-    return this.httpClient.post<Deviceloan[]>(`${this.baseURL + '/approve'}`, id);
+  approval(id:number): Observable<Object> {
+    return this.httpClient.get<any>(`${this.baseURL + '/approval'}/${id}`);
   }
-  unapproveLoan(id:number): Observable<Object> {
-    return this.httpClient.post<Deviceloan[]>(`${this.baseURL + '/unapprove'}`, id);
+  reject(id:number): Observable<Object> {
+    return this.httpClient.get<any>(`${this.baseURL + '/reject'}/${id}`);
   }
 }
