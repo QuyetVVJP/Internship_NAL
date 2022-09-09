@@ -39,6 +39,7 @@ public class DeviceLoanController {
         for (DeviceLoan deviceLoan: deviceLoans
              ) {
             DeviceLoanDto loanDto = new DeviceLoanDto();
+            loanDto.setId(deviceLoan.getId());
             loanDto.setDeviceName(deviceLoan.getDevice().getDevice_name());
             loanDto.setUsername(deviceLoan.getUser().getFirst_name() + " " + deviceLoan.getUser().getLast_name());
             loanDto.setEmail(deviceLoan.getUser().getEmail());
@@ -79,7 +80,7 @@ public class DeviceLoanController {
 
     }
 
-    @GetMapping("/approval/{id}")
+    @GetMapping("/reject/{id}")
     public void rejectRequest(@PathVariable Long id){
         DeviceLoan deviceLoan = deviceLoanService.findById(id).get();
         deviceLoan.setStatus(APPROVAL);

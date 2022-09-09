@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Device } from 'src/app/device/device';
 import { DeviceService } from 'src/app/device/device.service';
@@ -26,6 +27,8 @@ export class CreateComponent implements OnInit {
   count=0;
   page = 1;
   term = '';
+  formGroup: FormGroup;
+  value: any;
 
 
   constructor(private useService:UserService,
@@ -33,12 +36,20 @@ export class CreateComponent implements OnInit {
     private route: ActivatedRoute,
     private router:Router,
     private loanService:DeviceLoanService,
+    private formBuilder: FormBuilder,
     private httpClient: HttpClient) {
-    // this.device_id=this.route.snapshot.params['device_id'];
-    // this.user_id=this.route.snapshot.params['user_id'];
+
   }
 
   ngOnInit(): void {
+    this.formGroup = this.formBuilder.group({
+
+      reason: ['', Validators.required],
+      borrow_date: ['', Validators.required],
+      return_date: ['', Validators.required],
+
+
+    });
     this.id = this.route.snapshot.params['id'];
 
       this.deviceService.getDeviceById(this.id).subscribe(res =>{
@@ -58,39 +69,28 @@ export class CreateComponent implements OnInit {
       // this.loanService.getLoanById(this.id).subscribe(data=>{
       //   this.loan=data;
       // },error => console.log(error));
-      this.retrieveDevice(this.term);
+      // this.retrieveDevice(this.term);
 
 }
-saveList(){
+
+
+onSubmit(value){
+  this.loan.borrow_date = value.borrow_date;
+  this.loan.return_date = value.return_date;
+  this.loan.reason = value.reason;
+
   this.loan.user_id = this.userLogin.id;
   this.loan.device_id = this.id;
+
   console.log(this.loan);
+
   this.loanService.createLoan(this.loan).subscribe(data =>{
 
-      this.goToList();
+    this.router.navigate(['/list-device/list']);
   },
   error => console.log(error));
-}
-goToList(){
-  this.router.navigate(['/list-device/list']);
-}
-onSubmit(){
 
-  this.saveList();
  }
- handlePageChange(event: number): void {
-  this.page = event;
-  this.retrieveDevice(this.term);
-}
- retrieveDevice(term?: string){
-  this.deviceService.getAllDeviceWithPagination(term).subscribe(res =>{
-    this.listDevices = res.content;
-    this.count = res.totalElements;
-  });
-  this.useService.getUserLogin().subscribe(res =>{
-    console.log(res);
-    this.userLogin = res;
-});
-}
+
 
 }

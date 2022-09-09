@@ -16,17 +16,54 @@
 
 </div>
 
-<form (ngSubmit)="onSubmit()">
 
+<mat-toolbar color="primary">
+  <span class="fill-remaining-space">Mượn thiết bị</span>
+</mat-toolbar>
 
+<div class="container">
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
 
+    <div class="row">
+            <!-- Ngay muon -->
+        <mat-form-field appearance="fill">
+          <mat-label>Choose a date</mat-label>
+          <input matInput [matDatepicker]="borrow_date" formControlName="borrow_date" >
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="borrow_date"></mat-datepicker-toggle>
+          <mat-datepicker #borrow_date></mat-datepicker>
+          <mat-error *ngIf="!formGroup.controls['borrow_date'].valid && formGroup.controls['borrow_date'].touched">
+            Day la truong bat buoc
+          </mat-error>
+        </mat-form-field>
 
-    <div class="form-label">
-        <label>ly do</label>
-        <input type="text" class="form-control" id="reason"
-        [(ngModel)]="loan.reason" name="reason">
+        <!-- Ngay tra -->
+        <mat-form-field appearance="fill">
+          <mat-label>Choose a date</mat-label>
+          <input matInput [matDatepicker]="return_date" formControlName="return_date" >
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="return_date"></mat-datepicker-toggle>
+          <mat-datepicker #return_date></mat-datepicker>
+          <mat-error *ngIf="!formGroup.controls['return_date'].valid && formGroup.controls['return_date'].touched">
+            Day la truong bat buoc
+          </mat-error>
+        </mat-form-field>
     </div>
-    <button class="btn btn-success" type="submit">add</button>
+
+    <div class="row">
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Lý do mượn" formControlName="reason">
+        <mat-error *ngIf="!formGroup.controls['reason'].valid && formGroup.controls['reason'].touched">
+          Day la truong bat buoc
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-element">
+      <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid">Submit Form</button>
+    </div>
+
+  </form>
+</div>
 
 
-</form>
