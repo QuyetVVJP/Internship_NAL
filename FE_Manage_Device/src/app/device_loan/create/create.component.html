@@ -13,20 +13,14 @@
     <div>
         <label><b>thông tin : </b></label>{{device.information}}
     </div>
-    
+
 </div>
 
 <form (ngSubmit)="onSubmit()">
-    <div class="form-label">
-        <label>ngay muon</label>
-        <input type="text" class="form-control" id="borrow_date"
-        [(ngModel)]="loan.borrow_date" name="borrow_date">
-    </div>
-    <div class="form-label">
-        <label>ngay tra</label>
-        <input type="text" class="form-control" id="return_date"
-        [(ngModel)]="loan.return_date" name="return_date">
-    </div>
+
+
+
+
     <div class="form-label">
         <label>ly do</label>
         <input type="text" class="form-control" id="reason"
@@ -34,5 +28,5 @@
     </div>
     <button class="btn btn-success" type="submit">add</button>
 
-    
-</form>   
+
+</form>
