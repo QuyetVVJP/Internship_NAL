@@ -99,7 +99,6 @@ public class DeviceLoanController {
                 "Đăng ký mượn không được chấp thuận",
                 "Mượn thiết bị <Nal>");
         return  ("Đã gửi mail thành công!");
-
     }
 
     @PostMapping("/create")
