@@ -32,6 +32,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query(value = "SELECT * FROM user WHERE is_login = 1" , nativeQuery = true)
     User findUserLogin();
 
+
     @Query(value = "SELECT * FROM user WHERE first_name LIKE %:term% OR last_name LIKE %:term%" , nativeQuery = true)
     public Page<User> searchByKeyword(@Param("term") String term, Pageable paging);
 }
