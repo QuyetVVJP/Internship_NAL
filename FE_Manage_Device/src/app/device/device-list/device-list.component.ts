@@ -17,6 +17,7 @@ import {
 } from "ng-apexcharts";
 import { User, UserDto } from 'src/app/user/user';
 import { UserService } from 'src/app/user/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -53,11 +54,14 @@ export class DeviceListComponent implements OnInit {
   page = 1;
   term = '';
   title = 'FE_Manage_Device';
+  isReload = false;
   constructor(
     private deviceService: DeviceService,
     private route: ActivatedRoute,
     private userService : UserService,
-    private router: Router
+    private router: Router,
+    private toastrService: ToastrService
+
   ) {
     this.user_id=this.route.snapshot.params['user_id'];
     this.chartOptions = {
@@ -122,6 +126,7 @@ export class DeviceListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.userService.getUserLogin().subscribe(res =>{
 
       this.userLogin = res;
@@ -183,8 +188,10 @@ export class DeviceListComponent implements OnInit {
 
   deleteDevice(id: number) {
     this.deviceService.deleteDevice(id).subscribe(data => {
+
       this.router.navigate(['home']);
       window.location.reload();
-    })
+    });
+
   }
 }

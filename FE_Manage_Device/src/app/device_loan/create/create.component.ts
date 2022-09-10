@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Device } from 'src/app/device/device';
 import { DeviceService } from 'src/app/device/device.service';
 import { User, UserDto } from 'src/app/user/user';
@@ -37,6 +38,7 @@ export class CreateComponent implements OnInit {
     private router:Router,
     private loanService:DeviceLoanService,
     private formBuilder: FormBuilder,
+    private toastrService: ToastrService,
     private httpClient: HttpClient) {
 
   }
@@ -85,7 +87,7 @@ onSubmit(value){
   console.log(this.loan);
 
   this.loanService.createLoan(this.loan).subscribe(data =>{
-
+    this.toastrService.success('Thành công', 'Đăng ký mượn thiết bị');
     this.router.navigate(['/home']);
   },
   error => console.log(error));

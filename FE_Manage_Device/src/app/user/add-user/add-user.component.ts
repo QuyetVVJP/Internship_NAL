@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { User } from '../user';
 import { UserService } from '../user.service';
 
@@ -15,6 +16,7 @@ export class AddUserComponent implements OnInit {
   uploadedImage!: File;
   constructor(private userService: UserService,
     private router: Router,
+    private toastrService: ToastrService,
     private httpClient: HttpClient) { }
 
   ngOnInit(): void {
@@ -22,13 +24,14 @@ export class AddUserComponent implements OnInit {
   saveUser(){
     this.userService.addUser(this.user).subscribe(data =>{
         console.log(data);
-        
+
         this.goToListUsers();
     },
     error => console.log(error));
   }
   goToListUsers(){
-    this.router.navigate(['home/user-list']);  
+    this.toastrService.success('Thành công', 'Tạo tài khoản mới');
+    this.router.navigate(['home/user-list']);
   }
    onSubmit(){
     console.log(this.user);
@@ -37,5 +40,5 @@ export class AddUserComponent implements OnInit {
    public onImageUpload(event) {
     this.uploadedImage = event.target.files[0];
   }
- 
+
 }
