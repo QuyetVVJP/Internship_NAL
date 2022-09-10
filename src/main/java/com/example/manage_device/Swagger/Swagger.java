@@ -25,10 +25,10 @@ public class Swagger {
 
     private ApiInfo apiEndPointsInfo() {
         return new ApiInfoBuilder()
-                .title("User Management REST API")
-                .description("User Management REST API")
-                .contact(new Contact("", "", ""))
+                .title("Management DEVICE REST API")
+                .description(" DEVICE REST API")
+                .contact(new Contact("NALJAPANTEAMC", "google.com", "teamcnaljapan@gmail.com"))
                 .version("1.0.0")
                 .build();
-    }//f
+    }
 }
