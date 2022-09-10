@@ -30,5 +30,7 @@ public class Swagger {
                 .contact(new Contact("QuyetVV", "", "quyeta2ubqn@gmail.com"))
                 .version("1.0.0")
                 .build();
-    }//f
+
+    }
+
 }
