@@ -24,7 +24,6 @@ export class AddDeviceComponent implements OnInit {
    ) { }
 
   ngOnInit(): void {
-    this.toastrService.success('Thành công', 'Thêm thiết bị mới');
   }
 
   public onImageUpload(event) {
