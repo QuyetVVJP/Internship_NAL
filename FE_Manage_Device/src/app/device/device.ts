@@ -9,8 +9,8 @@ export class Device {
 }
 export class Deviceloan{
   id:number;
-  borrow_date:number;
-  return_date:number;
+  borrow_date:Date;
+  return_date:Date;
   status:string;
   device_id:number;
   user_id:number;

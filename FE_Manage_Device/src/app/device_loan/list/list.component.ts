@@ -16,12 +16,12 @@ listLoans: DeviceLoanDto[];
 user_id:number;
   user:User;
   device_id: number;
- 
+
   count=0;
   page = 1;
   term = '';
   userLogin= new UserDto();
-  
+
   listDevices: Device[] | undefined;
   constructor(
     private deviceService : DeviceService,
@@ -37,7 +37,7 @@ user_id:number;
     // this.useService.getUserById(this.user_id).subscribe(data =>{
     //   this.user=data;
     // });
-    this.retrieveDevice(this.term);
+    // this.retrieveDevice(this.term);
   }
   private getAllLoan() {
     this.loanService.getAllLoan().subscribe(data => {
@@ -47,18 +47,31 @@ user_id:number;
   createLoan(id: number) {
     this.router.navigate(['create-loan', id]);
   }
-  handlePageChange(event: number): void {
-    this.page = event;
-    this.retrieveDevice(this.term);
+  // handlePageChange(event: number): void {
+  //   this.page = event;
+  //   this.retrieveDevice(this.term);
+  // }
+  // retrieveDevice(term?: string){
+  //   this.deviceService.getAllDeviceWithPagination(term).subscribe(res =>{
+  //     this.listDevices = res.content;
+  //     this.count = res.totalElements;
+  //   });
+  //   this.useService.getUserLogin().subscribe(res =>{
+  //     console.log(res);
+  //     this.userLogin = res;
+  // });
+  // }
+  approval(id:number){
+    this.loanService.approval(id).subscribe(data => {
+      this.router.navigate(['list']);
+      window.location.reload();
+    })
   }
-  retrieveDevice(term?: string){
-    this.deviceService.getAllDeviceWithPagination(term).subscribe(res =>{
-      this.listDevices = res.content;
-      this.count = res.totalElements;
-    });
-    this.useService.getUserLogin().subscribe(res =>{
-      console.log(res);
-      this.userLogin = res;
-  });
+  reject(id:number){
+    this.loanService.reject(id).subscribe(data => {
+      this.router.navigate(['list']);
+      window.location.reload();
+    })
   }
+
 }

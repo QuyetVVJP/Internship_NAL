@@ -6,6 +6,8 @@ import com.example.manage_device.model.DeviceLoan;
 import com.example.manage_device.model.dto.DeviceLoanDto;
 import com.example.manage_device.model.request.DeviceLoanRequest;
 import com.example.manage_device.service.DeviceLoanService;
+import com.example.manage_device.service.DeviceService;
+import com.example.manage_device.service.EmailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,6 +26,11 @@ public class DeviceLoanController {
 
     @Autowired
     private DeviceLoanService deviceLoanService;
+    @Autowired
+    private DeviceService deviceService;
+
+    @Autowired
+    private EmailServiceImpl emailService;
 
     public DeviceLoanController(DeviceLoanService deviceLoanService) {
         this.deviceLoanService = deviceLoanService;
@@ -36,6 +43,7 @@ public class DeviceLoanController {
         for (DeviceLoan deviceLoan: deviceLoans
              ) {
             DeviceLoanDto loanDto = new DeviceLoanDto();
+            loanDto.setId(deviceLoan.getId());
             loanDto.setDeviceName(deviceLoan.getDevice().getDevice_name());
             loanDto.setUsername(deviceLoan.getUser().getFirst_name() + " " + deviceLoan.getUser().getLast_name());
             loanDto.setEmail(deviceLoan.getUser().getEmail());
@@ -63,6 +71,35 @@ public class DeviceLoanController {
 
         Page<DeviceLoan> resdto = deviceLoanService.searchByKeyword(term, paging);
         return resdto;
+    }
+
+    @GetMapping("/approval/{id}")
+    public String approvalRequest(@PathVariable Long id){
+        DeviceLoan deviceLoan = deviceLoanService.findById(id).get();
+        deviceLoan.setStatus(APPROVAL);
+        deviceLoanService.save(deviceLoan);
+
+
+        Device device = deviceService.findById(deviceLoan.getDevice().getId()).get();
+        device.setStatus(APPROVAL);
+        deviceService.save(device);
+        emailService.sendEmail("teamcnaljapan@gmail.com",
+                " Đăng kí mượn thành công",
+                "Mượn thiết bị <Nal>");
+        return  ("Đã gửi mail thành công!");
+    }
+
+    @GetMapping("/reject/{id}")
+    public String rejectRequest(@PathVariable Long id){
+        DeviceLoan deviceLoan = deviceLoanService.findById(id).get();
+        deviceLoan.setStatus(AVAILABLE);
+        deviceLoanService.save(deviceLoan);
+
+        emailService.sendEmail("teamcnaljapan@gmail.com",
+                "Đăng ký mượn không được chấp thuận",
+                "Mượn thiết bị <Nal>");
+        return  ("Đã gửi mail thành công!");
+
     }
 
     @PostMapping("/create")

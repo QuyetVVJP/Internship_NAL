@@ -7,8 +7,6 @@ import { DeviceListComponent } from './device/device-list/device-list.component'
 import {HttpClientModule} from '@angular/common/http';
 import { AddDeviceComponent } from './device/add-device/add-device.component';
 import { UpdateDeviceComponent } from './device/update-device/update-device.component';
-import { FormsModule } from '@angular/forms';
-
 import { ViewDeviceComponent } from './device/view-device/view-device.component';
 
 import { UserListComponent } from './user/user-list/user-list.component';
@@ -22,6 +20,14 @@ import { LoginComponent } from './auth/login/login.component';
 import { LogoutComponent } from './auth/logout/logout.component';
 import { ListComponent } from './device_loan/list/list.component';
 import { CreateComponent } from './device_loan/create/create.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatNativeDateModule} from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -42,11 +48,10 @@ import { CreateComponent } from './device_loan/create/create.component';
           RegisterComponent,
           LoginComponent,
           LogoutComponent,
-
     ListComponent,
-    CreateComponent
-         
-         
+    CreateComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -54,9 +59,24 @@ import { CreateComponent } from './device_loan/create/create.component';
     HttpClientModule,
     FormsModule,
     NgxPaginationModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    ToastrModule.forRoot({
+      closeButton: true,
+      timeOut: 15000, // 15 seconds
+      progressBar: true,
+    }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

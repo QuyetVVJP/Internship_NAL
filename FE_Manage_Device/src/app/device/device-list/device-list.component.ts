@@ -17,6 +17,7 @@ import {
 } from "ng-apexcharts";
 import { User, UserDto } from 'src/app/user/user';
 import { UserService } from 'src/app/user/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -53,11 +54,14 @@ export class DeviceListComponent implements OnInit {
   page = 1;
   term = '';
   title = 'FE_Manage_Device';
+  isReload = false;
   constructor(
     private deviceService: DeviceService,
     private route: ActivatedRoute,
     private userService : UserService,
-    private router: Router
+    private router: Router,
+    private toastrService: ToastrService
+
   ) {
     this.user_id=this.route.snapshot.params['user_id'];
     this.chartOptions = {
@@ -122,11 +126,15 @@ export class DeviceListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.getAllDevice();
+
+    this.userService.getUserLogin().subscribe(res =>{
+
+      this.userLogin = res;
+     });
     this.getTotalDevice();
-    
+
     this.retrieveDevice(this.term);
-    
+
   }
 
   getTotalDevice(){
@@ -157,6 +165,7 @@ export class DeviceListComponent implements OnInit {
 
   retrieveDevice(term?: string){
     this.deviceService.getAllDeviceWithPagination(term).subscribe(res =>{
+      console.log(res)
       this.listDevices = res.content;
       this.count = res.totalElements;
     });
@@ -174,13 +183,15 @@ export class DeviceListComponent implements OnInit {
     this.router.navigate(['update-device', id]);
   }
   updateUser(user_id: number) {
-    this.router.navigate(['update-user', user_id]);
+    this.router.navigate(['update-user/', user_id]);
   }
- 
+
   deleteDevice(id: number) {
     this.deviceService.deleteDevice(id).subscribe(data => {
-      this.router.navigate(['list-device']);
+
+      this.router.navigate(['home']);
       window.location.reload();
-    })
+    });
+
   }
 }

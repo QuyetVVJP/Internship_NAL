@@ -68,7 +68,7 @@ public class UserController {
     @GetMapping("/email")
     public String emailService() {
         emailService.sendEmail("doducluong14@gmail.com",
-                "Bạn đã đăng kí thành công",
+                "Bạn đã đăng kí mượn",
                 "Mượn thiết bị <Nal>");
         return  ("Đã gửi mail thành công!");
     }
@@ -102,6 +102,7 @@ public class UserController {
         userDto.setFirst_name(user.getFirst_name());
         userDto.setLast_name(user.getLast_name());
         userDto.setName_role(user.getRole().getName());
+        userDto.setAvatar_url(user.getAvatar_url());
         return  userDto;
     }
 
@@ -123,6 +124,7 @@ public class UserController {
              userDto.setFirst_name(user.getFirst_name());
              userDto.setLast_name(user.getLast_name());
              userDto.setName_role(user.getRole().getName());
+             userDto.setAvatar_url(user.getAvatar_url());
              userService.resetIsLogin();
              userService.updateIsLogin(user.getId());
              return ResponseEntity.ok(userDto);

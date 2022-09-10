@@ -27,8 +27,10 @@ public class Swagger {
         return new ApiInfoBuilder()
                 .title("User Management REST API")
                 .description("User Management REST API")
-                .contact(new Contact("", "", ""))
+                .contact(new Contact("QuyetVV", "", "quyeta2ubqn@gmail.com"))
                 .version("1.0.0")
                 .build();
+
     }
+
 }

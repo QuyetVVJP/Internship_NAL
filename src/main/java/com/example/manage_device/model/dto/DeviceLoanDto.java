@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,9 +17,9 @@ public class DeviceLoanDto {
     private String username;
     private String email;
     private String deviceName;
-    private Timestamp borrow_date;
+    private Date borrow_date;
 
-    private Timestamp return_date;
+    private Date return_date;
 
     private String status;
 

@@ -28,6 +28,7 @@ export class LoginRequest{
 export class UserDto{
   first_name:string| undefined;
   last_name:string| undefined;
+  avatar_url:string| undefined;
   email:string| undefined;
   name_role:string| undefined;
   id: number|undefined;

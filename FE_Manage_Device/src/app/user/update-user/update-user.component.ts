@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { User } from '../user';
 import { UserService } from '../user.service';
 
@@ -19,6 +20,7 @@ export class UpdateUserComponent implements OnInit {
     private userService : UserService,
    private route: ActivatedRoute,
     private router:Router,
+    private toastrService: ToastrService,
     private httpClient: HttpClient
   ) { }
 
@@ -32,22 +34,19 @@ export class UpdateUserComponent implements OnInit {
   public onImageUpload(event) {
     this.uploadedImage = event.target.files[0];
   }
-  saveUser(){
-    this.userService.updateUser(this.id, this.user).subscribe(data =>{
-        console.log(data);
-        this.goToListUsers();
-    },
-    error => console.log(error));
-  }
+    goToListUsers(){
+      this.toastrService.info('Thành công', 'Cập nhật tài khoản');
 
-  goToListUsers(){
-    this.router.navigate(['/list-device/user-list']);
-  }
-  onSubmit(){
-    console.log(this.user);
-    this.saveUser();
+      this.router.navigate(['/home']);
     }
-  imageUploadAction(id: number) {
+    onSubmit(){
+      this.userService.updateUser(this.id, this.user).subscribe(data =>{
+        this.imageUploadAction(this.id);
+
+
+      },error => console.log(error));
+    }
+    imageUploadAction(id: number) {
       const imageFormData = new FormData();
       imageFormData.append('image', this.uploadedImage, this.uploadedImage.name);
 

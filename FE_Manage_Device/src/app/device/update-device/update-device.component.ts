@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Device } from '../device';
 import { DeviceService } from '../device.service';
 
@@ -17,7 +18,8 @@ export class UpdateDeviceComponent implements OnInit {
 
   constructor(private deviceService : DeviceService,
    private route: ActivatedRoute,
-    private router:Router
+    private router:Router,
+    private toastrService: ToastrService
     ) { }
 
   ngOnInit(): void {
@@ -28,7 +30,8 @@ export class UpdateDeviceComponent implements OnInit {
     },error => console.log(error));
   }
     gotolistDevices(){
-      this.router.navigate(['/list-device']);
+      this.toastrService.info('Thành công!', 'Cập nhật thiết bị!');
+      this.router.navigate(['/home']);
     }
     onSubmit(){
       this.deviceService.updateDevice(this.id, this.device).subscribe(data =>{
