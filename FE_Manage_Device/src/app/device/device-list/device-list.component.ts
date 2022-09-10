@@ -122,6 +122,7 @@ export class DeviceListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.userService.getUserLogin().subscribe(res =>{
 
       this.userLogin = res;
