@@ -68,7 +68,7 @@ public class UserController {
     @GetMapping("/email")
     public String emailService() {
         emailService.sendEmail("doducluong14@gmail.com",
-                "Bạn đã đăng kí thành công",
+                "Bạn đã đăng kí mượn",
                 "Mượn thiết bị <Nal>");
         return  ("Đã gửi mail thành công!");
     }
