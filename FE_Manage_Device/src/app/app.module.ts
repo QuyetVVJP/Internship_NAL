@@ -27,6 +27,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
           LoginComponent,
           LogoutComponent,
     ListComponent,
-    CreateComponent
+    CreateComponent,
+
 
   ],
   imports: [
@@ -64,7 +66,12 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatFormFieldModule,
     MatInputModule,
     BrowserAnimationsModule,
-    MatToolbarModule
+    MatToolbarModule,
+    ToastrModule.forRoot({
+      closeButton: true,
+      timeOut: 15000, // 15 seconds
+      progressBar: true,
+    }),
   ],
   providers: [],
   bootstrap: [

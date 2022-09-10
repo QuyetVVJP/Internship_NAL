@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 //import { error } from 'console';
 import { Device } from '../device';
 import { DeviceService } from '../device.service';
@@ -18,11 +19,12 @@ export class AddDeviceComponent implements OnInit {
   uploadedImage!: File;
   constructor(private deviceService: DeviceService,
     private router: Router,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private toastrService: ToastrService
    ) { }
 
   ngOnInit(): void {
-
+    this.toastrService.success('Thành công', 'Thêm thiết bị mới');
   }
 
   public onImageUpload(event) {
@@ -31,19 +33,18 @@ export class AddDeviceComponent implements OnInit {
 
   savedevice(){
     this.deviceService.addDevice(this.device).subscribe(data =>{
-       
+
         this.gotolistDevices();
     },
     error => console.log(error));
+
   }
   gotolistDevices(){
+    this.toastrService.success('Thành công', 'Thêm thiết bị mới');
     this.router.navigate(['/home']);
   }
    onSubmit(){
     // console.log(this.device);
     this.savedevice();
    }
-
-  
-    
 }

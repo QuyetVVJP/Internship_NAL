@@ -60,7 +60,7 @@ public class DeviceServiceImp implements DeviceService {
         path_qr = path_qr.replace("src", "..");
         device.setPath_QR(path_qr);
         device.setCreate_at(new Timestamp(System.currentTimeMillis()));
-        if(device.getStatus().isEmpty()){
+        if(device.getStatus() == null){
             device.setStatus(AVAILABLE);
         }
         return deviceRepository.save(device);
