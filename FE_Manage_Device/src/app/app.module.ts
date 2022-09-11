@@ -28,6 +28,7 @@ import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { ToastrModule } from 'ngx-toastr';
+import {MatIconModule} from '@angular/material/icon'
 
 
 
@@ -73,6 +74,7 @@ import { ToastrModule } from 'ngx-toastr';
       timeOut: 15000, // 15 seconds
       progressBar: true,
     }),
+    MatIconModule
   ],
   providers: [],
   bootstrap: [

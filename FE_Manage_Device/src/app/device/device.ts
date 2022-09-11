@@ -17,3 +17,9 @@ export class Deviceloan{
   reason:string;
 }
 
+export class DeviceChartData{
+  total: number;
+  device_available: number;
+  device_unAvailable: number;
+}
+
