@@ -2,12 +2,12 @@ package com.example.manage_device.controller;
 
 import com.example.manage_device.exception.ResourceNotFoundException;
 import com.example.manage_device.model.Device;
+import com.example.manage_device.model.dto.DeviceChartDto;
 import com.example.manage_device.service.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,9 +34,14 @@ public class DeviceController {
     }
 
     @GetMapping("/total")
-    public Long getTotalDevice() {
+    public DeviceChartDto getTotalDevice() {
+        DeviceChartDto chartDto = new DeviceChartDto();
         Long total = deviceService.getTotal();
-        return total;
+        Long totalDeviceAvailable = deviceService.getTotalDeviceAvailable();
+        chartDto.setTotal(total);
+        chartDto.setDevice_available(totalDeviceAvailable);
+        chartDto.setDevice_unAvailable(total - totalDeviceAvailable);
+        return chartDto;
     }
 
     @GetMapping("/search")
