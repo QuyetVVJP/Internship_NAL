@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-//import { error } from 'console';
+// import { error } from 'console';
 import { Device } from '../device';
 import { DeviceService } from '../device.service';
 
@@ -17,14 +18,27 @@ export class AddDeviceComponent implements OnInit {
   postResponse: any;
   successResponse?: string;
   uploadedImage!: File;
+  formGroup: FormGroup;
+  value: any;
   constructor(private deviceService: DeviceService,
     private router: Router,
     private httpClient: HttpClient,
+    private formBuilder: FormBuilder,
     private toastrService: ToastrService
    ) { }
 
   ngOnInit(): void {
-    this.toastrService.success('Thành công', 'Thêm thiết bị mới');
+    this.formGroup = this.formBuilder.group({
+
+      device_name: ['', Validators.required],
+      os: ['', Validators.required],
+      manufacturer: ['', Validators.required],
+      information: ['', Validators.required],
+    
+
+
+    });
+    // this.toastrService.success('Thành công', 'Thêm thiết bị mới');
   }
 
   public onImageUpload(event) {
@@ -43,7 +57,7 @@ export class AddDeviceComponent implements OnInit {
     this.toastrService.success('Thành công', 'Thêm thiết bị mới');
     this.router.navigate(['/home']);
   }
-   onSubmit(){
+   onSubmit(value){
     // console.log(this.device);
     this.savedevice();
    }

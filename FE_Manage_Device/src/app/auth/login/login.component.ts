@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginRequest } from 'src/app/user/user';
+import { ToastrService } from 'ngx-toastr';
+import { LoginRequest, User } from 'src/app/user/user';
 import { UserService } from 'src/app/user/user.service';
 
 @Component({
@@ -10,15 +12,29 @@ import { UserService } from 'src/app/user/user.service';
 })
 export class LoginComponent implements OnInit {
   request = new LoginRequest();
+  formGroup: FormGroup;
+  value: any;
+  user=User;
   constructor(
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private toastrService: ToastrService,
     ) { }
 
   ngOnInit(): void {
+    this.formGroup = this.formBuilder.group({
+
+      email: ['', Validators.required],
+      password: ['', Validators.required],
+      
+
+    });
+    
   }
 
-  onSubmit(){
+  onSubmit(value){
+    
     this.userService.login(this.request).subscribe(res =>{
       this.router.navigate(['/home']);
     })
