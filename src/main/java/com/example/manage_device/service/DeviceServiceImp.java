@@ -82,6 +82,12 @@ public class DeviceServiceImp implements DeviceService {
         return deviceRepository.findAll().stream().count();
     }
 
+    @Override
+    public Long getTotalDeviceAvailable() {
+
+        return deviceRepository.getTotalDeviceAvailable("Còn trong kho");
+    }
+
 
     public String generateQRCode(String qrCodeContent, String filePath, int width, int height) {
         try {

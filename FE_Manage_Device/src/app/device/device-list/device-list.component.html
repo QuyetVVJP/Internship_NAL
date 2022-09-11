@@ -1,69 +1,64 @@
-<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
-  <ul class="navbar-nav">
-    <li *ngIf="userLogin.name_role === 'ADMIN'" class="nav-item">
-      <a routerLink="home" routerLinkActive="active" class="nav-link"
-        >Quản lý thiết bị</a
-      >
-    </li>
-    <li *ngIf="userLogin.name_role === 'ADMIN'" class="nav-item">
-      <a routerLink="user-list" routerLinkActive="active" class="nav-link"
-        >Quản lý người dùng</a
-      >
-    </li>
-    <li *ngIf="userLogin.name_role === 'ADMIN'" class="nav-item">
-      <a routerLink="list" routerLinkActive="active" class="nav-link"
-        >Quản lý muon</a
-      >
-    </li>
 
-    <li *ngIf="userLogin.id == null" class="nav-item">
-      <a routerLink="register" routerLinkActive="active" class="nav-link"
-        >Đăng ký</a
-      >
-    </li>
-    <li *ngIf="userLogin.id == null" class="nav-item">
-      <a routerLink="login" routerLinkActive="active" class="nav-link"
-        >Đăng nhập</a
-      >
-    </li>
+      <div class="row">
+        <div class="col-8" style="text-align: left !important;">
 
-    <li
-      *ngIf="userLogin.id != null"
-      (click)="updateUser(userLogin.id)"
-      class="nav-item"
-    >
-      Xin chào {{ userLogin.first_name }}!
-    </li>
-    <li *ngIf="userLogin.id != null" class="nav-item">
-      <img
-        *ngIf="userLogin.avatar_url != null"
-        src="../{{ userLogin.avatar_url }}"
-        alt=""
-      />
-    </li>
-    <li *ngIf="userLogin.id != null" class="nav-item">
-      <a routerLink="logout" routerLinkActive="active" class="nav-link"
-        >Đăng xuất</a
-      >
-    </li>
-  </ul>
-</nav>
+            <a *ngIf="userLogin.name_role === 'ADMIN'" routerLink="home" routerLinkActive="active"
+              >Quản lý thiết bị</a>
 
-<h1 class="text-center" style="color: rgb(209, 52, 209)">{{ title }}</h1>
-<div class="container">
-  <router-outlet> </router-outlet>
-</div>
-<h2>Danh sách thiết bị</h2>
 
-<button *ngIf="userLogin.name_role === 'ADMIN'" class="navbar-nav">
-  <li class="nav-item">
-    <a routerLink="/add-device" routerLinkActive="active" class="nav-link"
-      >Thêm thiết bị</a
-    >
-  </li>
-</button>
+            <a *ngIf="userLogin.name_role === 'ADMIN'" routerLink="user-list" routerLinkActive="active"
+              >Quản lý người dùng</a >
 
-<div class="col-md-8">
+
+            <a *ngIf="userLogin.name_role === 'ADMIN'" routerLink="list" routerLinkActive="active"
+              >Quản lý mượn</a >
+        </div>
+        <div class="col-4" style="text-align: right !important;">
+
+            <a  *ngIf="userLogin.id == null"  routerLink="register" routerLinkActive="active" class="nav-link"
+              >Đăng ký</a>
+
+
+            <a  *ngIf="userLogin.id == null" routerLink="login" routerLinkActive="active" class="nav-link"
+              >Đăng nhập</a>
+
+
+          <button
+            *ngIf="userLogin.id != null"
+            (click)="updateUser(userLogin.id)"
+            style="text-align: right;">
+            Xin chào {{ userLogin.first_name }}!
+          </button>
+
+          <button *ngIf="userLogin.id != null" >
+            <img
+              *ngIf="userLogin.avatar_url != null"
+              src="../{{ userLogin.avatar_url }}"
+              alt=""
+            />
+          </button>
+
+            <a *ngIf="userLogin.id != null" routerLink="logout" routerLinkActive="active" class="nav-link"
+              >Đăng xuất</a >
+
+        </div>
+      </div>
+
+  <h1 class="text-center" style="color: rgb(209, 52, 209)">{{ title }}</h1>
+  <h2 style="padding-left: 10px !important;">Danh sách thiết bị</h2>
+
+  <div class="row">
+    <div class="col-2">
+      <button style="margin-left: 10px !important; margin-bottom: 10px !important;" *ngIf="userLogin.name_role === 'ADMIN'" class="btn btn-info">
+
+          <a routerLink="/add-device" routerLinkActive="active" class="nav-link">Thêm thiết bị</a
+          >
+      </button>
+    </div>
+  </div>
+
+
+<div style="padding-left: 10px !important;" class="col-md-8">
   <div class="input-group mb-3">
     <input
       type="text"
@@ -75,101 +70,119 @@
       <button
         class="btn btn-outline-secondary"
         type="button"
-        (click)="searchByTerm()"
-      >
-        Search
+        (click)="searchByTerm()" style="margin-right: 5px !important;">
+        <mat-icon>search</mat-icon>
       </button>
+
     </div>
   </div>
 </div>
 <br />
 <h2 style="text-align: center">Tổng số thiết bị: {{ total }}</h2>
-<div id="chart">
-  <apx-chart
-    [series]="chartOptions.series"
-    [chart]="chartOptions.chart"
-    [dataLabels]="chartOptions.dataLabels"
-    [plotOptions]="chartOptions.plotOptions"
-    [legend]="chartOptions.legend"
-    [fill]="chartOptions.fill"
-    [stroke]="chartOptions.stroke"
-    [tooltip]="chartOptions.tooltip"
-    [xaxis]="chartOptions.xaxis"
-  ></apx-chart>
+
+<div class="row">
+  <div class="col-3"></div>
+  <div class="col-3">
+    <div id="chart">
+      <apx-chart
+        [series]="chartOptions.series"
+        [chart]="chartOptions.chart"
+        [dataLabels]="chartOptions.dataLabels"
+        [plotOptions]="chartOptions.plotOptions"
+        [legend]="chartOptions.legend"
+        [fill]="chartOptions.fill"
+        [stroke]="chartOptions.stroke"
+        [tooltip]="chartOptions.tooltip"
+        [xaxis]="chartOptions.xaxis"
+      ></apx-chart>
+    </div>
+  </div>
+  <div class="col-3"></div>
 </div>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Tên thiết bị</th>
-      <th>Hệ điều hành</th>
-      <th>System Model</th>
-      <th>Ổ cứng</th>
-      <th>Trạng thái</th>
-      <th *ngIf="userLogin.name_role === 'ADMIN'">cập nhật</th>
-      <th *ngIf="userLogin.name_role === 'ADMIN'">xóa</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr
-      *ngFor="
-        let item of listDevices
-          | paginate
-            : {
-                itemsPerPage: pageSize,
-                currentPage: page,
-                totalItems: count
-              };
-        let i = index
-      "
-      [class.active]="i == currentIndex"
-      (click)="setActiveDevice(item, i)"
-    >
-      <td>{{ item.id }}</td>
-      <td>{{ item.device_name }}</td>
-      <td>{{ item.os }}</td>
-      <td>{{ item.manufacturer }}</td>
-      <td>{{ item.information }}</td>
-      <td>
-        {{ item.status === "Đã cho mượn" ? "Đã cho mượn" : "Còn trong kho" }}
-      </td>
-      <td>
-        <button
-          *ngIf="userLogin.name_role === 'ADMIN'"
-          (click)="updateDevice(item.id)"
-          class="btn btn-info"
-        >
-          cập nhật
-        </button>
-      </td>
-      <td>
-        <button
-          *ngIf="userLogin.name_role === 'ADMIN'"
-          (click)="deleteDevice(item.id)"
-          class="btn btn-danger"
-          style="margin-left: 10px"
-        >
-          xóa
-        </button>
-      </td>
-      <td>
-        <button
-          (click)="viewDevice(item.id)"
-          class="btn btn-success"
-          style="margin-left: 10px"
-        >
-          xem
-        </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
-<div class="col-md-12">
-  <pagination-controls
-    previousLabel="Prev"
-    nextLabel="Next"
-    [responsive]="true"
-    (pageChange)="handlePageChange($event)"
-  ></pagination-controls>
+<div class="row">
+<div class="col-1"></div>
+<div class="col-10">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Tên thiết bị</th>
+        <th>Hệ điều hành</th>
+        <th>System Model</th>
+        <th>Ổ cứng</th>
+        <th>Trạng thái</th>
+        <th ></th>
+        <th *ngIf="userLogin.name_role === 'ADMIN'"></th>
+        <th *ngIf="userLogin.name_role === 'ADMIN'"></th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="
+          let item of listDevices
+            | paginate
+              : {
+                  itemsPerPage: pageSize,
+                  currentPage: page,
+                  totalItems: count
+                };
+          let i = index
+        "
+        [class.active]="i == currentIndex"
+        (click)="setActiveDevice(item, i)"
+      >
+        <td>{{ item.id }}</td>
+        <td>{{ item.device_name }}</td>
+        <td>{{ item.os }}</td>
+        <td>{{ item.manufacturer }}</td>
+        <td>{{ item.information }}</td>
+        <td>
+          {{ item.status === "Đã cho mượn" ? "Đã cho mượn" : "Còn trong kho" }}
+        </td>
+
+        <td>
+          <button
+            (click)="viewDevice(item.id)"
+            class="btn btn-success"
+            style="margin-left: 10px"
+          >
+          <mat-icon>visibility</mat-icon>
+          </button>
+        </td>
+
+        <td>
+          <button
+            *ngIf="userLogin.name_role === 'ADMIN'"
+            (click)="updateDevice(item.id)"
+            class="btn btn-info"
+          >
+          <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+        <td>
+          <button
+            *ngIf="userLogin.name_role === 'ADMIN'"
+            (click)="deleteDevice(item.id)"
+            class="btn btn-danger"
+            style="margin-left: 10px"
+          >
+          <mat-icon>delete_outline</mat-icon>
+          </button>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+  <div class="col-md-12">
+    <pagination-controls
+      previousLabel="Prev"
+      nextLabel="Next"
+      [responsive]="true"
+      (pageChange)="handlePageChange($event)"
+    ></pagination-controls>
+  </div>
+</div>
+<div class="col-1"></div>
 </div>

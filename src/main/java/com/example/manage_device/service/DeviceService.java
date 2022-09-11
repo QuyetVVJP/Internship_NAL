@@ -23,4 +23,6 @@ public interface DeviceService {
     Page<Device> searchByKeyword(String term, Pageable paging);
 
     Long getTotal();
+
+    Long getTotalDeviceAvailable();
 }
