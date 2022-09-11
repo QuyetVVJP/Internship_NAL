@@ -97,12 +97,14 @@ public class UserController {
     public UserDto getUserIsLogin(){
         UserDto userDto = new UserDto();
         User user = userService.checkUserIsLogin();
-        userDto.setId(user.getId());
-        userDto.setEmail(user.getEmail());
-        userDto.setFirst_name(user.getFirst_name());
-        userDto.setLast_name(user.getLast_name());
-        userDto.setName_role(user.getRole().getName());
-        userDto.setAvatar_url(user.getAvatar_url());
+        if (user.getId() != 0){
+            userDto.setId(user.getId());
+            userDto.setEmail(user.getEmail());
+            userDto.setFirst_name(user.getFirst_name());
+            userDto.setLast_name(user.getLast_name());
+            userDto.setName_role(user.getRole().getName());
+            userDto.setAvatar_url(user.getAvatar_url());
+        }
         return  userDto;
     }
 
