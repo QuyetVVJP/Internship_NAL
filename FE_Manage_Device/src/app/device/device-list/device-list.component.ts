@@ -85,7 +85,8 @@ export class DeviceListComponent implements OnInit {
       ],
       chart: {
         type: "bar",
-        height: 350
+        height: 350,
+        width:500
       },
       plotOptions: {
         bar: {
