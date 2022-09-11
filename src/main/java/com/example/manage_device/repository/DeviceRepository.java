@@ -20,4 +20,7 @@ public interface DeviceRepository extends JpaRepository<Device, Long> {
     @Query(value = "SELECT * FROM device WHERE device_name LIKE %:term% OR os LIKE %:term%" , nativeQuery = true)
     public Page<Device> searchByKeyword(@Param("term") String term,
                                          Pageable paging);
+
+    @Query(value = "SELECT COUNT(id) FROM device WHERE status LIKE %:term% ", nativeQuery = true)
+    Long getTotalDeviceAvailable(@Param("term") String term);
 }

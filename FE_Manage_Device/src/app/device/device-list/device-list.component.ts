@@ -47,6 +47,8 @@ export class DeviceListComponent implements OnInit {
   listDevices: Device[] | undefined;
   count = 0;
   total = 0;
+  device_available: number[];
+  device_unAvailable: number[];
   user_id:number;
   pageSize = 5;
   currentDevice: Device;
@@ -54,7 +56,7 @@ export class DeviceListComponent implements OnInit {
   page = 1;
   term = '';
   title = 'FE_Manage_Device';
-  isReload = false;
+  series: ApexAxisChartSeries;
   constructor(
     private deviceService: DeviceService,
     private route: ActivatedRoute,
@@ -64,29 +66,37 @@ export class DeviceListComponent implements OnInit {
 
   ) {
     this.user_id=this.route.snapshot.params['user_id'];
+
+  }
+
+  ngOnInit(): void {
+
+    this.device_unAvailable = [];
+    this.device_available = [];
+    this.userService.getUserLogin().subscribe(res =>{
+
+      this.userLogin = res;
+     });
+    this.getTotalDevice();
+
+    this.retrieveDevice(this.term);
+    this.series = [
+      {
+        name: "Số thiết còn trong kho",
+        data: this.device_available
+      },
+      {
+        name: "Số thiết đã cho mượn",
+        data: this.device_unAvailable
+      }
+    ]
+
     this.chartOptions = {
-      series: [
-        {
-          name: "Số thiết bị Window còn lại",
-          data: [44]
-        },
-        {
-          name: "Số thiết bị Window đã cho mượn",
-          data: [76]
-        },
-        {
-          name: "Số thiết bị Macbook còn lại",
-          data: [35]
-        },
-        {
-          name: "Số thiết bị Macbook đã cho mượn",
-          data: [35]
-        }
-      ],
+      series: this.series,
       chart: {
         type: "bar",
         height: 350,
-        width:500
+        width: 500
       },
       plotOptions: {
         bar: {
@@ -124,23 +134,16 @@ export class DeviceListComponent implements OnInit {
         }
       }
     };
-  }
-
-  ngOnInit(): void {
-
-    this.userService.getUserLogin().subscribe(res =>{
-
-      this.userLogin = res;
-     });
-    this.getTotalDevice();
-
-    this.retrieveDevice(this.term);
 
   }
 
   getTotalDevice(){
      this.deviceService.getTotalDevice().subscribe(res =>{
-       this.total = res;
+
+       this.total = res.total;
+       this.device_available.push( res.device_available);
+       this.device_unAvailable.push(res.device_unAvailable);
+
      })
   }
 

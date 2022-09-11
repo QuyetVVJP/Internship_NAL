@@ -3,11 +3,13 @@ package com.example.manage_device.controller;
 import com.example.manage_device.exception.ResourceNotFoundException;
 import com.example.manage_device.model.Device;
 import com.example.manage_device.model.DeviceLoan;
+import com.example.manage_device.model.User;
 import com.example.manage_device.model.dto.DeviceLoanDto;
 import com.example.manage_device.model.request.DeviceLoanRequest;
 import com.example.manage_device.service.DeviceLoanService;
 import com.example.manage_device.service.DeviceService;
 import com.example.manage_device.service.EmailServiceImpl;
+import com.example.manage_device.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -31,6 +33,9 @@ public class DeviceLoanController {
 
     @Autowired
     private EmailServiceImpl emailService;
+
+    @Autowired
+    private UserService userService;
 
     public DeviceLoanController(DeviceLoanService deviceLoanService) {
         this.deviceLoanService = deviceLoanService;
@@ -83,9 +88,10 @@ public class DeviceLoanController {
         Device device = deviceService.findById(deviceLoan.getDevice().getId()).get();
         device.setStatus(APPROVAL);
         deviceService.save(device);
-        emailService.sendEmail("teamcnaljapan@gmail.com",
+        User user = userService.findById(deviceLoan.getUser().getId()).get();
+        emailService.sendEmail(user.getEmail(),
                 " Đăng kí mượn thành công",
-                "Mượn thiết bị <Nal>");
+                "Thông báo mượn thiết bị");
         return  ("Đã gửi mail thành công!");
     }
 
@@ -94,10 +100,10 @@ public class DeviceLoanController {
         DeviceLoan deviceLoan = deviceLoanService.findById(id).get();
         deviceLoan.setStatus(AVAILABLE);
         deviceLoanService.save(deviceLoan);
-
-        emailService.sendEmail("teamcnaljapan@gmail.com",
+        User user = userService.findById(deviceLoan.getUser().getId()).get();
+        emailService.sendEmail(user.getEmail(),
                 "Đăng ký mượn không được chấp thuận",
-                "Mượn thiết bị <Nal>");
+                "Thông báo mượn thiết bị");
         return  ("Đã gửi mail thành công!");
 
     }
