@@ -1,8 +1,9 @@
 package com.example.manage_device.service;
 
-import com.example.manage_device.exception.model.Role;
-import com.example.manage_device.exception.model.User;
-import com.example.manage_device.exception.model.request.UserRequest;
+
+import com.example.manage_device.model.Role;
+import com.example.manage_device.model.User;
+import com.example.manage_device.model.request.UserRequest;
 import com.example.manage_device.repository.RoleRepository;
 import com.example.manage_device.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
