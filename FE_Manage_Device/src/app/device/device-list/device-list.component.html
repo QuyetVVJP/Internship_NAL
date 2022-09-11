@@ -1,47 +1,65 @@
 <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
   <ul class="navbar-nav">
-      <li *ngIf="userLogin.name_role === 'ADMIN'" class="nav-item">
-          <a routerLink="home" routerLinkActive="active" class="nav-link">Quản lý thiết bị</a>
-      </li>
-      <li *ngIf="userLogin.name_role === 'ADMIN'" class="nav-item">
-        <a routerLink="user-list" routerLinkActive="active" class="nav-link">Quản lý người dùng</a>
-      </li>
-      <li *ngIf="userLogin.name_role === 'ADMIN'" class="nav-item">
-        <a routerLink="list" routerLinkActive="active" class="nav-link">Quản lý muon</a>
-      </li>
+    <li *ngIf="userLogin.name_role === 'ADMIN'" class="nav-item">
+      <a routerLink="home" routerLinkActive="active" class="nav-link"
+        >Quản lý thiết bị</a
+      >
+    </li>
+    <li *ngIf="userLogin.name_role === 'ADMIN'" class="nav-item">
+      <a routerLink="user-list" routerLinkActive="active" class="nav-link"
+        >Quản lý người dùng</a
+      >
+    </li>
+    <li *ngIf="userLogin.name_role === 'ADMIN'" class="nav-item">
+      <a routerLink="list" routerLinkActive="active" class="nav-link"
+        >Quản lý muon</a
+      >
+    </li>
 
-      <li  *ngIf="userLogin.id == null" class="nav-item">
-        <a routerLink="register" routerLinkActive="active" class="nav-link">Đăng ký</a>
-      </li>
-      <li *ngIf="userLogin.id == null"  class="nav-item" >
-        <a routerLink="login" routerLinkActive="active" class="nav-link">Đăng nhập</a>
-      </li>
+    <li *ngIf="userLogin.id == null" class="nav-item">
+      <a routerLink="register" routerLinkActive="active" class="nav-link"
+        >Đăng ký</a
+      >
+    </li>
+    <li *ngIf="userLogin.id == null" class="nav-item">
+      <a routerLink="login" routerLinkActive="active" class="nav-link"
+        >Đăng nhập</a
+      >
+    </li>
 
-
-      <li *ngIf="userLogin.id != null" (click)="updateUser(userLogin.id)" class="nav-item">
-         Xin chào {{userLogin.first_name}}!
-      </li>
-      <li *ngIf="userLogin.id != null"  class="nav-item">
-        <img *ngIf="userLogin.avatar_url != null" src="../{{userLogin.avatar_url}}" alt="">
-     </li>
-      <li *ngIf="userLogin.id != null" class="nav-item">
-        <a routerLink="logout" routerLinkActive="active" class="nav-link">Đăng xuất</a>
-      </li>
-
+    <li
+      *ngIf="userLogin.id != null"
+      (click)="updateUser(userLogin.id)"
+      class="nav-item"
+    >
+      Xin chào {{ userLogin.first_name }}!
+    </li>
+    <li *ngIf="userLogin.id != null" class="nav-item">
+      <img
+        *ngIf="userLogin.avatar_url != null"
+        src="../{{ userLogin.avatar_url }}"
+        alt=""
+      />
+    </li>
+    <li *ngIf="userLogin.id != null" class="nav-item">
+      <a routerLink="logout" routerLinkActive="active" class="nav-link"
+        >Đăng xuất</a
+      >
+    </li>
   </ul>
 </nav>
 
-<h1 class="text-center" style="color: rgb(209, 52, 209);">{{title}}</h1>
+<h1 class="text-center" style="color: rgb(209, 52, 209)">{{ title }}</h1>
 <div class="container">
- <router-outlet>
-
- </router-outlet>
+  <router-outlet> </router-outlet>
 </div>
 <h2>Danh sách thiết bị</h2>
 
-<button  *ngIf="userLogin.name_role === 'ADMIN'" class="navbar-nav">
+<button *ngIf="userLogin.name_role === 'ADMIN'" class="navbar-nav">
   <li class="nav-item">
-    <a  routerLink="/add-device" routerLinkActive="active" class="nav-link">Thêm thiết bị</a>
+    <a routerLink="/add-device" routerLinkActive="active" class="nav-link"
+      >Thêm thiết bị</a
+    >
   </li>
 </button>
 
@@ -64,15 +82,14 @@
     </div>
   </div>
 </div>
-<br>
-<h2 style="text-align: center;">Tổng số thiết bị: {{total}}</h2>
+<br />
+<h2 style="text-align: center">Tổng số thiết bị: {{ total }}</h2>
 <div id="chart">
   <apx-chart
     [series]="chartOptions.series"
     [chart]="chartOptions.chart"
     [dataLabels]="chartOptions.dataLabels"
     [plotOptions]="chartOptions.plotOptions"
-
     [legend]="chartOptions.legend"
     [fill]="chartOptions.fill"
     [stroke]="chartOptions.stroke"
@@ -80,7 +97,6 @@
     [xaxis]="chartOptions.xaxis"
   ></apx-chart>
 </div>
-
 
 <table class="table table-striped">
   <thead>
@@ -96,8 +112,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr  *ngFor="
-        let item of listDevices | paginate : {
+    <tr
+      *ngFor="
+        let item of listDevices
+          | paginate
+            : {
                 itemsPerPage: pageSize,
                 currentPage: page,
                 totalItems: count
@@ -105,21 +124,43 @@
         let i = index
       "
       [class.active]="i == currentIndex"
-      (click)="setActiveDevice(item, i)">
-      <td> {{item.id}}</td>
-      <td> {{item.device_name}} </td>
-      <td> {{item.os}}</td>
-      <td> {{item.manufacturer}}</td>
-      <td> {{item.information}}</td>
-      <td> {{item.status === "Đã cho mượn" ? "Đã cho mượn" : "Còn trong kho"}}</td>
+      (click)="setActiveDevice(item, i)"
+    >
+      <td>{{ item.id }}</td>
+      <td>{{ item.device_name }}</td>
+      <td>{{ item.os }}</td>
+      <td>{{ item.manufacturer }}</td>
+      <td>{{ item.information }}</td>
       <td>
-        <button *ngIf="userLogin.name_role === 'ADMIN'"  (click)="updateDevice(item.id)" class="btn btn-info">cập nhật</button>
+        {{ item.status === "Đã cho mượn" ? "Đã cho mượn" : "Còn trong kho" }}
       </td>
       <td>
-        <button *ngIf="userLogin.name_role === 'ADMIN'" (click)="deleteDevice(item.id)" class="btn btn-danger" style="margin-left:10px ;">xóa</button>
+        <button
+          *ngIf="userLogin.name_role === 'ADMIN'"
+          (click)="updateDevice(item.id)"
+          class="btn btn-info"
+        >
+          cập nhật
+        </button>
       </td>
       <td>
-        <button   (click)="viewDevice(item.id)" class="btn btn-success" style="margin-left:10px ;">xem</button>
+        <button
+          *ngIf="userLogin.name_role === 'ADMIN'"
+          (click)="deleteDevice(item.id)"
+          class="btn btn-danger"
+          style="margin-left: 10px"
+        >
+          xóa
+        </button>
+      </td>
+      <td>
+        <button
+          (click)="viewDevice(item.id)"
+          class="btn btn-success"
+          style="margin-left: 10px"
+        >
+          xem
+        </button>
       </td>
     </tr>
   </tbody>
@@ -132,4 +173,3 @@
     (pageChange)="handlePageChange($event)"
   ></pagination-controls>
 </div>
-
