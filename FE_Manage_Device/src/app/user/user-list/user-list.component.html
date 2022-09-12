@@ -27,7 +27,7 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>ID</th>
+            <th>STT</th>
             <th>Họ</th>
             <th>Tên</th>
             <th>Giới tính</th>
@@ -35,6 +35,9 @@
             <th>Email</th>
             <th>Số điện thoại</th>
             <th>Bộ phận</th>
+            <th >Xem chi tiết</th>
+            <th>Cập nhật</th>
+            <th>Xóa</th>
         </tr>
     </thead>
     <tbody>
@@ -57,13 +60,29 @@
             <td>{{user.phone}}</td>
             <td>{{user.department}}</td>
             <td>
-              <button (click)="viewUser(user.id)" class="btn btn-primary" >Xem chi tiết</button>
-          </td>
+              <button
+                (click)="viewUser(user.id)"
+                class="btn btn-success"
+              >
+              <mat-icon>visibility</mat-icon>
+              </button>
+            </td>
+    
             <td>
-                <button (click)="updateUser(user.id)" class="btn btn-success" >Cập nhật</button>
+              <button
+                (click)="updateUser(user.id)"
+                class="btn btn-info"
+              >
+              <mat-icon>edit</mat-icon>
+              </button>
             </td>
             <td>
-                <button (click)="deleteUser(user.id)" class="btn btn-danger" >Xóa</button>
+              <button
+                (click)="deleteUser(user.id)"
+                class="btn btn-danger"
+              >
+              <mat-icon>delete_outline</mat-icon>
+              </button>
             </td>
         </tr>
     </tbody>
