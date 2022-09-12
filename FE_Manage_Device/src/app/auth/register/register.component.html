@@ -1,38 +1,37 @@
-<div class="col-md-8 offset-md-3">
-  <h2>Đăng kí </h2>
-   <form  (ngSubmit)="onSubmit()" >
-     class="form-label" 
-      <label><b>Họ:</b></label>
-      <input type="text" class="form-control" style="width: 50%;" id="frist_name" -->
-        [(ngModel)]="user.first_name" name="first_name"
+<div class="col-md-8 offset-md-3" >
+      <h2>Đăng kí</h2>
+      <form  (ngSubmit)="onSubmit()" >
+          <label><b>Họ:</b></label>
+          <input type="text" class="form-control" style="width: 50%;" id="frist_name"
+            [(ngModel)]="user.first_name" name="first_name">
+        
+          <div class="form-label">
+            <label><b>Tên:</b></label>
+            <input type="text" class="form-control" style="width: 50%;" id="last_name"
+            [(ngModel)]="user.last_name" name="last_name">
+        </div>
     
-      <div class="form-label">
-        <label><b>Tên:</b></label>
-        <input type="text" class="form-control" style="width: 50%;" id="last_name"
-        [(ngModel)]="user.last_name" name="last_name">
-    </div>
-
-      <div class="form-label">
-          <label><b >Email : </b></label>
-          <input type="text" class="form-control"style="width: 50%;" id="email"
-          [(ngModel)]="user.email" name="email">
+          <div class="form-label">
+              <label><b >Email : </b></label>
+              <input type="text" class="form-control"style="width: 50%;" id="email"
+              [(ngModel)]="user.email" name="email">
+          </div>
+    
+          <div class="form-label">
+            <label><b>Mật khẩu :</b> </label>
+            <input type="password" class="form-control" style="width: 50%;"id="password"
+            [(ngModel)]="user.password" name="password">
+          </div>
+    
+          <div class="form-label">
+            <label> <b>Xác nhận mật khẩu :</b> </label>
+            <input type="password" class="form-control" style="width: 50%;"id="rePassword"
+            [(ngModel)]="user.rePassword" name="rePassword">
+          </div>
+    
+          <button class="btn btn-success" type="submit">Đăng ký</button>
+    
+      </form>
       </div>
 
-      <div class="form-label">
-        <label><b>Mật khẩu :</b> </label>
-        <input type="password" class="form-control" style="width: 50%;"id="password"
-        [(ngModel)]="user.password" name="password">
-      </div>
-
-      <div class="form-label">
-        <label> <b>Xác nhận mật khẩu :</b> </label>
-        <input type="password" class="form-control" style="width: 50%;"id="rePassword"
-        [(ngModel)]="user.rePassword" name="rePassword">
-      </div>
-
-      <button class="btn btn-success" type="submit">Đăng ký</button>
-
-  </form>
-  </div>
-  
 
