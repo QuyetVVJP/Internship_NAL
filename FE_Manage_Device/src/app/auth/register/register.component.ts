@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
       email: ['', Validators.required],
       password: ['', Validators.required],
       rePassword: ['', Validators.required],
-     
+
 
 
     });
@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
   goToListUsers(){
     this.router.navigate(['/home']);
   }
-   onSubmit(value){
+   onSubmit(){
     this.saveUser();
    }
 
