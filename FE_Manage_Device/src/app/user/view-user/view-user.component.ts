@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../user';
 import { UserService } from '../user.service';
 
@@ -12,10 +12,14 @@ export class ViewUserComponent implements OnInit {
 
   id!: number;
   user!: User;
+  user_id:number;
   constructor(
     private route : ActivatedRoute,
-    private useService : UserService
-  ) { }
+    private useService : UserService,
+    private router: Router,
+  ) { 
+    this.user_id=this.route.snapshot.params['user_id'];
+  }
 
   ngOnInit(): void {
     this.id=this.route.snapshot.params['id'];
@@ -25,7 +29,11 @@ export class ViewUserComponent implements OnInit {
     console.log(data);
     this.user=data;
   })
+  
     
+  }
+  updateUser(id: number) {
+    this.router.navigate(['update-user/', id]);
   }
 
 }
