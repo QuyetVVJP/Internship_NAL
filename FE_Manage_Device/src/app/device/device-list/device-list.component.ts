@@ -186,8 +186,8 @@ export class DeviceListComponent implements OnInit {
   updateDevice(id: number) {
     this.router.navigate(['update-device', id]);
   }
-  updateUser(user_id: number) {
-    this.router.navigate(['update-user/', user_id]);
+  viewUser(user_id: number) {
+    this.router.navigate(['view-user/', user_id]);
   }
 
   deleteDevice(id: number) {
