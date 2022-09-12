@@ -10,6 +10,8 @@ export class User{
   phone:number| undefined;
   department:string| undefined;
   avatar_url:string| undefined;
+  password: string;
+  rePassword: string;
 }
 
 export class UserRequest{
@@ -32,4 +34,5 @@ export class UserDto{
   email:string| undefined;
   name_role:string| undefined;
   id: number|undefined;
+ 
 }

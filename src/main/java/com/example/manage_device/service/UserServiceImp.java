@@ -1,6 +1,6 @@
 package com.example.manage_device.service;
 
-import com.example.manage_device.model.Device;
+
 import com.example.manage_device.model.Role;
 import com.example.manage_device.model.User;
 import com.example.manage_device.model.request.UserRequest;
@@ -77,7 +77,7 @@ public class UserServiceImp implements UserService {
 
     @Override
     public User save(User user) {
-        user.setCreated_at(new Timestamp(System.currentTimeMillis()));
+        user.setUpdated_at(new Timestamp(System.currentTimeMillis()));
         return userRepository.save(user);
 
     }
