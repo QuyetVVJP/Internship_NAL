@@ -7,11 +7,16 @@ import { Device,  DeviceChartData } from './device';
 })
 export class DeviceService {
 
+
   private baseURL = "http://localhost:8080/devices"
   constructor(private httpClient: HttpClient) { }
 
   getAllDevice(): Observable<Device[]> {
     return this.httpClient.get<Device[]>(`${this.baseURL + '/list'}`);
+  }
+
+  exportExcel():Observable<Blob> {
+    return this.httpClient.get(`${this.baseURL + '/exportExcel'}`, {responseType: 'blob'});
   }
 
   addDevice(device: Device): Observable<Object> {

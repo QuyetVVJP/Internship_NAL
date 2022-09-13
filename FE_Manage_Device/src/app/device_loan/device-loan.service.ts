@@ -21,9 +21,9 @@ export class DeviceLoanService {
     return this.httpClient.get<Deviceloan>(`${this.baseURL}/${id}`);
   }
 
-  getAllDeviceWithPagination(term): Observable<any> {
+  getAllLoanWithPagination(term): Observable<any> {
     let terms = new HttpParams().set('term', term);
-    return this.httpClient.get<Device[]>(`${this.baseURL + '/search'}`,{ params: terms } );
+    return this.httpClient.get<Deviceloan[]>(`${this.baseURL + '/search'}`,{ params: terms } );
   }
   getUserLogin():Observable<UserDto>{
     return this.httpClient.get<UserDto>(`${this.baseURL + '/userIsLogin'}`);
@@ -34,4 +34,5 @@ export class DeviceLoanService {
   reject(id:number): Observable<Object> {
     return this.httpClient.get<any>(`${this.baseURL + '/reject'}/${id}`);
   }
+  
 }

@@ -29,9 +29,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { ToastrModule } from 'ngx-toastr';
 import {MatIconModule} from '@angular/material/icon'
-
-
-
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient } from '@angular/common/http';
 @NgModule({
   // Khai bao cac component o day
   declarations: [
@@ -74,7 +74,14 @@ import {MatIconModule} from '@angular/material/icon'
       timeOut: 15000, // 15 seconds
       progressBar: true,
     }),
-    MatIconModule
+    MatIconModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [],
   bootstrap: [
@@ -82,3 +89,7 @@ import {MatIconModule} from '@angular/material/icon'
   ]
 })
 export class AppModule { }
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}

@@ -4,18 +4,23 @@ import com.example.manage_device.exception.ResourceNotFoundException;
 import com.example.manage_device.model.Device;
 import com.example.manage_device.model.dto.DeviceChartDto;
 import com.example.manage_device.service.DeviceService;
+
+import com.example.manage_device.service.ExcelService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.ByteArrayInputStream;
 import java.sql.Timestamp;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import static com.example.manage_device.utils.ParamKey.*;
 
@@ -26,7 +31,8 @@ public class DeviceController {
 
     @Autowired
     private DeviceService deviceService;
-
+    @Autowired
+    private ExcelService excelService;
     @GetMapping("/list")
     public List<Device> getAllDevice() {
         List<Device> deviceList = deviceService.getAllDevice();
@@ -43,6 +49,21 @@ public class DeviceController {
         chartDto.setDevice_unAvailable(total - totalDeviceAvailable);
         return chartDto;
     }
+
+    @GetMapping("/exportExcel")
+    public InputStreamResource exportExcel(){
+        InputStreamResource inputStreamResource = null;
+        ByteArrayInputStream byteArrayInputStream;
+        try {
+            List<Device> list = deviceService.findAll();
+            byteArrayInputStream = excelService.writeExcel(list);
+            inputStreamResource = new InputStreamResource(byteArrayInputStream);
+        }catch (Exception ex) {
+            throw ex;
+        }
+        return inputStreamResource;
+    }
+
 
     @GetMapping("/search")
     public Page<Device> search(
