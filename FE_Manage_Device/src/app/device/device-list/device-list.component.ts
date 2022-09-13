@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Device } from '../device';
 import { DeviceService } from '../device.service';
+import {saveAs} from 'file-saver';
 import {
   ApexAxisChartSeries,
   ApexChart,
@@ -196,6 +197,15 @@ export class DeviceListComponent implements OnInit {
       this.router.navigate(['home']);
       window.location.reload();
     });
+  }
 
+  exportExcel() {
+
+    const data = this.deviceService.exportExcel().subscribe(
+      next => {
+
+        saveAs(next, 'Device.xlsx');
+      }
+    );
   }
 }

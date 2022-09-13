@@ -25,4 +25,6 @@ public interface DeviceService {
     Long getTotal();
 
     Long getTotalDeviceAvailable();
+
+    List<Device> findAll();
 }
