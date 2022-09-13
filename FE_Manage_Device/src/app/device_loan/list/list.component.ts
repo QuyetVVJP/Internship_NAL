@@ -1,31 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Device } from 'src/app/device/device';
 import { DeviceService } from 'src/app/device/device.service';
 import { User, UserDto } from 'src/app/user/user';
 import { UserService } from 'src/app/user/user.service';
 import { DeviceLoanService } from '../device-loan.service';
-import { Deviceloan, DeviceLoanDto } from '../devicve-loan'
+import { Deviceloan, DeviceLoanDto } from '../devicve-loan';
+
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-listLoans: DeviceLoanDto[];
-user_id:number;
+ 
+
+  listLoans: DeviceLoanDto[];
+  user_id:number;
   user:User;
   device_id: number;
-
+ 
   count=0;
   page = 1;
   term = '';
   userLogin= new UserDto();
 
   listDevices: Device[] | undefined;
+  
   constructor(
     private deviceService : DeviceService,
-    private useService:UserService,
+    private userService:UserService,
     private route: ActivatedRoute,
     private loanService : DeviceLoanService,
     private router: Router
@@ -33,34 +37,41 @@ user_id:number;
 
   ngOnInit(): void {
     this.getAllLoan();
-    // console.log(this.user_id)
+   
+
+   console.log(this.user_id)
     // this.useService.getUserById(this.user_id).subscribe(data =>{
     //   this.user=data;
     // });
     // this.retrieveDevice(this.term);
   }
+ 
   private getAllLoan() {
     this.loanService.getAllLoan().subscribe(data => {
+      console.log(data);
       this.listLoans = data;
     });
   }
   createLoan(id: number) {
     this.router.navigate(['create-loan', id]);
   }
-  // handlePageChange(event: number): void {
-  //   this.page = event;
-  //   this.retrieveDevice(this.term);
-  // }
-  // retrieveDevice(term?: string){
-  //   this.deviceService.getAllDeviceWithPagination(term).subscribe(res =>{
-  //     this.listDevices = res.content;
-  //     this.count = res.totalElements;
-  //   });
-  //   this.useService.getUserLogin().subscribe(res =>{
-  //     console.log(res);
-  //     this.userLogin = res;
-  // });
-  // }
+   handlePageChange(event: number): void {
+    this.page = event;
+    this.retrieveDevice(this.term);
+  }
+  retrieveDevice(term?: string){
+    this.deviceService.getAllDeviceWithPagination(term).subscribe(res =>{
+      this.listDevices = res.content;
+      this.count = res.totalElements;
+    });
+    this.userService.getUserLogin().subscribe(res =>{
+      console.log(res);
+     this.userLogin = res;
+ });
+ }
+ searchByTerm(){
+  this.retrieveDevice(this.term);
+}
   approval(id:number){
     this.loanService.approval(id).subscribe(data => {
       this.router.navigate(['list']);
@@ -73,5 +84,4 @@ user_id:number;
       window.location.reload();
     })
   }
-
 }
