@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
   goToListUsers(){
     this.router.navigate(['/home']);
   }
-   onSubmit(){
+   onSubmit(value){
     this.saveUser();
    }
 
