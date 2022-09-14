@@ -10,6 +10,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     @Query(value = "SELECT * FROM user WHERE email LIKE %:email%" , nativeQuery = true)
@@ -29,6 +31,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
     User findUserLogin();
 
 
-    @Query(value = "SELECT * FROM user WHERE first_name LIKE %:term% OR last_name LIKE %:term% OR email LIKE %:term% OR employee_id LIKE %:term% OR phone LIKE %:term%" , nativeQuery = true)
+    @Query(value = "SELECT * FROM user WHERE first_name LIKE %:term% OR last_name LIKE %:term% OR email LIKE %:term% OR employee_id LIKE %:term% OR phone LIKE %:term% ORDER BY id DESC" , nativeQuery = true)
     public Page<User> searchByKeyword(@Param("term") String term, Pageable paging);
+
+    @Query(value = "SELECT * FROM user ORDER BY id DESC" , nativeQuery = true)
+    List<User> findAll();
 }

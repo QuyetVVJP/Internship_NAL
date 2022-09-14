@@ -55,11 +55,12 @@ export class UpdateUserComponent implements OnInit {
     goToListUsers(){
       this.toastrService.info('Thành công', 'Cập nhật tài khoản');
 
-      this.router.navigate(['/home']);
+      this.router.navigate(['/home/user-list']);
     }
     onSubmit(value){
  
       this.userService.updateUser(this.id, this.user).subscribe(data =>{
+        this.goToListUsers();
         this.imageUploadAction(this.id);
 
 
@@ -71,7 +72,7 @@ export class UpdateUserComponent implements OnInit {
 
       this.httpClient.post('http://localhost:8080/users/upload/image/'+id, imageFormData, {  responseType: 'text'  })
         .subscribe((response) => {
-          this.goToListUsers();
+          //this.goToListUsers();
       },error => console.log(error)
 
         );
