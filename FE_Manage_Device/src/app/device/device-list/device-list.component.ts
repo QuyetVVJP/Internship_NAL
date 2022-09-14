@@ -74,80 +74,74 @@ export class DeviceListComponent implements OnInit {
 
     this.device_unAvailable = [];
     this.device_available = [];
+    this.deviceService.getTotalDevice().subscribe(res =>{
+
+      this.total = res.total;
+      this.device_available.push( res.device_available);
+      this.device_unAvailable.push(res.device_unAvailable);
+      this.series = [
+        {
+          name: "Số thiết còn trong kho",
+          data: this.device_available
+        },
+        {
+          name: "Số thiết đã cho mượn",
+          data: this.device_unAvailable
+        }
+      ]
+
+       this.chartOptions = {
+        series: this.series,
+        chart: {
+          type: "bar",
+          height: 350,
+          width: 500
+        },
+        plotOptions: {
+          bar: {
+            horizontal: false,
+            columnWidth: "55%",
+          }
+        },
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          show: true,
+          width: 2,
+          colors: ["transparent"]
+        },
+        xaxis: {
+          categories: [
+            "Thiết bị"
+
+          ]
+        },
+        yaxis: {
+          title: {
+            text: "()"
+          }
+        },
+        fill: {
+          opacity: 1
+        },
+        tooltip: {
+          y: {
+            formatter: function(val) {
+              return "" + val ;
+            }
+          }
+        }
+      };
+
+    })
     this.userService.getUserLogin().subscribe(res =>{
 
       this.userLogin = res;
      });
-    this.getTotalDevice();
 
     this.retrieveDevice(this.term);
-    this.series = [
-      {
-        name: "Số thiết còn trong kho",
-        data: this.device_available
-      },
-      {
-        name: "Số thiết đã cho mượn",
-        data: this.device_unAvailable
-      }
-    ]
-
-    this.chartOptions = {
-      series: this.series,
-      chart: {
-        type: "bar",
-        height: 350,
-        width: 500
-      },
-      plotOptions: {
-        bar: {
-          horizontal: false,
-          columnWidth: "55%",
-        }
-      },
-      dataLabels: {
-        enabled: false
-      },
-      stroke: {
-        show: true,
-        width: 2,
-        colors: ["transparent"]
-      },
-      xaxis: {
-        categories: [
-          "Thiết bị"
-
-        ]
-      },
-      yaxis: {
-        title: {
-          text: "()"
-        }
-      },
-      fill: {
-        opacity: 1
-      },
-      tooltip: {
-        y: {
-          formatter: function(val) {
-            return "" + val ;
-          }
-        }
-      }
-    };
-
   }
-
-  getTotalDevice(){
-     this.deviceService.getTotalDevice().subscribe(res =>{
-
-       this.total = res.total;
-       this.device_available.push( res.device_available);
-       this.device_unAvailable.push(res.device_unAvailable);
-
-     })
-  }
-
   private getAllDevice() {
     this.deviceService.getAllDevice().subscribe(data => {
       this.listDevices = data;
@@ -168,7 +162,7 @@ export class DeviceListComponent implements OnInit {
     this.retrieveDevice(this.term);
   }
 
-  retrieveDevice(term?: string){
+   retrieveDevice(term?: string){
     this.deviceService.getAllDeviceWithPagination(term).subscribe(res =>{
       console.log(res)
       this.listDevices = res.content;
