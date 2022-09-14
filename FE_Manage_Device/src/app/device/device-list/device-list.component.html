@@ -1,7 +1,7 @@
 
       <div class="row">
         <div class="col-8" style="text-align: left !important;">
-            <img src="../../../assets/image/logoteamc.png" style="height:30px">
+<!--            <img src="../../../assets/avatar/TeamC.jpg" style="height:30px">-->
 
             <a *ngIf="userLogin.name_role === 'ADMIN'" routerLink="home" routerLinkActive="active"
               >Quản lý thiết bị</a>
@@ -54,7 +54,7 @@
           <a routerLink="/add-device" routerLinkActive="active" class="nav-link">Thêm thiết bị</a >
       </button>
     </div>
-    <div class="col-2">
+    <div *ngIf="userLogin.name_role === 'ADMIN'" class="col-2">
       <button class="btn btn-info" (click)="exportExcel()">
         Xuất file excel
       </button>
