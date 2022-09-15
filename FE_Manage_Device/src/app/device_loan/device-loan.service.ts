@@ -34,5 +34,6 @@ export class DeviceLoanService {
   reject(id:number): Observable<Object> {
     return this.httpClient.get<any>(`${this.baseURL + '/reject'}/${id}`);
   }
+ 
   
 }

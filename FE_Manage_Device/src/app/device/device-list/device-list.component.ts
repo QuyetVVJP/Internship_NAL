@@ -187,8 +187,7 @@ export class DeviceListComponent implements OnInit {
 
   deleteDevice(id: number) {
     this.deviceService.deleteDevice(id).subscribe(data => {
-
-      this.router.navigate(['home']);
+    this.router.navigate(['home']);
       window.location.reload();
     });
   }

@@ -1,18 +1,58 @@
+<header>
+  <nav>
+    <div class="tab">
+      <!-- <div>
+        <h1 translate> TITLE </h1>
+        <button click (click)="setEnglish()">EN</button>
+        <button click (click)="setJapanese()">JP</button>
+      </div> -->
+     <img src="../../../assets/image/logoteamc.png" routerLink="home" style="height:30px">
+    </div>
+    <div class="login">
+      <a *ngIf="userLogin.name_role === 'ADMIN'" routerLink="home" routerLinkActive="active">Quản lý thiết bị</a>
 
-  <router-outlet>
 
-    <div>
+      <a *ngIf="userLogin.name_role === 'ADMIN'" routerLink="home/user-list" routerLinkActive="active">Quản lý người
+        dùng</a>
+
+
+      <a *ngIf="userLogin.name_role === 'ADMIN'" routerLink="home/list" routerLinkActive="active">Quản lý mượn</a>
+
+
+
+      <a *ngIf="userLogin.id == null" routerLink="home/register" routerLinkActive="active" class="nav-link">Đăng ký</a>
+
+
+      <a *ngIf="userLogin.id == null" routerLink="home/login" routerLinkActive="active" class="nav-link">Đăng nhập</a>
+
+
+      <button *ngIf="userLogin.id != null" (click)="viewUser(userLogin.id)" style="text-align: right;">
+        Xin chào {{ userLogin.first_name }}!
+      </button>
+
+      <button *ngIf="userLogin.id != null">
+        <img *ngIf="userLogin.avatar_url != null" src="../{{ userLogin.avatar_url }}" alt="" />
+      </button>
+
+      <a *ngIf="userLogin.id != null" routerLink="home/logout" routerLinkActive="active" class="nav-link">Đăng xuất</a>
+
+    </div>
+  </nav>
+</header>
+
+
+<!-- <div>
       <h1 translate> TITLE </h1>
       <button click (click)="setEnglish()">EN</button>
       <button click (click)="setJapanese()">JP</button>
-      <button click (click)="setVietnamese()">VN</button>
-    </div>
-  </router-outlet>
+    </div> -->
+
+<router-outlet>
+
+</router-outlet>
 
 
-
-
- <!-- <footer class="footer">
+<!-- <footer class="footer">
   <div class="container">
       <span>Internship NAL - Team C - 08/2022</span>
   </div>

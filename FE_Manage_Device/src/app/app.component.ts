@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { lastValueFrom } from 'rxjs';
 import { ApiService } from './api.service';
-import { UserDto } from './user/user';
+import { User, UserDto } from './user/user';
 import { UserService } from './user/user.service';
 
 @Component({
@@ -15,13 +16,26 @@ export class AppComponent implements OnInit {
   currentLanguage: string = 'en';
 
   userLogin = new UserDto();
+  user:User;
+  user_id:number;
   constructor(
     private translate: TranslateService,
-    private apiService: ApiService
-  ){}
+    private apiService: ApiService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private userService:UserService
+
+  ){
+    this.user_id=this.route.snapshot.params['user_id'];
+
+  }
 
   async ngOnInit(): Promise<void> {
     await this.setLanguage();
+    this.userService.getUserLogin().subscribe(res =>{
+
+      this.userLogin = res;
+     });
   }
 
   async setLanguage(): Promise<void> {
@@ -43,6 +57,13 @@ export class AppComponent implements OnInit {
   setJapanese():void{
     this.translate.use('jp');
     this.currentLanguage = 'jp';
+  }
+  viewUser(user_id: number) {
+    this.router.navigate(['view-user/', user_id]);
+  }
+   load(){
+ window.location.reload();
+
   }
   setVietnamese():void{
     this.translate.use('vn');

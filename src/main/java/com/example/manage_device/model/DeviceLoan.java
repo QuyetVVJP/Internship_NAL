@@ -43,7 +43,7 @@ public class DeviceLoan {
 
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="user_id")
+    @JoinColumn(name="user_id", referencedColumnName = "id")
     private User user;
 
 }
