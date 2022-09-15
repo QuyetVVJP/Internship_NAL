@@ -17,7 +17,7 @@ public interface DeviceLoanRepository extends JpaRepository<DeviceLoan, Long> {
             "  INNER JOIN user" +
             "  ON device_loan.user_id = user.id" +
             "  INNER JOIN device" +
-            "  ON device_loan.device_id = device.id  LIKE %:term%" , nativeQuery = true)
+            "  ON device_loan.device_id = device.id WHERE first_name LIKE %:term% OR last_name LIKE %:term% OR device_name LIKE %:term% OR borrow_date LIKE %:term% OR return_date LIKE %:term%" , nativeQuery = true)
     public Page<DeviceLoan> searchByKeyword(@Param("term") String term,
                                         Pageable paging);
 

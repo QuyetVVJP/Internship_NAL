@@ -16,10 +16,13 @@ export class ListComponent implements OnInit {
  
 
   listLoans: DeviceLoanDto[];
+
   user_id:number;
-  user:User;
+  
   device_id: number;
- 
+  pageSize = 5;
+  currentLoan:DeviceLoanDto;
+  currentIndex = -1;
   count=0;
   page = 1;
   term = '';
@@ -37,9 +40,9 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllLoan();
-   
+    this.retrieveLoan(this.term);
 
-   console.log(this.user_id)
+   
     // this.useService.getUserById(this.user_id).subscribe(data =>{
     //   this.user=data;
     // });
@@ -55,33 +58,41 @@ export class ListComponent implements OnInit {
   createLoan(id: number) {
     this.router.navigate(['create-loan', id]);
   }
+  setActiveLoan(loan : DeviceLoanDto, index: number): void {
+    this.currentLoan = loan;
+    this.currentIndex = index;
+  }
    handlePageChange(event: number): void {
     this.page = event;
-    this.retrieveDevice(this.term);
+    this.retrieveLoan(this.term);
   }
-  retrieveDevice(term?: string){
-    this.deviceService.getAllDeviceWithPagination(term).subscribe(res =>{
-      this.listDevices = res.content;
+  retrieveLoan(term?: string){
+    this.loanService.getAllLoanWithPagination(term).subscribe(res =>{
+      this.listLoans = res.content;
       this.count = res.totalElements;
     });
     this.userService.getUserLogin().subscribe(res =>{
       console.log(res);
-     this.userLogin = res;
+      this.userLogin = res;
  });
  }
  searchByTerm(){
-  this.retrieveDevice(this.term);
+  this.retrieveLoan(this.term);
+  console.log(this.term);
 }
+
   approval(id:number){
     this.loanService.approval(id).subscribe(data => {
       this.router.navigate(['list']);
-      window.location.reload();
+      
     })
+    window.location.reload();
   }
   reject(id:number){
     this.loanService.reject(id).subscribe(data => {
       this.router.navigate(['list']);
-      window.location.reload();
+      
     })
+    window.location.reload();
   }
 }

@@ -42,9 +42,11 @@ export class RegisterComponent implements OnInit {
   }
   goToListUsers(){
     this.router.navigate(['/home']);
+    
   }
    onSubmit(value){
     this.saveUser();
+    window.location.reload();
    }
 
 }
