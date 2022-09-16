@@ -13,12 +13,12 @@ import { Deviceloan, DeviceLoanDto } from '../devicve-loan';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
- 
+
 
   listLoans: DeviceLoanDto[];
 
   user_id:number;
-  
+
   device_id: number;
   pageSize = 5;
   currentLoan:DeviceLoanDto;
@@ -27,9 +27,10 @@ export class ListComponent implements OnInit {
   page = 1;
   term = '';
   userLogin= new UserDto();
+  currentDeviceDto: any;
 
   listDevices: Device[] | undefined;
-  
+
   constructor(
     private deviceService : DeviceService,
     private userService:UserService,
@@ -39,16 +40,16 @@ export class ListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getAllLoan();
+    // this.getAllLoan();
     this.retrieveLoan(this.term);
 
-   
+
     // this.useService.getUserById(this.user_id).subscribe(data =>{
     //   this.user=data;
     // });
     // this.retrieveDevice(this.term);
   }
- 
+
   private getAllLoan() {
     this.loanService.getAllLoan().subscribe(data => {
       console.log(data);
@@ -68,6 +69,7 @@ export class ListComponent implements OnInit {
   }
   retrieveLoan(term?: string){
     this.loanService.getAllLoanWithPagination(term).subscribe(res =>{
+      console.log(res.content[0][3]);
       this.listLoans = res.content;
       this.count = res.totalElements;
     });
@@ -81,17 +83,23 @@ export class ListComponent implements OnInit {
   console.log(this.term);
 }
 
+
+setActiveDevice(device: any, index: number): void {
+  this.currentDeviceDto = device;
+  this.currentIndex = index;
+}
+
   approval(id:number){
     this.loanService.approval(id).subscribe(data => {
       this.router.navigate(['list']);
-      
+
     })
     window.location.reload();
   }
   reject(id:number){
     this.loanService.reject(id).subscribe(data => {
       this.router.navigate(['list']);
-      
+
     })
     window.location.reload();
   }
