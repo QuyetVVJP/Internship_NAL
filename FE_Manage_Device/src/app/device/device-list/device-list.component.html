@@ -1,27 +1,27 @@
 
-      <!-- <div class="row">
+      <div class="row">
         <div class="col-8" style="text-align: left !important;">
-         <img src="../../../assets/avatar/TeamC.jpg" style="height:30px">
+            <img src="../../../assets/image/logoteamc.png" style="height:30px">
 
             <a *ngIf="userLogin.name_role === 'ADMIN'" routerLink="home" routerLinkActive="active"
-              >Quản lý thiết bị</a>
+            translate>DEVICEMANAGE</a>
 
 
             <a *ngIf="userLogin.name_role === 'ADMIN'" routerLink="user-list" routerLinkActive="active"
-              >Quản lý người dùng</a >
+            translate>USERMANAGE </a >
 
 
             <a *ngIf="userLogin.name_role === 'ADMIN'" routerLink="list" routerLinkActive="active"
-              >Quản lý mượn</a >
+            translate >DEVICELOANMAGE</a >
         </div>
         <div class="col-4" style="text-align: right !important;">
 
             <a  *ngIf="userLogin.id == null"  routerLink="register" routerLinkActive="active" class="nav-link"
-              >Đăng ký</a>
+            translate >SIGNUP </a>
 
 
             <a  *ngIf="userLogin.id == null" routerLink="login" routerLinkActive="active" class="nav-link"
-              >Đăng nhập</a>
+            translate >LOGIN</a>
 
 
           <button
@@ -40,21 +40,21 @@
           </button>
 
             <a *ngIf="userLogin.id != null" routerLink="logout" routerLinkActive="active" class="nav-link"
-              >Đăng xuất</a >
+            translate> LOGOUT</a >
 
         </div>
-      </div> -->
+      </div>
 
-  <h1 class="text-center" style="color: rgb(209, 52, 209); padding-top:100px">{{ title }}</h1>
-  <h2 style="padding-left: 10px !important;">Danh sách thiết bị</h2>
+  <h1 class="text-center" style="color: rgb(209, 52, 209)">{{ title }}</h1>
+  <h2 style="padding-left: 10px !important;" translate> DEVICELIST </h2>
 
   <div class="row">
     <div class="col-2">
       <button style="margin-left: 10px !important; margin-bottom: 10px !important;" *ngIf="userLogin.name_role === 'ADMIN'" class="btn btn-info">
-          <a routerLink="/add-device" routerLinkActive="active" class="nav-link">Thêm thiết bị</a >
+          <a routerLink="/add-device" routerLinkActive="active" class="nav-link"translate>ADDDEVICE </a >
       </button>
     </div>
-    <div *ngIf="userLogin.name_role === 'ADMIN'" class="col-2">
+    <div class="col-2">
       <button class="btn btn-info" (click)="exportExcel()">
         Xuất file excel
       </button>
@@ -75,14 +75,15 @@
         class="btn btn-outline-secondary"
         type="button"
         (click)="searchByTerm()" style="margin-right: 5px !important;">
-        <mat-icon>search</mat-icon>
+        <mat-icon>translate> SEARCH</mat-icon>
       </button>
 
     </div>
   </div>
 </div>
 <br />
-<h2 style="text-align: center">Tổng số thiết bị: {{ total }}</h2>
+<h2 style="text-align: center"translate>TOTALDEVICE</h2>
+<h2 style="text-align: center">{{ total }}</h2>
 
 <div class="row">
   <div class="col-3"></div>
@@ -110,15 +111,15 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>STT</th>
-        <th>Tên thiết bị</th>
-        <th>Hệ điều hành</th>
-        <th>System Model</th>
-        <th>Ổ cứng</th>
-        <th>Trạng thái</th>
-        <th >Xem chi tiết</th>
-        <th *ngIf="userLogin.name_role === 'ADMIN'">Cập nhật</th>
-        <th *ngIf="userLogin.name_role === 'ADMIN'">Xóa</th>
+        <th translate>ID</th>
+        <th translate>DEVICENAME</th>
+        <th translate>OPERATINGSYSTEM</th>
+        <th translate>SYSTEMMODEL</th>
+        <th translate>SSD</th>
+        <th translate>STATUS</th>
+        <th translate>VIEWDETAIL</th>
+        <th *ngIf="userLogin.name_role === 'ADMIN'"translate>UPDATE</th>
+        <th *ngIf="userLogin.name_role === 'ADMIN'"translate>CLEAR</th>
 
       </tr>
     </thead>

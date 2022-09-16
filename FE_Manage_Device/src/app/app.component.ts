@@ -63,7 +63,7 @@ export class AppComponent implements OnInit {
   }
    load(){
  window.location.reload();
- 
+
   }
   hideshow() {
     var x = document.getElementById("menu");

@@ -6,7 +6,7 @@ body,html{
    /* background-image: url(../assets/image/img1.jpg); */
 }
 .router-outlet{
-   
+
     min-height: 100vh;
     height: auto;
     width: auto;
@@ -14,13 +14,13 @@ body,html{
 }
 
 header{
-   
+
     position: relative;
    height: 20%;
     background-size: cover;
     background-position: center;
     width: auto;
-    
+
 }
 header::before{
     position: absolute;
@@ -38,21 +38,21 @@ nav{
    z-index: 999;
    background-color: aquamarine;
    border-bottom: 1px inset #bebbbc;
-   
+
 }
 nav .tab{
     justify-content: left;
     margin-left: 20px;
     margin-top: 9px;
     display: flex;
-    
+
 }
  nav .tab img{
     display: flex;
    height: 30px;
    width: 30px;
    cursor: pointer;
-   
+
 }
 nav .tab a{
     padding: 0 30px;
@@ -94,13 +94,13 @@ a{
  width: 40px;
  border-radius: 30px;
  cursor: pointer;
- 
+
 }
 .avatar:hover{
     margin-left: 11px;
     margin-right: 10px;
    margin-top: 1px;
- 
+
     height: 39px;
     width: 39px;
     border: 2px solid #b3b3b3;
@@ -115,5 +115,5 @@ a{
     background-color: rgba(8, 8, 10, 0.783);
     position: absolute;
     z-index: -5;
-    
+
 }

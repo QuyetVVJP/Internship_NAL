@@ -1,5 +1,5 @@
 
-    <h2 style="padding-top:100px">Cập nhật thông tin người dùng</h2>
+    <h2 translate>UPDATEUSER</h2>
     <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
        <div class="container">
         <div class="col-2">
@@ -16,7 +16,7 @@
                             [(ngModel)]="user.first_name" name="first_name">
                         <mat-error
                             *ngIf="!formGroup.controls['first_name'].valid && formGroup.controls['first_name'].touched">
-                            Day la truong bat buoc
+                            <span translate>REQUIRED</span>
                         </mat-error>
                     </mat-form-field>
                 </div>
@@ -28,7 +28,7 @@
                             [(ngModel)]="user.last_name" name="last_name">
                         <mat-error
                             *ngIf="!formGroup.controls['last_name'].valid && formGroup.controls['last_name'].touched">
-                            Day la truong bat buoc
+                            <span translate>REQUIRED</span>
                         </mat-error>
                     </mat-form-field>
                 </div>
@@ -39,7 +39,7 @@
                         <input type="email" matInput placeholder="Email ：" formControlName="email" id="email"
                             [(ngModel)]="user.email" name="email">
                         <mat-error *ngIf="!formGroup.controls['email'].valid && formGroup.controls['email'].touched">
-                            Day la truong bat buoc
+                            <span translate>REQUIRED</span>
                         </mat-error>
                     </mat-form-field>
                 </div>
@@ -62,7 +62,7 @@
                             id="employee_id" [(ngModel)]="user.employee_id" name="employee_id">
                         <mat-error
                             *ngIf="!formGroup.controls['employee_id'].valid && formGroup.controls['employee_id'].touched">
-                            Day la truong bat buoc
+                            <span translate>REQUIRED</span>
                         </mat-error>
                     </mat-form-field>
                 </div>
@@ -73,7 +73,7 @@
                         <input type="text" matInput placeholder="Số điện thoại ：" formControlName="phone" id="phone"
                             [(ngModel)]="user.phone" name="phone">
                         <mat-error *ngIf="!formGroup.controls['phone'].valid && formGroup.controls['phone'].touched">
-                            Day la truong bat buoc
+                            <span translate>REQUIRED</span>
                         </mat-error>
                     </mat-form-field>
                 </div>
@@ -85,7 +85,7 @@
                             [(ngModel)]="user.department" name="department">
                         <mat-error
                             *ngIf="!formGroup.controls['department'].valid && formGroup.controls['department'].touched">
-                            Day la truong bat buoc
+                            <span translate>REQUIRED</span>
                         </mat-error>
                     </mat-form-field>
                 </div>
@@ -97,7 +97,7 @@
                             id="password" [(ngModel)]="user.password" name="password">
                         <mat-error
                             *ngIf="!formGroup.controls['password'].valid && formGroup.controls['password'].touched">
-                            Day la truong bat buoc
+                            <span translate>REQUIRED</span>
                         </mat-error>
                     </mat-form-field>
                 </div>
@@ -108,13 +108,13 @@
                         <input type="password" matInput placeholder="Nhập lại mật khẩu ：" formControlName="rePassword"
                             id="rePassword" [(ngModel)]="user.rePassword" name="rePassword">
                         <mat-error *ngIf="user.rePassword != user.password">
-                            Day la truong bat buoc
+                            <span translate>REQUIRED</span>
                         </mat-error>
                     </mat-form-field>
                 </div>
             </div>
             <!-- <div class="form-label">
-            <label>Họ: </label>
+            <label> Họ:</label>
             <input type="text" class="form-control" id="first_name"
             [(ngModel)]="user.first_name" name="last_name">
         </div>
@@ -150,9 +150,7 @@
             <label>Bộ phận:</label>
             <input type="text" class="form-control" id="department"
             [(ngModel)]="user.department" name="department">-->
-        
 
-        <button class="btn btn-success" type="submit">Cập nhật</button>
-    </div>
-    </div>
-    </form>
+
+        <button class="btn btn-success" type="submit" translate>UPDATEUSER</button>
+

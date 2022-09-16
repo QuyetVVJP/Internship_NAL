@@ -1,4 +1,4 @@
-<h2 style="padding-top:100px">Danh sách người dùng</h2>
+<h2 translate> USERLIST</h2>
 <div class="col-md-8">
     <div class="input-group mb-3">
       <input
@@ -20,26 +20,24 @@
   </div>
 <button class="navbar-nav">
     <li  class="nav-item">
-        <a routerLink="../register" routerLinkActive="active" class="nav-link">Thêm người dùng</a>
+        <a routerLink="../register" routerLinkActive="active" class="nav-link" translate>ADDUSER</a>
       </li>
   </button>
-  <div class="row">
-    
-    <div class="nd">
+
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>STT</th>
-            <th>Họ</th>
-            <th>Tên</th>
-            <th>Giới tính</th>
-            <th>Mã số nhân viên</th>
-            <th>Email</th>
-            <th>Số điện thoại</th>
-            <th>Bộ phận</th>
-            <th >Xem chi tiết</th>
-            <th>Cập nhật</th>
-            <th>Xóa</th>
+            <th translate>ID</th>
+            <th translate>FRISTNAME</th>
+            <th translate>LASTNAME</th>
+            <th translate>GENDER</th>
+            <th translate>NUMBER</th>
+            <th translate>EMAIL</th>
+            <th translate>PHONENUMBER</th>
+            <th translate>POSITION</th>
+            <th translate>VIEWDETAIL</th>
+            <th translate>UPDATE</th>
+            <th translate>CLEAR</th>
         </tr>
     </thead>
     <tbody>
@@ -69,7 +67,7 @@
               <mat-icon>visibility</mat-icon>
               </button>
             </td>
-    
+
             <td>
               <button
                 (click)="updateUser(user.id)"
@@ -89,8 +87,6 @@
         </tr>
     </tbody>
 </table>
-
-
 <div class="col-md-12">
     <pagination-controls
       previousLabel="Prev"
@@ -99,6 +95,3 @@
       (pageChange)="handlePageChange($event)"
     ></pagination-controls>
   </div>
-</div>
-  </div>
- 

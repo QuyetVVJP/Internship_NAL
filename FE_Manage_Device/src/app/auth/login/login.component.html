@@ -1,8 +1,8 @@
 <body style=" max-height: 100vh;
 width: auto; padding-top:100px">
 <div class="dn">
-
-  <h2>Đăng nhập</h2>
+  
+  <h2 translate> LOGIN</h2>
   <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
     <div class="row">
       <div class="col-12">
@@ -10,7 +10,7 @@ width: auto; padding-top:100px">
           <input type="email" matInput placeholder="Email ：" formControlName="email" id="email"
           [(ngModel)]="request.email" name="email">
           <mat-error *ngIf="!formGroup.controls['email'].valid && formGroup.controls['email'].touched">
-            Day la truong bat buoc
+            <span translate>REQUIRED</span>
           </mat-error>
         </mat-form-field>
       </div>
@@ -21,14 +21,14 @@ width: auto; padding-top:100px">
           <input type="password" matInput placeholder="Password ：" formControlName="password" id="password"
           [(ngModel)]="request.password" name="password">
           <mat-error *ngIf="!formGroup.controls['password'].valid && formGroup.controls['password'].touched">
-            Day la truong bat buoc
+            <span translate>REQUIRED</span>
           </mat-error>
         </mat-form-field>
       </div>
     </div>
-    
 
-    <button class="btn btn-success" type="submit">Đăng nhập</button>
+
+    <button class="btn btn-success" type="submit" translate>LOGIN</button>
 
   </form>
 </div>
