@@ -1,4 +1,4 @@
-<p style="font-size:160%,"><b></b></p>
+<p style="font-size:160%; padding-top:100px"><b>Quản lý thiết bị</b></p>
 <div style="padding-left: 10px !important;" class="col-md-8">
     <div class="input-group mb-3">
         <input type="text" class="form-control" placeholder="Nhập tên thiết bị, hệ điều hành" [(ngModel)]="term" />
@@ -15,6 +15,7 @@
 
 <div class="row">
     <div class="col-1"></div>
+<div class="col-10">
     <table class="table table-striped">
         <thead>
             <tr>
@@ -44,9 +45,11 @@
             </tr>
         </tbody>
     </table>
+
     <div class="col-md-12">
         <pagination-controls previousLabel="Prev" nextLabel="Next" [responsive]="true"
             (pageChange)="handlePageChange($event)"></pagination-controls>
+    </div>
     </div>
     <div class="col-1"></div>
 </div>
