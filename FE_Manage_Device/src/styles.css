@@ -16,5 +16,6 @@
 html,body{
   min-height: 100vh;
   height: auto;
-  max-width: 1200px;
+  min-width: 1200px;
+  margin: auto;
 }

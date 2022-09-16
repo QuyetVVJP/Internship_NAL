@@ -34,6 +34,8 @@
       <div *ngIf="userLogin.id != null">
         <img *ngIf="userLogin.avatar_url != null" (click)="hideshow()" class="avatar"
           src="../{{ userLogin.avatar_url }}" alt="" />
+          <img *ngIf="userLogin.avatar_url === null" (click)="hideshow()" class="avatar"
+          src="../{{ userLogin.avatar_url }}" alt="" />
       </div>
 
 
