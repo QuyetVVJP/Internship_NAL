@@ -2,6 +2,7 @@ package com.example.manage_device.service;
 
 import com.example.manage_device.model.Device;
 import com.example.manage_device.model.DeviceLoan;
+import com.example.manage_device.model.dto.DeviceLoanDto;
 import com.example.manage_device.model.request.DeviceLoanRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -25,7 +26,7 @@ public interface DeviceLoanService {
 
     DeviceLoan save(DeviceLoan deviceLoan);
 
-    Page<DeviceLoan> searchByKeyword(String term, Pageable paging);
+    Page<?> searchByKeyword(String term, Pageable paging);
 
     DeviceLoan update(Long id, DeviceLoanRequest deviceLoan);
 }

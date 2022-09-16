@@ -50,7 +50,8 @@ public class DeviceLoanController {
             DeviceLoanDto loanDto = new DeviceLoanDto();
             loanDto.setId(deviceLoan.getId());
             loanDto.setDeviceName(deviceLoan.getDevice().getDevice_name());
-            loanDto.setUsername(deviceLoan.getUser().getFirst_name() + " " + deviceLoan.getUser().getLast_name());
+            loanDto.setFirst_name(deviceLoan.getUser().getFirst_name());
+            loanDto.setLast_name(deviceLoan.getUser().getLast_name());
             loanDto.setEmail(deviceLoan.getUser().getEmail());
 
             loanDto.setBorrow_date(deviceLoan.getBorrow_date());
@@ -63,7 +64,7 @@ public class DeviceLoanController {
         return deviceLoanDtos;
     }
     @GetMapping("/search")
-    public Page<DeviceLoan> search(
+    public Page<?> search(
             @RequestParam(name = PAGE, required = true, defaultValue = "0") int page,
             @RequestParam(name = PAGE_SIZE, required = true, defaultValue = Integer.MAX_VALUE + "") int size,
             @RequestParam(name = TERM, required = true, defaultValue = "") String term
@@ -74,7 +75,7 @@ public class DeviceLoanController {
         if (term != null)
             term = term.trim();
 
-        Page<DeviceLoan> resdto = deviceLoanService.searchByKeyword(term, paging);
+        Page<?> resdto = deviceLoanService.searchByKeyword(term, paging);
         return resdto;
     }
 

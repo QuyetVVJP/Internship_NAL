@@ -4,6 +4,7 @@ import com.example.manage_device.exception.ResourceNotFoundException;
 import com.example.manage_device.model.Device;
 import com.example.manage_device.model.DeviceLoan;
 import com.example.manage_device.model.User;
+import com.example.manage_device.model.dto.DeviceLoanDto;
 import com.example.manage_device.model.request.DeviceLoanRequest;
 import com.example.manage_device.repository.DeviceLoanRepository;
 import com.example.manage_device.repository.DeviceRepository;
@@ -48,8 +49,8 @@ public class DeviceLoanServiceImpl implements DeviceLoanService{
     public DeviceLoan save(DeviceLoan deviceLoan) { return deviceLoanRepository.save(deviceLoan); }
 
     @Override
-    public Page<DeviceLoan> searchByKeyword(String term, Pageable paging) {
-        Page<DeviceLoan> res = deviceLoanRepository.searchByKeyword(term, paging);
+    public Page<?> searchByKeyword(String term, Pageable paging) {
+        Page<?> res = deviceLoanRepository.searchByKeyword(term, paging);
         return res;
     }
 
