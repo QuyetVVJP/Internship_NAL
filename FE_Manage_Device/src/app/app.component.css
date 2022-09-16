@@ -2,5 +2,11 @@ body,html{
     height: auto;
     display: block;
     width: auto;
+   background-image: url(../assets/image/img2.jpg);
+}
+body,html{
+    height: auto;
+    display: block;
+    width: auto;
    background-image: url(../assets/image/img1.jpg);
 }

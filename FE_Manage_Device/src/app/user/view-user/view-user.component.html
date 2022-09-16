@@ -1,28 +1,28 @@
-<h3>Thông tin của người dùng</h3>
+<h3 translate>USERINFORMATION</h3>
 <div>
     <div>
-        <label><b>Họ: </b></label> {{user.first_name}}
+        <label><b translate>FRISTNAME</b> : </label> {{user.first_name}}
     </div>
     <div>
-        <label><b>Tên: </b></label> {{user.last_name}}
+        <label><b translate>LASTNAME</b> : </label> {{user.last_name}}
     </div>
     <div>
-        <label><b>Giới tính: </b></label> {{user.gender}}
+        <label><b translate>GENDER</b>:</label> {{user.gender}}
     </div>
     <div>
-        <label><b>Email: </b></label> {{user.email}}
+        <label><b translate>EMAIL</b>: </label> {{user.email}}
     </div>
     <div>
-        <label><b>Mã số nhân viên: </b></label> {{user.employee_id}}
+        <label><b translate>NUMBER</b>: </label> {{user.employee_id}}
     </div>
     <div>
-        <label><b>Số điện thoại: </b></label> {{user.phone}}
+        <label><b translate>PHONENUMBER </b> :</label> {{user.phone}}
     </div>
     <div>
-        <label><b>Bộ phận: </b></label> {{user.department}}
+        <label><b translate> POSITION </b>:</label> {{user.department}}
     </div>
     <div>
-        <label><b>Avatar: </b></label><img src="../{{user.avatar_url}}" alt="">
+        <label><b translate>AVATAR</b>:</label><img src="../{{user.avatar_url}}" alt="">
     </div>
     <button
     (click)="updateUser(user.id)"

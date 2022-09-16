@@ -1,23 +1,23 @@
-<h3>Xem thong tin</h3>
+<h3 translate>VIEWDETAIL</h3>
 <div>
     <div>
-        <label><b>Tên : </b></label>{{device.device_name}}
+        <label><b translate>DEVICENAME</b> :</label>{{device.device_name}}
     </div>
     <div>
-        <label><b>Hệ điều hành : </b></label>{{device.os}}
+        <label><b   translate>OS </b> :</label>{{device.os}}
     </div>
     <div>
-        <label><b>System model : </b></label>{{device.manufacturer}}
+        <label ><b translate>SYSTEMMODEL </b> :</label>{{device.manufacturer}}
     </div>
     <div>
-        <label><b>thông tin : </b></label>{{device.information}}
+        <label><b  translate>SSD</b> : </label>{{device.information}}
     </div>
     <div>
-        <label><b>Mã QR : </b></label><img src="../{{device.path_QR}}" alt="">
+        <label><b translate>QRCODE</b> : </label><img src="../{{device.path_QR}}" alt="">
     </div>
 </div>
 <button *ngIf="device.status !== 'Đã cho mượn'" class="navbar-nav">
     <li class="nav-item">
-      <a routerLink="create" routerLinkActive="active" class="nav-link">Đăng ký mượn thiết bị</a>
+      <a routerLink="create" routerLinkActive="active" class="nav-link" translate>REGISTERTOLOANDEVICE </a>
     </li>
   </button>

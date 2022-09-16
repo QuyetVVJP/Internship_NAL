@@ -44,4 +44,8 @@ export class AppComponent implements OnInit {
     this.translate.use('jp');
     this.currentLanguage = 'jp';
   }
+  setVietnamese():void{
+    this.translate.use('vn');
+    this.currentLanguage = 'vn';
+  }
 }

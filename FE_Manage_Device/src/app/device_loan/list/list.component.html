@@ -1,4 +1,4 @@
-<p style="font-size:160%,"><b>Quản lý thiết bị</b></p>
+<p style="font-size:160%,"><b></b></p>
 <div style="padding-left: 10px !important;" class="col-md-8">
     <div class="input-group mb-3">
         <input type="text" class="form-control" placeholder="Nhập tên thiết bị, hệ điều hành" [(ngModel)]="term" />
@@ -18,15 +18,14 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>STT</th>
-                <th>tên</th>
-                <!-- <th>msnv</th> -->
-                <th>email</th>
-                <th>thiết bị mượn</th>
-                <th>ngày mượn</th>
-                <th>ngày trả</th>
-                <th>tình trạng</th>
-                <th>phe duyet</th>
+                <th translate>ID</th>
+                <th translate>NAME</th>
+                <th translate>EMAIL</th>
+                <th translate>DEVICENAME</th>
+                <th translate>BENTALDAY</th>
+                <th translate>CASHDAY</th>
+                <th translate>STATUS</th>
+                <th translate>APPROVAL</th>
             </tr>
         </thead>
         <tbody>
@@ -39,9 +38,9 @@
             <td>{{loan.return_date.toString().substring(0,10)}}</td>
             <td>{{loan.status}}</td>
                 <td><button *ngIf="loan.status === 'Chờ phê duyệt'" (click)="approval(loan.id)"
-                        class="btn btn-info">Đồng ý</button></td>
-                <td><button *ngIf="loan.status === 'Chờ phê duyệt'" (click)="reject(loan.id)" class="btn btn-danger">Từ
-                        chối</button></td>
+                        class="btn btn-info" translate> APPROVE</button></td>
+                <td><button *ngIf="loan.status === 'Chờ phê duyệt'" (click)="reject(loan.id)" class="btn btn-danger" translate>REJECT
+                        </button></td>
             </tr>
         </tbody>
     </table>
