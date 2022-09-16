@@ -1,4 +1,4 @@
-<p style="font-size:160%,"><b></b></p>
+<p style="font-size:160%; padding-top:100px"><b>Quản lý thiết bị</b></p>
 <div style="padding-left: 10px !important;" class="col-md-8">
     <div class="input-group mb-3">
         <input type="text" class="form-control" placeholder="Nhập tên thiết bị, hệ điều hành" [(ngModel)]="term" />
@@ -15,38 +15,50 @@
 
 <div class="row">
     <div class="col-1"></div>
+<div class="col-10">
     <table class="table table-striped">
         <thead>
             <tr>
-                <th translate>ID</th>
-                <th translate>NAME</th>
-                <th translate>EMAIL</th>
-                <th translate>DEVICENAME</th>
-                <th translate>BENTALDAY</th>
-                <th translate>CASHDAY</th>
-                <th translate>STATUS</th>
-                <th translate>APPROVAL</th>
+                <th>STT</th>
+                <th>Họ tên</th>
+                <!-- <th>msnv</th> -->
+                <th>email</th>
+                <th>thiết bị mượn</th>
+                <th>ngày mượn</th>
+                <th>ngày trả</th>
+                <th>tình trạng</th>
+                <th>phe duyet</th>
             </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let loan of listLoans; index as i">
+        <tr *ngFor="let loan of listLoans  | paginate
+              : {
+                  itemsPerPage: pageSize,
+                  currentPage: page,
+                  totalItems: count
+                }; let i = index"
+                [class.active]="i == currentIndex"
+        (click)="setActiveDevice(loan, i)"
+                >
             <td>{{i+1}}</td>
-            <td>{{loan.username}}</td>
-            <td>{{loan.email}}</td>
-            <td>{{loan.deviceName}}</td>
-            <td>{{loan.borrow_date.toString().substring(0,10)}}</td>
-            <td>{{loan.return_date.toString().substring(0,10)}}</td>
-            <td>{{loan.status}}</td>
+            <td>{{loan[1]}} {{loan[2]}}</td>
+            <td>{{loan[3]}} </td>
+            <td>{{loan[4]}} </td>
+            <td> {{loan[5].toString().substring(0,10)}} </td>
+            <td> {{loan[6].toString().substring(0,10)}} </td>
+            <td>{{loan[7]}}</td>
                 <td><button *ngIf="loan.status === 'Chờ phê duyệt'" (click)="approval(loan.id)"
-                        class="btn btn-info" translate> APPROVE</button></td>
-                <td><button *ngIf="loan.status === 'Chờ phê duyệt'" (click)="reject(loan.id)" class="btn btn-danger" translate>REJECT
-                        </button></td>
+                        class="btn btn-info">Đồng ý</button></td>
+                <td><button *ngIf="loan.status === 'Chờ phê duyệt'" (click)="reject(loan.id)" class="btn btn-danger">Từ
+                        chối</button></td>
             </tr>
         </tbody>
     </table>
+
     <div class="col-md-12">
         <pagination-controls previousLabel="Prev" nextLabel="Next" [responsive]="true"
             (pageChange)="handlePageChange($event)"></pagination-controls>
+    </div>
     </div>
     <div class="col-1"></div>
 </div>
