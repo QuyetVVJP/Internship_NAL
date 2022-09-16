@@ -6,9 +6,7 @@
         <button click (click)="setEnglish()">EN</button>
         <button click (click)="setJapanese()">JP</button>
       </div> -->
-     <img src="../../../assets/image/logoteamc.png" routerLink="home" style="height:30px">
-    </div>
-    <div class="login">
+      <img src="../../../assets/image/logoteamc.png" routerLink="home" style="height:30px">
       <a *ngIf="userLogin.name_role === 'ADMIN'" routerLink="home" routerLinkActive="active">Quản lý thiết bị</a>
 
 
@@ -18,6 +16,9 @@
 
       <a *ngIf="userLogin.name_role === 'ADMIN'" routerLink="home/list" routerLinkActive="active">Quản lý mượn</a>
 
+    </div>
+    <div class="login">
+
 
 
       <a *ngIf="userLogin.id == null" routerLink="home/register" routerLinkActive="active" class="nav-link">Đăng ký</a>
@@ -26,16 +27,29 @@
       <a *ngIf="userLogin.id == null" routerLink="home/login" routerLinkActive="active" class="nav-link">Đăng nhập</a>
 
 
-      <button *ngIf="userLogin.id != null" (click)="viewUser(userLogin.id)" style="text-align: right;">
+      <div *ngIf="userLogin.id != null" style="text-align: right;">
         Xin chào {{ userLogin.first_name }}!
-      </button>
+      </div>
 
-      <button *ngIf="userLogin.id != null">
-        <img *ngIf="userLogin.avatar_url != null" src="../{{ userLogin.avatar_url }}" alt="" />
-      </button>
+      <div *ngIf="userLogin.id != null">
+        <img *ngIf="userLogin.avatar_url != null" (click)="hideshow()" class="avatar"
+          src="../{{ userLogin.avatar_url }}" alt="" />
+      </div>
 
-      <a *ngIf="userLogin.id != null" routerLink="home/logout" routerLinkActive="active" class="nav-link">Đăng xuất</a>
 
+      <div class="avatar_menu" id="menu" style="display: none;">
+        <div class="container">
+          <div *ngIf="userLogin.id != null">
+            <img *ngIf="userLogin.avatar_url != null" class="avatar" src="../{{ userLogin.avatar_url }}" alt="" />{{
+            userLogin.first_name }}!
+          </div>
+          <a (click)="viewUser(userLogin.id)">cập nhật </a>
+          <button click (click)="setEnglish()">EN</button>
+          <button click (click)="setJapanese()">JP</button>
+          <a *ngIf="userLogin.id != null" routerLink="home/logout" routerLinkActive="active" class="nav-link">Đăng
+            xuất</a>
+        </div>
+      </div>
     </div>
   </nav>
 </header>
@@ -47,13 +61,12 @@
       <button click (click)="setJapanese()">JP</button>
     </div> -->
 
-<router-outlet>
+<router-outlet class="router-outlet">
 
 </router-outlet>
 
-
-<!-- <footer class="footer">
+<footer class="footer">
   <div class="container">
       <span>Internship NAL - Team C - 08/2022</span>
   </div>
-</footer> -->
+</footer> 
