@@ -40,6 +40,7 @@
     "INFORMATION":"Thông tin ",
     "QRCODE":"Mã QR",
     "REGISTERTOBORROWDEVICE":"Đăng kí mượn thiết bị",
+    "REGISTER": "Đăng kí",
     "LOGIN":"Đăng nhập",
     "ID":"STT",
     "DEVICENAME":"Tên thiết bị",
@@ -53,7 +54,8 @@
     "APPROVAL":"Phê duyệt",
     "USERINFORMATION":"Thông tin của người dùng",
     "AVATAR":"Ảnh",
-    "UPDATEDEVICE":"Cập nhập thiết bị"
+    "UPDATEDEVICE":"Cập nhập thiết bị",
+    "EXPORTEXCELFILE": "Xuất file Excel"
 
 
 

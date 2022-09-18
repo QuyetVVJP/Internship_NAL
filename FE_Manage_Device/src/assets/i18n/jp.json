@@ -40,6 +40,7 @@
   "INFORMATION":"情報",
   "QRCODE":"QRコード",
   "REGISTERTOBORROWDEVICE":"借り出しの申し込み",
+  "REGISTER": "登録",
   "LOGIN":"ログイン",
   "ID":"ID",
   "DEVICENAME":"デバイス名",
@@ -53,7 +54,8 @@
   "APPROVAL":"承認",
   "USERINFORMATION":"ユーザー情報",
   "AVATAR":"写真",
-  "UPDATEDEVICE":"デバイスアップデート"
+  "UPDATEDEVICE":"デバイスアップデート",
+  "EXPORTEXCELFILE": "エクセルのファイルをエクスポート"
 
 
 

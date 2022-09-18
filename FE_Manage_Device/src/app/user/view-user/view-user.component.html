@@ -2,13 +2,13 @@
 <h3 translate>USERINFORMATION</h3>
 <div>
     <div>
-        <label><b translate>FIRSTNAME</b> : </label> {{user.first_name}}
+        <label><b translate>FIRSTNAME</b>: </label> {{user.first_name}}
     </div>
     <div>
-        <label><b translate>LASTNAME</b> : </label> {{user.last_name}}
+        <label><b translate>LASTNAME</b>: </label> {{user.last_name}}
     </div>
     <div>
-        <label><b translate>GENDER</b>:</label> {{user.gender}}
+        <label><b translate>GENDER</b>: </label> {{user.gender}}
     </div>
     <div>
         <label><b translate>EMAIL</b>: </label> {{user.email}}
@@ -17,13 +17,13 @@
         <label><b translate>EMPLOYEEID</b>: </label> {{user.employee_id}}
     </div>
     <div>
-        <label><b translate>PHONENUMBER </b> :</label> {{user.phone}}
+        <label><b translate>PHONENUMBER</b>: </label> {{user.phone}}
     </div>
     <div>
-        <label><b translate> DEPARTMENT </b>:</label> {{user.department}}
+        <label><b translate>DEPARTMENT</b>: </label> {{user.department}}
     </div>
     <div>
-        <label><b translate>AVATAR</b>:</label><img style="max-height:200px; max-width:200px; overflow: hidden" src="../{{user.avatar_url}}" alt="">
+        <label><b translate>AVATAR</b>: </label><img style="max-height:200px; max-width:200px; overflow: hidden" src="../{{user.avatar_url}}" alt="">
     </div>
     <button
     (click)="updateUser(user.id)"
