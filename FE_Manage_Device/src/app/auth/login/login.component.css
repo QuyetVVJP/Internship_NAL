@@ -1,38 +1,22 @@
-.dangnhap {
-    color: brown;
-}
+.dn{
+    margin: auto;
 
-h2 {
-    color: blue !important;
 }
-
-button {
+.body{
+    margin: auto;
+    text-align: center;
     align-items: center;
-    margin-left: 0;
+}
+.phan1{
+    margin: auto;
+    text-align: center;
+    justify-items: center;
 }
 
-body {
+.dau{
     padding-top: 100px;
-    padding-bottom: 600px;
-
-    margin-left: 800px;
-    max-height: 100vh;
-    width: auto;
-    /* background-image: url(../../../assets/image/img1.jpg) !important; */
-}
-
-.dn {
-
-    padding-left: 20px;
-    margin-left: 27%;
-    margin-top: 20%;
-    padding-bottom: 20px;
-    margin-right: 20%;
-    border: #ff0000 solid 3px;
-}
-
-h2 {
-    display: flex;
-
+    margin: auto;
+    text-align: center;
+    justify-items: center;
 
 }

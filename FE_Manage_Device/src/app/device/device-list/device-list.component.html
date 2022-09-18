@@ -50,12 +50,12 @@
 
   <div class="row">
     <div class="col-2">
-      <button style="margin-left: 10px !important; margin-bottom: 10px !important;" *ngIf="userLogin.name_role === 'ADMIN'" class="btn btn-primary">
+      <button style="margin-left: 10px !important; margin-bottom: 10px !important;" *ngIf="userLogin.name_role === 'ADMIN'" class="btn btn-info">
           <a routerLink="/add-device" routerLinkActive="active" class="nav-link"translate>ADDDEVICE </a >
       </button>
     </div>
-    <div class="col-2">
-      <button class="btn btn-success" (click)="exportExcel()">
+    <div class="col-2"  *ngIf="userLogin.name_role === 'ADMIN'">
+      <button class="btn btn-info" (click)="exportExcel()">
         Xuất file excel
       </button>
     </div>
@@ -75,7 +75,7 @@
         class="btn btn-outline-secondary"
         type="button"
         (click)="searchByTerm()" style="margin-right: 5px !important;">
-        <mat-icon>search</mat-icon>
+        <mat-icon>translate> SEARCH</mat-icon>
       </button>
 
     </div>
