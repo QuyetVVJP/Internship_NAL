@@ -48,9 +48,9 @@
             <td> {{loan[5].toString().substring(0,10)}} </td>
             <td> {{loan[6].toString().substring(0,10)}} </td>
             <td>{{loan[7]}}</td>
-                <td><button *ngIf="loan.status === 'Chờ phê duyệt'" (click)="approval(loan.id)"
+                <td><button *ngIf="loan[7].toString() === 'Chờ phê duyệt'" (click)="approval(loan[0])"
                         class="btn btn-info">Đồng ý</button></td>
-                <td><button *ngIf="loan.status === 'Chờ phê duyệt'" (click)="reject(loan.id)" class="btn btn-danger">Từ
+                <td><button *ngIf="loan[7].toString() === 'Chờ phê duyệt'" (click)="reject(loan[0])" class="btn btn-danger">Từ
                         chối</button></td>
             </tr>
         </tbody>

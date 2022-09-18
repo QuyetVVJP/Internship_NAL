@@ -56,7 +56,7 @@ export class DeviceListComponent implements OnInit {
   currentIndex = -1;
   page = 1;
   term = '';
-  title = 'FE_Manage_Device';
+  title = 'Team C-internship';
   series: ApexAxisChartSeries;
   constructor(
     private deviceService: DeviceService,

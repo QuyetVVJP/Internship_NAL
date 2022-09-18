@@ -12,7 +12,7 @@ import { UserService } from './user/user.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'FE_Manage_Device';
+  title = 'Team C-internship';
   currentLanguage: string = 'en';
 
   userLogin = new UserDto();

@@ -36,17 +36,18 @@ export class RegisterComponent implements OnInit {
   saveUser(){
     this.userService.register(this.user).subscribe(data =>{
         console.log(data);
-        this.goToListUsers();
+       
+        this.router.navigate(['/home']);
     },
     error => console.log(error));
   }
-  goToListUsers(){
-    this.router.navigate(['/home']);
+  // goToListUsers(){
+  //   this.router.navigate(['/home']);
     
-  }
+  // }
    onSubmit(value){
     this.saveUser();
-    window.location.reload();
+    // window.location.reload();
    }
 
 }
