@@ -55,7 +55,10 @@
   "USERINFORMATION":"User information",
   "AVATAR":"Avatar",
   "UPDATEDEVICE":"Update device",
-  "EXPORTEXCELFILE": "Export Excel file"
+  "EXPORTEXCELFILE": "Export Excel file",
+  "DEVICESEARCHMODEL": "Search by device name, operating system,...",
+  "USERSEARCHMODEL": "Search by name, email,...",
+  "LOANSEARCHMODEL": "Search by user name, device name,..."
 
 
 

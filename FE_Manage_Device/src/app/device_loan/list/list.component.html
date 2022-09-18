@@ -2,11 +2,15 @@
 <p style="font-size:160%; padding-top:100px"><b translate>DEVICELOANMANAGEMENT</b></p>
 <div style="padding-left: 10px !important;" class="col-md-8">
     <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Nhập tên thiết bị, hệ điều hành" [(ngModel)]="term" />
+        <input 
+            type="text" 
+            class="form-control" 
+            placeholder="{{'LOANSEARCHMODEL' | translate}}" 
+            [(ngModel)]="term" />
         <div class="input-group-append">
             <button class="btn btn-outline-secondary" type="button" (click)="searchByTerm()"
                 style="margin-right: 5px !important;">
-                <mat-icon><b translate>SEARCH</b></mat-icon>
+                <mat-icon>search</mat-icon>
             </button>
 
         </div>

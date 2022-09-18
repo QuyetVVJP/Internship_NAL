@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Device } from '../device/device';
 import { UserDto } from '../user/user';
-import { Deviceloan, DeviceLoanDto } from './devicve-loan';
+import { DeviceLoan, DeviceLoanDto } from './device-loan';
 
 @Injectable({
   providedIn: 'root'
@@ -14,16 +14,16 @@ export class DeviceLoanService {
   getAllLoan(): Observable<DeviceLoanDto[]> {
     return this.httpClient.get<DeviceLoanDto[]>(`${this.baseURL + '/list'}`);
   }
-  createLoan(loan:  Deviceloan): Observable<Object> {
-    return this.httpClient.post<Deviceloan[]>(`${this.baseURL + '/create'}`, loan);
+  createLoan(loan:  DeviceLoan): Observable<Object> {
+    return this.httpClient.post<DeviceLoan[]>(`${this.baseURL + '/create'}`, loan);
   }
-  getLoanById(id: number): Observable<Deviceloan> {
-    return this.httpClient.get<Deviceloan>(`${this.baseURL}/${id}`);
+  getLoanById(id: number): Observable<DeviceLoan> {
+    return this.httpClient.get<DeviceLoan>(`${this.baseURL}/${id}`);
   }
 
   getAllLoanWithPagination(term): Observable<any> {
     let terms = new HttpParams().set('term', term);
-    return this.httpClient.get<any>(`${this.baseURL + '/search'}`,{ params: terms } );
+    return this.httpClient.get<DeviceLoan[]>(`${this.baseURL + '/search'}`,{ params: terms } );
   }
   getUserLogin():Observable<UserDto>{
     return this.httpClient.get<UserDto>(`${this.baseURL + '/userIsLogin'}`);
@@ -34,6 +34,8 @@ export class DeviceLoanService {
   reject(id:number): Observable<Object> {
     return this.httpClient.get<any>(`${this.baseURL + '/reject'}/${id}`);
   }
-
-
+  getLoanByUserWithPagination(user_id: number): Observable<any> {
+    let term = new HttpParams().set('user_id', user_id);
+    return this.httpClient.get<any[]>(`${this.baseURL + '/list-by-user'}`, {params: term});
+  }
 }

@@ -1,6 +1,7 @@
 package com.example.manage_device.service;
 
 import com.example.manage_device.model.Device;
+import com.example.manage_device.model.DeviceLoan;
 import com.example.manage_device.model.User;
 import com.example.manage_device.model.request.UserRequest;
 import org.springframework.data.domain.Page;
@@ -36,4 +37,6 @@ public interface UserService {
 
     User checkUserIsLogin();
     Page<User> searchByKeyword(String term, Pageable paging);
+
+    Page<?> getDeviceLoanByUser(Long user_id, Pageable paging);
 }

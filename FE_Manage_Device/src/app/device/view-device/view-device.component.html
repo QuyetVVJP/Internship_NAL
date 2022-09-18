@@ -14,7 +14,7 @@
         <label><b  translate>SSD</b> : </label>{{device.information}}
     </div>
     <div>
-        <label><b translate>QRCODE</b> : </label><img src="../{{device.path_QR}}" alt="">
+        <label><b translate>QRCODE</b> : </label><img style="max-height:200px; max-width:200px; overflow: hidden" src="../{{device.path_QR}}" alt="">
     </div>
 </div>
 <button *ngIf="device.status !== 'Đã cho mượn'" class="navbar-nav">

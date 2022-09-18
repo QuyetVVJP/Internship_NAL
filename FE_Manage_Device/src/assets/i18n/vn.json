@@ -55,7 +55,10 @@
     "USERINFORMATION":"Thông tin của người dùng",
     "AVATAR":"Ảnh",
     "UPDATEDEVICE":"Cập nhập thiết bị",
-    "EXPORTEXCELFILE": "Xuất file Excel"
+    "EXPORTEXCELFILE": "Xuất file Excel",
+    "DEVICESEARCHMODEL": "Nhập tên thiết bị, hệ điều hành,...",
+    "USERSEARCHMODEL": "Nhập tên, email,...",
+    "LOANSEARCHMODEL": "Nhập tên người dùng, tên thiết bị,..."
 
 
 

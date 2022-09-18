@@ -1,11 +1,13 @@
 package com.example.manage_device.service;
 
 
+import com.example.manage_device.model.DeviceLoan;
 import com.example.manage_device.model.Role;
 import com.example.manage_device.model.User;
 import com.example.manage_device.model.request.UserRequest;
 import com.example.manage_device.repository.RoleRepository;
 import com.example.manage_device.repository.UserRepository;
+import com.example.manage_device.repository.DeviceLoanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,6 +23,10 @@ public class UserServiceImp implements UserService {
     UserRepository userRepository;
     @Autowired
     RoleRepository roleRepository;
+
+    @Autowired
+    DeviceLoanRepository deviceLoanRepository;
+
     @Override
     public List<User> getAllUser() {
         return userRepository.findAll();
@@ -88,4 +94,9 @@ public class UserServiceImp implements UserService {
         return res;
     }
 
+    @Override
+    public Page<?> getDeviceLoanByUser(Long user_id, Pageable paging){
+        Page<?> res = deviceLoanRepository.getDeviceLoanByUser(user_id, paging);
+        return res;
+    }
 }

@@ -79,6 +79,19 @@ public class DeviceLoanController {
         return resdto;
     }
 
+    @GetMapping("/list-by-user")
+    public Page<?> getDeviceLoanByUser(
+            @RequestParam(name = TERM, required = true) Long user_id,
+            @RequestParam(name = PAGE, required = true, defaultValue = "0") int page,
+            @RequestParam(name = PAGE_SIZE, required = true, defaultValue = Integer.MAX_VALUE + "") int size
+    ){
+        Pageable paging = null;
+        paging = PageRequest.of(page, size);
+
+        Page<?> resdto = userService.getDeviceLoanByUser(user_id, paging);
+        return resdto;
+    }
+
     @GetMapping("/approval/{id}")
     public String approvalRequest(@PathVariable Long id){
         DeviceLoan deviceLoan = deviceLoanService.findById(id).get();

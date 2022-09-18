@@ -67,7 +67,7 @@
     <input
       type="text"
       class="form-control"
-      placeholder="Nhập tên thiết bị, hệ điều hành"
+      placeholder="{{'DEVICESEARCHMODEL' | translate}}"
       [(ngModel)]="term"
     />
     <div class="input-group-append">
@@ -75,7 +75,7 @@
         class="btn btn-outline-secondary"
         type="button"
         (click)="searchByTerm()" style="margin-right: 5px !important;">
-        <mat-icon>translate> SEARCH</mat-icon>
+        <mat-icon>search</mat-icon>
       </button>
 
     </div>
