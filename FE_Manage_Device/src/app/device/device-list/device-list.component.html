@@ -54,7 +54,7 @@
           <a routerLink="/add-device" routerLinkActive="active" class="nav-link"translate>ADDDEVICE </a >
       </button>
     </div>
-    <div class="col-2">
+    <div class="col-2"  *ngIf="userLogin.name_role === 'ADMIN'">
       <button class="btn btn-info" (click)="exportExcel()">
         Xuất file excel
       </button>

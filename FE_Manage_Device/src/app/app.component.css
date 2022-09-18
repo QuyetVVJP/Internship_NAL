@@ -34,7 +34,7 @@ nav{
    position: fixed;
    display: flex;
    width: 100%;
-   padding: 20px 0 ;
+   padding: 4px 0;
    z-index: 999;
    background-color: aquamarine;
    border-bottom: 1px inset #bebbbc;
@@ -49,8 +49,8 @@ nav .tab{
 }
  nav .tab img{
     display: flex;
-   height: 30px;
-   width: 30px;
+   height: 100px;
+   width: 70px;
    cursor: pointer;
 
 }
@@ -64,6 +64,8 @@ nav .tab a{
     font-size: 18px;
     font-weight:500;
     transition: all 0.3s ease;
+    margin: auto;
+    text-align: center;
 }
 nav .tab a:hover{
     background-color: yellowgreen;
