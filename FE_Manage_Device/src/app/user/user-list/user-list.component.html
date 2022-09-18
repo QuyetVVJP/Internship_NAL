@@ -12,18 +12,21 @@
         <button
           class="btn btn-outline-secondary"
           type="button"
-          (click)="searchByTerm()"
-        >
-          Tìm kiếm
+          (click)="searchByTerm()">
+          <mat-icon>search</mat-icon>
         </button>
       </div>
     </div>
   </div>
-<button class="navbar-nav">
-    <li  class="nav-item">
+
+    <div class="row">
+     <div class="col-2">
+      <button style="margin-left: 10px !important; margin-bottom: 10px !important;" class="btn btn-primary">
         <a routerLink="../register" routerLinkActive="active" class="nav-link" translate>ADDUSER</a>
-      </li>
-  </button>
+      </button>
+     </div>
+    </div>
+
 
 <table class="table table-striped">
     <thead>
