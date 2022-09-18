@@ -8,7 +8,7 @@ import { DeviceService } from 'src/app/device/device.service';
 import { User, UserDto } from 'src/app/user/user';
 import { UserService } from 'src/app/user/user.service';
 import { DeviceLoanService } from '../device-loan.service';
-import { Deviceloan } from '../devicve-loan';
+import { DeviceLoan } from '../device-loan';
 
 @Component({
   selector: 'app-create',
@@ -19,7 +19,7 @@ export class CreateComponent implements OnInit {
   userLogin= new UserDto();
 
   listDevices: Device[] | undefined;
-  loan = new Deviceloan();
+  loan = new DeviceLoan();
 
   id:number;
   user:User;
