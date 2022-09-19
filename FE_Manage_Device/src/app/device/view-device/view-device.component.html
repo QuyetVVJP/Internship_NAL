@@ -17,8 +17,15 @@
         <label><b translate>QRCODE</b> : </label><img src="../{{device.path_QR}}" alt="">
     </div>
 </div>
-<button *ngIf="device.status !== 'Đã cho mượn'" class="navbar-nav">
-    <li class="nav-item">
+<button *ngIf="device.status !== 'Đã cho mượn'" class="btn btn-primary">
+
       <a routerLink="create" routerLinkActive="active" class="nav-link" translate>REGISTERTOLOANDEVICE </a>
-    </li>
+
+  </button>
+
+  <button *ngIf="device.status === 'Đã cho mượn' && user.id == userLogin.id"
+    (click)="returnDevice(device.id)"
+    class="btn btn-success"
+     translate>
+     RETURNDEVICE
   </button>

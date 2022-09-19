@@ -7,7 +7,6 @@ import { Device,  DeviceChartData } from './device';
 })
 export class DeviceService {
 
-
   private baseURL = "http://localhost:8080/devices"
   constructor(private httpClient: HttpClient) { }
 
@@ -39,6 +38,10 @@ export class DeviceService {
 
   getTotalDevice(): Observable<DeviceChartData>{
      return this.httpClient.get<DeviceChartData>(`${this.baseURL + '/total'}`);
+  }
+
+  returnDevice(id:number):Observable<Device> {
+    return this.httpClient.get<Device>(`${this.baseURL + '/return-device'}/${id}`);
   }
 
   // uploadAvatar(imageFormData: FormData): Observable<object> {

@@ -36,13 +36,16 @@ public class DeviceLoan {
     @Column(name = "reason")
     private String reason;
 
+    @Column(name = "deleted")
+    private boolean deleted;
+
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "device_id", referencedColumnName = "id")
     private Device device;
 
     @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name="user_id", referencedColumnName = "id")
     private User user;
 

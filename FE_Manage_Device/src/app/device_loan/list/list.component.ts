@@ -69,7 +69,7 @@ export class ListComponent implements OnInit {
   }
   retrieveLoan(term?: string){
     this.loanService.getAllLoanWithPagination(term).subscribe(res =>{
-      console.log(res.content[0][3]);
+      console.log(res.content);
       this.listLoans = res.content;
       this.count = res.totalElements;
     });

@@ -3,8 +3,11 @@ package com.example.manage_device.controller;
 import com.example.manage_device.exception.ResourceNotFoundException;
 import com.example.manage_device.model.Avatar;
 import com.example.manage_device.model.Device;
+import com.example.manage_device.model.DeviceLoan;
 import com.example.manage_device.model.User;
 
+import com.example.manage_device.service.DeviceLoanService;
+import com.example.manage_device.service.DeviceService;
 import com.example.manage_device.service.EmailServiceImpl;
 
 import com.example.manage_device.model.dto.UserDto;
@@ -39,6 +42,10 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private DeviceService deviceService;
+    @Autowired
+    private DeviceLoanService deviceLoanService;
     @Autowired
     private EmailServiceImpl emailService;
 
@@ -175,6 +182,13 @@ public class UserController {
     public ResponseEntity<Optional<User>> getUserById(@PathVariable Long id){
         Optional<User> result = userService.getUserByID(id);
         return  ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/get-user-by-device-id/{id}")
+    public  ResponseEntity<?> getUserByDeviceId(@PathVariable Long id){
+        DeviceLoan deviceLoan = deviceLoanService.getDeviceLoanByID(id).get();
+        User user = userService.findById(deviceLoan.getId()).get();
+        return  ResponseEntity.ok(user);
     }
 
     @PutMapping("/update/{id}")

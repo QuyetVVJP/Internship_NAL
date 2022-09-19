@@ -7,29 +7,35 @@
         <button click (click)="setJapanese()">JP</button>
       </div> -->
       <img src="../../../assets/image/logoteamc.png" routerLink="home" style="height:50px">
-      <a *ngIf="userLogin.name_role === 'ADMIN'" routerLink="home" routerLinkActive="active">Quản lý thiết bị</a>
+      <a *ngIf="userLogin.name_role === 'ADMIN'" routerLink="home" routerLinkActive="active" translate>DEVICEMANAGE</a>
 
 
-      <a *ngIf="userLogin.name_role === 'ADMIN'" routerLink="home/user-list" routerLinkActive="active">Quản lý người
-        dùng</a>
+      <a *ngIf="userLogin.name_role === 'ADMIN'" routerLink="home/user-list"
+      routerLinkActive="active" translate>USERMANAGE</a>
 
 
-      <a *ngIf="userLogin.name_role === 'ADMIN'" routerLink="home/list" routerLinkActive="active">Quản lý mượn</a>
+      <a *ngIf="userLogin.name_role === 'ADMIN'" routerLink="home/list"
+      routerLinkActive="active" translate="">DEVICELOANMAGE</a>
 
     </div>
     <div class="login">
 
 
 
-      <a *ngIf="userLogin.id == null" routerLink="home/register" routerLinkActive="active" class="nav-link">Đăng ký</a>
+      <a *ngIf="userLogin.id == null" routerLink="home/register" routerLinkActive="active" class="nav-link">Đăng ký &nbsp;</a>
 
 
       <a *ngIf="userLogin.id == null" routerLink="home/login" routerLinkActive="active" class="nav-link">Đăng nhập</a>
 
 
-      <div *ngIf="userLogin.id != null" style="text-align: right;">
-        Xin chào {{ userLogin.first_name }}!
+      <div *ngIf="userLogin.id != null" style="text-align: right;" translate="">
+        HELLOADMIN &nbsp;
       </div>
+
+      <div *ngIf="userLogin.id != null" style="text-align: right;" translate="">
+        {{ userLogin.first_name }}!
+      </div>
+
 
 
       <div *ngIf="userLogin.id != null">
@@ -41,17 +47,17 @@
       <img src="../assets/image/tranicon.png" (click)="hideshow2()" class="train" alt="">
 
       <div class="train2" id="train" style="display: none;">
-        
+
         <img src="../assets/image/comy.png" (click)="setEnglish()" class="co" style="margin-left:3px;" alt="">
         <img src="../assets/image/conhat.png" click (click)="setJapanese()" class="co" alt="">
         <img src="../assets/image/covn.png" (click)="setVietnamese()" class="co" alt="">
-        
+
       </div>
 
       <div class="avatar_menu" id="menu" style="display: none;">
         <div class="container">
 
-          <a (click)="viewUser(userLogin.id)">cập nhật </a>
+          <a (click)="viewUser(userLogin.id)">Cập nhật </a>
 
           <a *ngIf="userLogin.id != null" routerLink="home/logout" routerLinkActive="active" class="nav-link">Đăng
             xuất</a>

@@ -53,10 +53,7 @@
   "APPROVAL":"Approval",
   "USERINFORMATION":"User Information",
   "AVATAR":"Avatar",
-  "UPDATEDEVICE":"Update device"
-
-
-
-
-
+  "UPDATEDEVICE":"Update device",
+  "EXPORTEXCEL":"Export Excel",
+  "RETURNDEVICE":"Return Device"
   }

@@ -2,7 +2,9 @@ package com.example.manage_device.controller;
 
 import com.example.manage_device.exception.ResourceNotFoundException;
 import com.example.manage_device.model.Device;
+import com.example.manage_device.model.DeviceLoan;
 import com.example.manage_device.model.dto.DeviceChartDto;
+import com.example.manage_device.service.DeviceLoanService;
 import com.example.manage_device.service.DeviceService;
 
 import com.example.manage_device.service.ExcelService;
@@ -31,6 +33,8 @@ public class DeviceController {
 
     @Autowired
     private DeviceService deviceService;
+    @Autowired
+    private DeviceLoanService deviceLoanService;
     @Autowired
     private ExcelService excelService;
     @GetMapping("/list")
@@ -86,6 +90,18 @@ public class DeviceController {
     public ResponseEntity<?> getDeviceById(@PathVariable Long id) {
         Optional<Device> result = deviceService.getDeviceByID(id);
         return  ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/return-device/{id}")
+    public ResponseEntity<Device> returnDevice(@PathVariable Long id){
+        Device device = deviceService.getDeviceByID(id).get();
+        device.setStatus(AVAILABLE);
+        DeviceLoan deviceLoan = deviceLoanService.getDeviceLoanByID(device.getId()).get();
+        deviceLoan.setDeleted(true);
+        deviceLoanService.delete(deviceLoan.getId());
+        deviceService.save(device);
+
+        return ResponseEntity.ok(device);
     }
     @PostMapping("/create")
     public Device createDevice(@RequestBody Device device) {

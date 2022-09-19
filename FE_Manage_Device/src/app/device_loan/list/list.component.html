@@ -27,6 +27,7 @@
                 <th>thiết bị mượn</th>
                 <th>ngày mượn</th>
                 <th>ngày trả</th>
+                <th>Lý do</th>
                 <th>tình trạng</th>
                 <th>phe duyet</th>
             </tr>
@@ -47,6 +48,7 @@
             <td>{{loan[4]}} </td>
             <td> {{loan[5].toString().substring(0,10)}} </td>
             <td> {{loan[6].toString().substring(0,10)}} </td>
+            <td>{{loan[8]}} </td>
             <td>{{loan[7]}}</td>
                 <td><button *ngIf="loan[7].toString() === 'Chờ phê duyệt'" (click)="approval(loan[0])"
                         class="btn btn-info">Đồng ý</button></td>

@@ -7,6 +7,7 @@ import { LoginRequest, User, UserDto, UserRequest } from './user';
 })
 export class UserService {
 
+
   private baseURL ="http://localhost:8080/users"
   constructor(private httpClient: HttpClient) { }
   getAllUser(): Observable<User[]> {
@@ -42,5 +43,9 @@ export class UserService {
   getAllUserWithPagination(term): Observable<any> {
     let terms = new HttpParams().set('term', term);
     return this.httpClient.get<User[]>(`${this.baseURL + '/search'}`,{ params: terms } );
+  }
+
+  getUserByDeviceId(id: number) {
+    return this.httpClient.get<User>(`${this.baseURL}/get-user-by-device-id/${id}`);
   }
 }

@@ -53,8 +53,9 @@
   "APPROVAL":"承認",
   "USERINFORMATION":"ユーザー情報",
   "AVATAR":"写真",
-  "UPDATEDEVICE":"アップデートデバイス"
-
+  "EXPORTEXCEL":"エクスポート エクセル",
+  "UPDATEDEVICE":"アップデートデバイス",
+  "RETURNDEVICE":"返却デバイス"
 
 
 }

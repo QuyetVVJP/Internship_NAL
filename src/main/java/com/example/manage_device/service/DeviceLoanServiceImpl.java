@@ -39,6 +39,11 @@ public class DeviceLoanServiceImpl implements DeviceLoanService{
     }
 
     @Override
+    public Optional<DeviceLoan> getDeviceLoanByDeviceID(Long id) {
+        return deviceLoanRepository.findDeviceByDeviceID(id);
+    }
+
+    @Override
     public void delete(Long id) { deviceLoanRepository.deleteById(id); }
 
     @Override

@@ -4,11 +4,11 @@
     "USERMANAGE":"Quản lý người dùng",
     "DEVICEMANAGE":"Quản lý thiết bị ",
     "DEVICELOANMAGE":"Quản lý mượn ",
-    "HELLOADMIN":"Xin chào", 
-    "LOGOUT":"Đăng xuất", 
-    "ADDDEVICE":"Thêm thiết bị ", 
-    "SEARCH":"Tìm kiếm", 
-    "TOTALDEVICE":"Tổng số thiết bị ", 
+    "HELLOADMIN":"Xin chào",
+    "LOGOUT":"Đăng xuất",
+    "ADDDEVICE":"Thêm thiết bị ",
+    "SEARCH":"Tìm kiếm",
+    "TOTALDEVICE":"Tổng số thiết bị ",
     "OPERATINGSYSTEM":"Hệ điều hành ",
     "SYSTEMMODEL":"Mô hình hệ thống",
     "SSD":"Ổ cứng ",
@@ -53,10 +53,9 @@
     "APPROVAL":"Phê duyệt",
     "USERINFORMATION":"Thông tin của người dùng",
     "AVATAR":"Ảnh",
-    "UPDATEDEVICE":"Cập nhập thiết bị"
-
-
+    "UPDATEDEVICE":"Cập nhập thiết bị",
+    "EXPORTEXCEL":"Xuất Excel",
+    "RETURNDEVICE":"Trả thiết bị"
 
 
      }
-  
