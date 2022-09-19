@@ -1,6 +1,6 @@
 import { Timestamp } from "rxjs";
 
-export class Deviceloan{
+export class DeviceLoan{
     id:number;
     borrow_date:Date;
     return_date:Date;
@@ -22,9 +22,9 @@ export class DeviceLoanDto{
     return_date:number;
     status:string;
     reason:string;
-    first_name:string;
-    last_name:string;
+    username:string;
     email:string;
-    deviceName:string;
+    device_id: number;
+    device_name:string;
 }
 

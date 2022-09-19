@@ -2,28 +2,28 @@
 <h3 translate>USERINFORMATION</h3>
 <div>
     <div>
-        <label><b translate>FRISTNAME</b> : </label> {{user.first_name}}
+        <label><b translate>FIRSTNAME</b>: </label> {{user.first_name}}
     </div>
     <div>
-        <label><b translate>LASTNAME</b> : </label> {{user.last_name}}
+        <label><b translate>LASTNAME</b>: </label> {{user.last_name}}
     </div>
     <div>
-        <label><b translate>GENDER</b>:</label> {{user.gender}}
+        <label><b translate>GENDER</b>: </label> {{user.gender}}
     </div>
     <div>
         <label><b translate>EMAIL</b>: </label> {{user.email}}
     </div>
     <div>
-        <label><b translate>NUMBER</b>: </label> {{user.employee_id}}
+        <label><b translate>EMPLOYEEID</b>: </label> {{user.employee_id}}
     </div>
     <div>
-        <label><b translate>PHONENUMBER </b> :</label> {{user.phone}}
+        <label><b translate>PHONENUMBER</b>: </label> {{user.phone}}
     </div>
     <div>
-        <label><b translate> POSITION </b>:</label> {{user.department}}
+        <label><b translate>DEPARTMENT</b>: </label> {{user.department}}
     </div>
     <div>
-        <label><b translate>AVATAR</b>:</label><img src="../{{user.avatar_url}}" alt="">
+        <label><b translate>AVATAR</b>: </label><img style="max-height:200px; max-width:200px; overflow: hidden" src="../{{user.avatar_url}}" alt="">
     </div>
     <button
     (click)="updateUser(user.id)"
@@ -31,3 +31,31 @@
    cập nhật
   </button>
 </div>
+<div>
+    <label><b>Lịch sử mượn thiết bị:</b></label>
+</div>
+<table class="table table-striped">
+<thead>
+    <tr>
+        <th>STT</th>
+        <th>Thiết bị mượn</th>
+        <th>Ngày mượn</th>
+        <th>Ngày trả</th>
+        <th>Lí do mượn</th>
+        <th>Tình trạng</th>
+        <th>Phê duyệt</th>
+    </tr>
+</thead>
+<tbody>
+    <tr *ngFor="let deviceLoan of listLoans; index as i">
+    <td>{{deviceLoan.id}}</td>
+    <td>{{deviceLoan.device_name}}</td>
+    <td>{{deviceLoan.borrow_date.toString().substring(0,10)}}</td>
+    <td>{{deviceLoan.return_date.toString().substring(0,10)}}</td>
+    <td>{{deviceLoan.reason}}</td>
+    <td>{{deviceLoan.status}}</td>
+    <td><button *ngIf="deviceLoan.status === 'Chờ phê duyệt'" (click)="approval(deviceLoan.id)" class="btn btn-info">Đồng ý</button></td>
+    <td><button *ngIf="deviceLoan.status === 'Chờ phê duyệt'" (click)="reject(deviceLoan.id)" class="btn btn-danger">Từ chối</button></td>
+</tr>
+</tbody>
+</table>

@@ -5,7 +5,7 @@ import { DeviceService } from 'src/app/device/device.service';
 import { User, UserDto } from 'src/app/user/user';
 import { UserService } from 'src/app/user/user.service';
 import { DeviceLoanService } from '../device-loan.service';
-import { Deviceloan, DeviceLoanDto } from '../devicve-loan';
+import { DeviceLoan, DeviceLoanDto } from '../device-loan';
 
 @Component({
   selector: 'app-list',

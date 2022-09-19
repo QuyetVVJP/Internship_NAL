@@ -55,8 +55,8 @@
       </button>
     </div>
     <div class="col-2"  *ngIf="userLogin.name_role === 'ADMIN'">
-      <button class="btn btn-success" (click)="exportExcel()" translate>
-       EXPORTEXCEL
+      <button class="btn btn-info" (click)="exportExcel()">
+        <b translate>EXPORTEXCELFILE</b>
       </button>
     </div>
   </div>
@@ -67,7 +67,7 @@
     <input
       type="text"
       class="form-control"
-      placeholder="Nhập tên thiết bị, hệ điều hành"
+      placeholder="{{'DEVICESEARCHMODEL' | translate}}"
       [(ngModel)]="term"
     />
     <div class="input-group-append">
@@ -75,7 +75,7 @@
         class="btn btn-outline-secondary"
         type="button"
         (click)="searchByTerm()" style="margin-right: 5px !important;">
-        <mat-icon> search</mat-icon>
+        <mat-icon>search</mat-icon>
       </button>
 
     </div>
@@ -119,7 +119,7 @@
         <th translate>STATUS</th>
         <th translate>VIEWDETAIL</th>
         <th *ngIf="userLogin.name_role === 'ADMIN'"translate>UPDATE</th>
-        <th *ngIf="userLogin.name_role === 'ADMIN'"translate>CLEAR</th>
+        <th *ngIf="userLogin.name_role === 'ADMIN'"translate>DELETE</th>
 
       </tr>
     </thead>

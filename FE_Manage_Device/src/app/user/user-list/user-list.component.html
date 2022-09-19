@@ -5,7 +5,7 @@
       <input
         type="text"
         class="form-control"
-        placeholder="Nhập họ tên người dùng, email, mã số nhân viên, số điện thoại"
+        placeholder="{{'USERSEARCHMODEL' | translate}}"
         [(ngModel)]="term"
       />
       <div class="input-group-append">
@@ -32,16 +32,16 @@
     <thead>
         <tr>
             <th translate>ID</th>
-            <th translate>FRISTNAME</th>
+            <th translate>FIRSTNAME</th>
             <th translate>LASTNAME</th>
             <th translate>GENDER</th>
-            <th translate>NUMBER</th>
+            <th translate>EMPLOYEEID</th>
             <th translate>EMAIL</th>
             <th translate>PHONENUMBER</th>
-            <th translate>POSITION</th>
+            <th translate>DEPARTMENT<th>
             <th translate>VIEWDETAIL</th>
             <th translate>UPDATE</th>
-            <th translate>CLEAR</th>
+            <th translate>DELETE</th>
         </tr>
     </thead>
     <tbody>
@@ -93,8 +93,8 @@
 </table>
 <div class="col-md-12">
     <pagination-controls
-      previousLabel="Prev"
-      nextLabel="Next"
+      previousLabel=""
+      nextLabel=""
       [responsive]="true"
       (pageChange)="handlePageChange($event)"
     ></pagination-controls>

@@ -6,26 +6,24 @@
         <button click (click)="setEnglish()">EN</button>
         <button click (click)="setJapanese()">JP</button>
       </div> -->
-      <img src="../../../assets/image/logoteamc.png" routerLink="home" style="height:50px">
-      <a *ngIf="userLogin.name_role === 'ADMIN'" routerLink="home" routerLinkActive="active" translate>DEVICEMANAGE</a>
+      <img src="../../../assets/image/logoteamc.png"  routerLink="home" style="height:50px">
+      <a *ngIf="userLogin.name_role === 'ADMIN'" routerLink="home" routerLinkActive="active"><b translate>DEVICEMANAGEMENT</b></a>
 
 
-      <a *ngIf="userLogin.name_role === 'ADMIN'" routerLink="home/user-list"
-      routerLinkActive="active" translate>USERMANAGE</a>
+      <a *ngIf="userLogin.name_role === 'ADMIN'" routerLink="home/user-list" routerLinkActive="active"><b translate>USERMANAGEMENT</b></a>
 
 
-      <a *ngIf="userLogin.name_role === 'ADMIN'" routerLink="home/list"
-      routerLinkActive="active" translate="">DEVICELOANMAGE</a>
+      <a *ngIf="userLogin.name_role === 'ADMIN'" routerLink="home/list" routerLinkActive="active"><b translate>DEVICELOANMANAGEMENT</b></a>
 
     </div>
     <div class="login">
 
 
 
-      <a *ngIf="userLogin.id == null" routerLink="home/register" routerLinkActive="active" class="nav-link">Đăng ký &nbsp;</a>
+      <a *ngIf="userLogin.id == null" routerLink="home/register" routerLinkActive="active" class="nav-link"><b translate>REGISTER</b></a>
 
 
-      <a *ngIf="userLogin.id == null" routerLink="home/login" routerLinkActive="active" class="nav-link">Đăng nhập</a>
+      <a *ngIf="userLogin.id == null" routerLink="home/login" routerLinkActive="active" class="nav-link"><b translate>LOGIN</b></a>
 
 
       <div *ngIf="userLogin.id != null" style="text-align: right;" translate="">

@@ -1,8 +1,12 @@
 <div class="body">
-<p style="font-size:160%; padding-top:100px"><b>Quản lý thiết bị</b></p>
+<p style="font-size:160%; padding-top:100px"><b translate>DEVICELOANMANAGEMENT</b></p>
 <div style="padding-left: 10px !important;" class="col-md-8">
     <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Nhập tên thiết bị, hệ điều hành" [(ngModel)]="term" />
+        <input
+            type="text"
+            class="form-control"
+            placeholder="{{'LOANSEARCHMODEL' | translate}}"
+            [(ngModel)]="term" />
         <div class="input-group-append">
             <button class="btn btn-outline-secondary" type="button" (click)="searchByTerm()"
                 style="margin-right: 5px !important;">
@@ -20,16 +24,16 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>STT</th>
-                <th>Họ tên</th>
+                <th><b translate>ID</b></th>
+                <th><b translate>NAME</b></th>
                 <!-- <th>msnv</th> -->
-                <th>email</th>
-                <th>thiết bị mượn</th>
-                <th>ngày mượn</th>
-                <th>ngày trả</th>
-                <th>Lý do</th>
-                <th>tình trạng</th>
-                <th>phe duyet</th>
+                <th><b translate>EMAIL</b></th>
+                <th><b translate>BORROWEDDEVICE</b></th>
+                <th><b translate>BORROWDATE</b></th>
+                <th><b translate>RETURNDATE</b></th>
+                <th><b translate>REASON</b></th>
+                <th><b translate>STATUS</b></th>
+                <th><b translate>APPROVAL</b></th>
             </tr>
         </thead>
         <tbody>
@@ -51,7 +55,7 @@
             <td>{{loan[8]}} </td>
             <td>{{loan[7]}}</td>
                 <td><button *ngIf="loan[7].toString() === 'Chờ phê duyệt'" (click)="approval(loan[0])"
-                        class="btn btn-info">Đồng ý</button></td>
+                        class="btn btn-info"><b translate>APPROVE</b></button></td>
                 <td><button *ngIf="loan[7].toString() === 'Chờ phê duyệt'" (click)="reject(loan[0])" class="btn btn-danger">Từ
                         chối</button></td>
             </tr>

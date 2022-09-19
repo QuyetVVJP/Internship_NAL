@@ -1,7 +1,7 @@
-import { Deviceloan } from './devicve-loan';
+import { DeviceLoan } from './device-loan';
 
 describe('Device', () => {
   it('should create an instance', () => {
-    expect(new Deviceloan()).toBeTruthy();
+    expect(new DeviceLoan()).toBeTruthy();
   });
 });
