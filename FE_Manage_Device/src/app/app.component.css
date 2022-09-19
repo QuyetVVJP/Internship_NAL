@@ -110,12 +110,45 @@ a{
 }
 .avatar_menu{
     color: aliceblue;
-    right: 30px;
-    top:63px;
-    height: 160px;
-    width: 140px;
+    right: 65px;
+    top:67px;
+    height: 60px;
+    width: 120px;
     background-color: rgba(8, 8, 10, 0.783);
     position: absolute;
     z-index: -5;
 
+}
+.train{
+    margin-left: 10px;
+    margin-right: 10px;
+ height: 40px;
+ width: 47px;
+ border-radius: 30px;
+ cursor: pointer;
+}
+.train:hover{
+    margin-left: 11px;
+    margin-right: 10px;
+   margin-top: 1px;
+
+    height: 39px;
+    width: 46px;
+    border: 2px solid #b3b3b3;
+    border-radius: 30px;
+}
+.train2{
+    color: aliceblue;
+    right: 10px;
+    top: 67px;
+    height: 30px;
+    width: 110px;
+    background-color: rgba(8, 8, 10, 0.783);
+    position: absolute;
+    z-index: -5;
+}
+.co{
+    width: 32px;
+    height: 25px;
+    margin-right: 3px;
 }

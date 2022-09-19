@@ -78,4 +78,12 @@ export class AppComponent implements OnInit {
         x.style.display = "none";
     }
 }
+hideshow2() {
+  var x = document.getElementById("train");
+  if (x.style.display === "none") {
+      x.style.display = "block";
+  } else {
+      x.style.display = "none";
+  }
+}
 }

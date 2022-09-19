@@ -147,30 +147,30 @@
           {{ item.status === "Đã cho mượn" ? "Đã cho mượn" : "Còn trong kho" }}
         </td>
 
-        <td>
+        <td style="text-align:center">
           <button
             (click)="viewDevice(item.id)"
-            class="btn btn-success"
+            class="btn btn-success nut"
             style="margin-left: 10px"
           >
           <mat-icon>visibility</mat-icon>
           </button>
         </td>
 
-        <td>
+        <td style="text-align:center">
           <button
             *ngIf="userLogin.name_role === 'ADMIN'"
             (click)="updateDevice(item.id)"
-            class="btn btn-info"
+            class="btn btn-info nut"
           >
           <mat-icon>edit</mat-icon>
           </button>
         </td>
-        <td>
+        <td style="text-align:center">
           <button
             *ngIf="userLogin.name_role === 'ADMIN'"
             (click)="deleteDevice(item.id)"
-            class="btn btn-danger"
+            class="btn btn-danger nut"
             style="margin-left: 10px"
           >
           <mat-icon>delete_outline</mat-icon>

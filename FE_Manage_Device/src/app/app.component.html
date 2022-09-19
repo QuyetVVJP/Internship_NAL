@@ -6,7 +6,7 @@
         <button click (click)="setEnglish()">EN</button>
         <button click (click)="setJapanese()">JP</button>
       </div> -->
-      <img src="../../../assets/image/logoteamc.png"  routerLink="home" style="height:50px">
+      <img src="../../../assets/image/logoteamc.png" routerLink="home" style="height:50px">
       <a *ngIf="userLogin.name_role === 'ADMIN'" routerLink="home" routerLinkActive="active">Quản lý thiết bị</a>
 
 
@@ -30,23 +30,29 @@
       <div *ngIf="userLogin.id != null" style="text-align: right;">
         Xin chào {{ userLogin.first_name }}!
       </div>
-      <button click (click)="setEnglish()">EN</button>
-          <button click (click)="setJapanese()">JP</button>
-          <button click (click)="setVietnamese()">VN</button>
+
 
       <div *ngIf="userLogin.id != null">
         <img *ngIf="userLogin.avatar_url != null" (click)="hideshow()" class="avatar"
           src="../{{ userLogin.avatar_url }}" alt="" />
-          <img *ngIf="userLogin.avatar_url === null" (click)="hideshow()" class="avatar"
-          src="../{{ userLogin.avatar_url }}" alt="" />
+        <img *ngIf="userLogin.avatar_url === null" (click)="hideshow()" class="avatar"
+          src="../assets/image/icon-avatar.jpg" alt="" />
       </div>
+      <img src="../assets/image/tranicon.png" (click)="hideshow2()" class="train" alt="">
 
+      <div class="train2" id="train" style="display: none;">
+        
+        <img src="../assets/image/comy.png" (click)="setEnglish()" class="co" style="margin-left:3px;" alt="">
+        <img src="../assets/image/conhat.png" click (click)="setJapanese()" class="co" alt="">
+        <img src="../assets/image/covn.png" (click)="setVietnamese()" class="co" alt="">
+        
+      </div>
 
       <div class="avatar_menu" id="menu" style="display: none;">
         <div class="container">
-          
+
           <a (click)="viewUser(userLogin.id)">cập nhật </a>
-          
+
           <a *ngIf="userLogin.id != null" routerLink="home/logout" routerLinkActive="active" class="nav-link">Đăng
             xuất</a>
         </div>
@@ -55,19 +61,12 @@
   </nav>
 </header>
 
-
-<!-- <div>
-      <h1 translate> TITLE </h1>
-      <button click (click)="setEnglish()">EN</button>
-      <button click (click)="setJapanese()">JP</button>
-    </div> -->
-
 <router-outlet class="router-outlet">
 
 </router-outlet>
 
 <footer class="footer">
   <div class="container">
-      <span>Internship NAL - Team C - 08/2022</span>
+    <span>Internship NAL - Team C - 08/2022</span>
   </div>
 </footer>

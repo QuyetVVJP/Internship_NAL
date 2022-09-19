@@ -12,4 +12,10 @@ img{
 body{
     margin: auto;
 }
-
+.nut{
+    align-items: center;
+    margin: auto;
+}
+th{
+    text-align: center;
+}
