@@ -57,7 +57,7 @@ public class User {
     @Column(name = "isLogin",columnDefinition = "boolean default false")
     private boolean isLogin = false;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne()
     @JoinColumn(name = "role_id", referencedColumnName = "id")
     private Role role;
 
