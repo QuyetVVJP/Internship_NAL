@@ -85,9 +85,8 @@
             <td>{{ item.os }}</td>
             <td>{{ item.manufacturer }}</td>
             <td>{{ item.information }}</td>
-            <td>
-              {{ item.status === "Đã cho mượn" ? "Đã cho mượn" : "Còn trong kho" }}
-            </td>
+            <td *ngIf="item.status === 'Đã cho mượn'" translate> UNAVAILABLE</td>
+            <td *ngIf="item.status === 'Còn trong kho'" translate> AVAILABLE</td>
 
             <td style="text-align:center">
               <button (click)="viewDevice(item.id)" class="btn btn-success nut" style="margin-left: 10px">
