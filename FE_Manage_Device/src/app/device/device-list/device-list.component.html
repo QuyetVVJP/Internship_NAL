@@ -1,5 +1,4 @@
-
-      <!-- <div class="row">
+<!-- <div class="row">
         <div class="col-8" style="text-align: left !important;">
             <img src="../../../assets/image/logoteamc.png" style="height:30px">
 
@@ -44,17 +43,18 @@
 
         </div>
       </div> -->
-<div style="padding-top:100px"></div>
+<div style="padding-top:100px" class="t">
   <h1 class="text-center" style="color: rgb(209, 52, 209)">{{ title }}</h1>
   <h2 style="padding-left: 10px !important;" translate> DEVICELIST </h2>
 
   <div class="row">
     <div class="col-2">
-      <button style="margin-left: 10px !important; margin-bottom: 10px !important;" *ngIf="userLogin.name_role === 'ADMIN'" class="btn btn-primary">
-          <a routerLink="/add-device" routerLinkActive="active" class="nav-link"translate>ADDDEVICE </a >
+      <button style="margin-left: 10px !important; margin-bottom: 10px !important;"
+        *ngIf="userLogin.name_role === 'ADMIN'" class="btn btn-primary">
+        <a routerLink="/add-device" routerLinkActive="active" class="nav-link" translate>ADDDEVICE </a>
       </button>
     </div>
-    <div class="col-2"  *ngIf="userLogin.name_role === 'ADMIN'">
+    <div class="col-2" *ngIf="userLogin.name_role === 'ADMIN'">
       <button class="btn btn-info" (click)="exportExcel()">
         <b translate>EXPORTEXCELFILE</b>
       </button>
@@ -62,70 +62,54 @@
   </div>
 
 
-<div style="padding-left: 10px !important;" class="col-md-8">
-  <div class="input-group mb-3">
-    <input
-      type="text"
-      class="form-control"
-      placeholder="{{'DEVICESEARCHMODEL' | translate}}"
-      [(ngModel)]="term"
-    />
-    <div class="input-group-append">
-      <button
-        class="btn btn-outline-secondary"
-        type="button"
-        (click)="searchByTerm()" style="margin-right: 5px !important;">
-        <mat-icon>search</mat-icon>
-      </button>
+  <div style="padding-left: 10px !important;" class="col-md-8">
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="{{'DEVICESEARCHMODEL' | translate}}" [(ngModel)]="term" />
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" (click)="searchByTerm()"
+          style="margin-right: 5px !important;">
+          <mat-icon>search</mat-icon>
+        </button>
 
+      </div>
     </div>
   </div>
-</div>
-<br />
-<h2 style="text-align: center"translate>TOTALDEVICE</h2>
-<h2 style="text-align: center">{{ total }}</h2>
+  <br />
+  <h2 style="text-align: center" translate>TOTALDEVICE</h2>
+  <h2 style="text-align: center">{{ total }}</h2>
 
-<div class="row">
-  <div class="col-3"></div>
-  <div class="col-3">
-    <div id="chart">
-      <apx-chart
-        [series]="chartOptions.series"
-        [chart]="chartOptions.chart"
-        [dataLabels]="chartOptions.dataLabels"
-        [plotOptions]="chartOptions.plotOptions"
-        [legend]="chartOptions.legend"
-        [fill]="chartOptions.fill"
-        [stroke]="chartOptions.stroke"
-        [tooltip]="chartOptions.tooltip"
-        [xaxis]="chartOptions.xaxis"
-      ></apx-chart>
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-3">
+      <div id="chart">
+        <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart" [dataLabels]="chartOptions.dataLabels"
+          [plotOptions]="chartOptions.plotOptions" [legend]="chartOptions.legend" [fill]="chartOptions.fill"
+          [stroke]="chartOptions.stroke" [tooltip]="chartOptions.tooltip" [xaxis]="chartOptions.xaxis"></apx-chart>
+      </div>
     </div>
+    <div class="col-3"></div>
   </div>
-  <div class="col-3"></div>
-</div>
 
-<div class="row">
-<div class="col-1"></div>
-<div class="col-10">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th translate>ID</th>
-        <th translate>DEVICENAME</th>
-        <th translate>OPERATINGSYSTEM</th>
-        <th translate>SYSTEMMODEL</th>
-        <th translate>SSD</th>
-        <th translate>STATUS</th>
-        <th translate>VIEWDETAIL</th>
-        <th *ngIf="userLogin.name_role === 'ADMIN'"translate>UPDATE</th>
-        <th *ngIf="userLogin.name_role === 'ADMIN'"translate>DELETE</th>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th translate>ID</th>
+            <th translate>DEVICENAME</th>
+            <th translate>OPERATINGSYSTEM</th>
+            <th translate>SYSTEMMODEL</th>
+            <th translate>SSD</th>
+            <th translate>STATUS</th>
+            <th translate>VIEWDETAIL</th>
+            <th *ngIf="userLogin.name_role === 'ADMIN'" translate>UPDATE</th>
+            <th *ngIf="userLogin.name_role === 'ADMIN'" translate>DELETE</th>
 
-      </tr>
-    </thead>
-    <tbody>
-      <tr
-        *ngFor="
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="
           let item of listDevices
             | paginate
               : {
@@ -134,60 +118,42 @@
                   totalItems: count
                 };
           let i = index
-        "
-        [class.active]="i == currentIndex"
-        (click)="setActiveDevice(item, i)"
-      >
-        <td>{{ item.id }}</td>
-        <td>{{ item.device_name }}</td>
-        <td>{{ item.os }}</td>
-        <td>{{ item.manufacturer }}</td>
-        <td>{{ item.information }}</td>
-        <td>
-          {{ item.status === "Đã cho mượn" ? "Đã cho mượn" : "Còn trong kho" }}
-        </td>
+        " [class.active]="i == currentIndex" (click)="setActiveDevice(item, i)">
+            <td>{{ item.id }}</td>
+            <td>{{ item.device_name }}</td>
+            <td>{{ item.os }}</td>
+            <td>{{ item.manufacturer }}</td>
+            <td>{{ item.information }}</td>
+            <td>
+              {{ item.status === "Đã cho mượn" ? "Đã cho mượn" : "Còn trong kho" }}
+            </td>
 
-        <td style="text-align:center">
-          <button
-            (click)="viewDevice(item.id)"
-            class="btn btn-success nut"
-            style="margin-left: 10px"
-          >
-          <mat-icon>visibility</mat-icon>
-          </button>
-        </td>
+            <td style="text-align:center">
+              <button (click)="viewDevice(item.id)" class="btn btn-success nut" style="margin-left: 10px">
+                <mat-icon>visibility</mat-icon>
+              </button>
+            </td>
 
-        <td style="text-align:center">
-          <button
-            *ngIf="userLogin.name_role === 'ADMIN'"
-            (click)="updateDevice(item.id)"
-            class="btn btn-info nut"
-          >
-          <mat-icon>edit</mat-icon>
-          </button>
-        </td>
-        <td style="text-align:center">
-          <button
-            *ngIf="userLogin.name_role === 'ADMIN'"
-            (click)="deleteDevice(item.id)"
-            class="btn btn-danger nut"
-            style="margin-left: 10px"
-          >
-          <mat-icon>delete_outline</mat-icon>
-          </button>
-        </td>
+            <td style="text-align:center">
+              <button *ngIf="userLogin.name_role === 'ADMIN'" (click)="updateDevice(item.id)" class="btn btn-info nut">
+                <mat-icon>edit</mat-icon>
+              </button>
+            </td>
+            <td style="text-align:center">
+              <button *ngIf="userLogin.name_role === 'ADMIN'" (click)="deleteDevice(item.id)" class="btn btn-danger nut"
+                style="margin-left: 10px">
+                <mat-icon>delete_outline</mat-icon>
+              </button>
+            </td>
 
-      </tr>
-    </tbody>
-  </table>
-  <div class="col-md-12">
-    <pagination-controls
-      previousLabel="Prev"
-      nextLabel="Next"
-      [responsive]="true"
-      (pageChange)="handlePageChange($event)"
-    ></pagination-controls>
+          </tr>
+        </tbody>
+      </table>
+      <div class="col-md-12">
+        <pagination-controls previousLabel="Prev" nextLabel="Next" [responsive]="true"
+          (pageChange)="handlePageChange($event)"></pagination-controls>
+      </div>
+    </div>
+    <div class="col-1"></div>
   </div>
-</div>
-<div class="col-1"></div>
 </div>

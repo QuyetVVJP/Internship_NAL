@@ -32,7 +32,7 @@ export class UpdateUserComponent implements OnInit {
     this.userService.getUserById(this.id).subscribe(data=>{
       this.user=data;
     },error => console.log(error));
-   
+
     this.formGroup = this.formBuilder.group({
 
       first_name: ['', Validators.required],
@@ -44,7 +44,7 @@ export class UpdateUserComponent implements OnInit {
       employee_id: ['', Validators.required],
       password: ['', Validators.required],
       rePassword: ['', Validators.required],
-     
+
 
 
     });
@@ -55,10 +55,10 @@ export class UpdateUserComponent implements OnInit {
     goToListUsers(){
       this.toastrService.info('Thành công', 'Cập nhật tài khoản');
 
-      this.router.navigate(['/home/user-list']);
+      this.router.navigate(['/home']);
     }
     onSubmit(value){
- 
+
       this.userService.updateUser(this.id, this.user).subscribe(data =>{
         this.goToListUsers();
         this.imageUploadAction(this.id);

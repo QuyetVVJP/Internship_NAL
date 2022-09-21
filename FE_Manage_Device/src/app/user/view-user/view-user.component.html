@@ -1,7 +1,50 @@
-<div style="padding-top:100px"></div>
-<h3 translate>USERINFORMATION</h3>
-<div>
-    <div>
+<div style="padding-top:100px;" class="t">
+
+
+    <div class="avatar">
+        
+        <mat-icon (change)="onImageUpload($event)"  (ngSubmit)="onSubmit(formGroup.value)">camera_enhance</mat-icon>
+        <img *ngIf="user.avatar_url != null" src="../{{user.avatar_url}}" alt="">
+        <img *ngIf="user.avatar_url === null" src="../../../assets/image/icon-avatar.jpg" alt="">
+    </div>
+   
+    <div class="tt">
+        <div class="td">
+            <h3 translate>USERINFORMATION</h3>
+
+        </div>
+        <div class="information">
+            <dl>
+                <dt>
+                    <b translate>FIRSTNAME</b> & <b translate>LASTNAME</b>
+                    <div class="nd">	<mat-icon>person_outline</mat-icon>  <a> {{user.first_name}} {{user.last_name}}  </a> </div>
+                </dt>
+                <dt>
+                    <b translate>GENDER</b>
+                    <div class="nd"><mat-icon>face</mat-icon><a> {{user.gender}}</a></div>
+                </dt>
+                <dt>
+                    <b translate>EMAIL</b>
+                    <div class="nd">	<mat-icon> email</mat-icon><a>{{user.email}} </a></div>
+                </dt>
+                <dd>
+                    <b translate>EMPLOYEEID</b>
+                    <div class="nd"><mat-icon>domain</mat-icon><a> {{user.employee_id}} </a> </div>
+                </dd>
+                <dd>
+                    <b translate>PHONENUMBER</b>
+                    <div class="nd" ><mat-icon> phone</mat-icon><a> {{user.phone}}</a></div>
+                </dd>
+                <dd>
+                    <b translate>DEPARTMENT</b>
+                    <div class="nd"><mat-icon>work</mat-icon> <a>{{user.department}}</a></div>
+                </dd>
+            </dl>
+            <div class="nut">
+            <button (click)="updateUser(user.id)">
+                cập nhật
+            </button></div>
+            <!-- <div>
         <label><b translate>FIRSTNAME</b>: </label> {{user.first_name}}
     </div>
     <div>
@@ -21,41 +64,37 @@
     </div>
     <div>
         <label><b translate>DEPARTMENT</b>: </label> {{user.department}}
-    </div>
-    <div>
+    </div> -->
+            <!-- <div>
         <label><b translate>AVATAR</b>: </label><img style="max-height:200px; max-width:200px; overflow: hidden" src="../{{user.avatar_url}}" alt="">
+    </div>-->
+
+        </div>
     </div>
-    <button
-    (click)="updateUser(user.id)"
-   >
-   cập nhật
-  </button>
-</div>
-<div>
-    <label><b>Lịch sử mượn thiết bị:</b></label>
-</div>
-<table class="table table-striped">
-<thead>
-    <tr>
-        <th>STT</th>
-        <th>Thiết bị mượn</th>
-        <th>Ngày mượn</th>
-        <th>Ngày trả</th>
-        <th>Lí do mượn</th>
-        <th>Tình trạng</th>
-        <th>Phê duyệt</th>
-    </tr>
-</thead>
-<tbody>
-    <tr *ngFor="let deviceLoan of listLoans; index as i">
-    <td>{{deviceLoan.id}}</td>
-    <td>{{deviceLoan.device_name}}</td>
-    <td>{{deviceLoan.borrow_date.toString().substring(0,10)}}</td>
-    <td>{{deviceLoan.return_date.toString().substring(0,10)}}</td>
-    <td>{{deviceLoan.reason}}</td>
-    <td>{{deviceLoan.status}}</td>
-    <td><button *ngIf="deviceLoan.status === 'Chờ phê duyệt'" (click)="approval(deviceLoan.id)" class="btn btn-info">Đồng ý</button></td>
-    <td><button *ngIf="deviceLoan.status === 'Chờ phê duyệt'" (click)="reject(deviceLoan.id)" class="btn btn-danger">Từ chối</button></td>
-</tr>
-</tbody>
-</table>
+    <div class="muon">
+        <div>
+            <label class="td"><b>Lịch sử mượn thiết bị:</b></label>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Thiết bị mượn</th>
+                    <th>Ngày mượn</th>
+                    <th>Ngày trả</th>
+                    <th>Lí do mượn</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let deviceLoan of listLoans; index as i">
+                    <td>{{deviceLoan.id}}</td>
+                    <td>{{deviceLoan.device_name}}</td>
+                    <td>{{deviceLoan.borrow_date.toString().substring(0,10)}}</td>
+                    <td>{{deviceLoan.return_date.toString().substring(0,10)}}</td>
+                    <td>{{deviceLoan.reason}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>   

@@ -2,3 +2,7 @@
     width: auto;
     margin: auto;
 }
+.t{
+    min-height: 100vh;
+    height: auto;
+}

@@ -19,3 +19,7 @@ body{
 th{
     text-align: center;
 }
+.t{
+min-height: 100vh;
+height: auto;
+}

@@ -7,10 +7,11 @@ body,html{
 }
 .router-outlet{
 
-    min-height: 100vh;
+    min-height: 100vh !important;
     height: auto;
     width: auto;
     text-align: center;
+    padding-top:100px;
 }
 
 header{
@@ -113,7 +114,7 @@ a{
     right: 65px;
     top:67px;
     height: 60px;
-    width: 120px;
+    width: 128px;
     background-color: rgba(8, 8, 10, 0.783);
     position: absolute;
     z-index: -5;
@@ -147,8 +148,14 @@ a{
     position: absolute;
     z-index: -5;
 }
+
 .co{
     width: 32px;
     height: 25px;
     margin-right: 3px;
+}
+.co:hover{
+    width: 30px;
+    height: 23px;
+    margin-right: 5px;
 }

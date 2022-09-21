@@ -1,4 +1,4 @@
-<div style="padding-top:100px"></div>
+<div style="padding-top:100px" class="t">
 <h2 translate> USERLIST</h2>
 <div class="col-md-8">
     <div class="input-group mb-3">
@@ -72,7 +72,7 @@
               </button>
             </td>
 
-            <td style="text-align:center"> 
+            <td style="text-align:center">
               <button
                 (click)="updateUser(user.id)"
                 class="btn btn-info"
@@ -81,7 +81,7 @@
               </button>
             </td>
             <td style="text-align:center">
-              <button 
+              <button
                 (click)="deleteUser(user.id)"
                 class="btn btn-danger"
               >
@@ -99,3 +99,4 @@
       (pageChange)="handlePageChange($event)"
     ></pagination-controls>
   </div>
+</div>

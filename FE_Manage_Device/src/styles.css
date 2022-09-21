@@ -20,3 +20,9 @@ html,body{
   width: auto;
   margin: auto;
 }
+.app-root{
+  min-height: 100px !important;
+
+  min-width: 1200px;
+  width: auto;
+}
