@@ -9,3 +9,31 @@ th{
  min-height: 100vh;
  height: auto;
 }
+.ten{
+    margin: auto;
+    justify-content: center;
+    width: 85%;
+}
+h2{
+    text-align: center;
+    margin-bottom: 30px;
+}
+.col{
+    display: flex;
+    justify-content: center;
+    width: 60%;
+}
+.co1{
+    display: flex;
+    margin-left: 20%;
+    width: 40%;
+    left:8pc;
+
+}
+.co1 button{
+    display: flex;
+    left:8pc;
+}
+.form-control{
+    left:8pc;
+}

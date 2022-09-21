@@ -23,3 +23,26 @@ th{
 min-height: 100vh;
 height: auto;
 }
+.dau{
+
+  
+    
+}
+h2{
+    text-align: center;
+    padding-bottom: 30px !important;
+}
+.form-control{
+    display: flex;
+    left: 8pc;
+}
+.mb-3{
+    display: flex;
+    left: 8pc;
+    width: 55%;
+}
+button{
+    display: flex;
+    margin: auto;
+    left: 8pc;
+}

@@ -1,102 +1,81 @@
 <div style="padding-top:100px" class="t">
-<h2 translate> USERLIST</h2>
-<div class="col-md-8">
+  <h2 translate> USERLIST</h2>
+  <div class="dau">
+  <div class="co1">
     <div class="input-group mb-3">
-      <input
-        type="text"
-        class="form-control"
-        placeholder="{{'USERSEARCHMODEL' | translate}}"
-        [(ngModel)]="term"
-      />
+      <input type="text" class="form-control" placeholder="{{'USERSEARCHMODEL' | translate}}" [(ngModel)]="term" />
       <div class="input-group-append">
-        <button
-          class="btn btn-outline-secondary"
-          type="button"
-          (click)="searchByTerm()">
+        <button class="btn btn-outline-secondary" type="button" (click)="searchByTerm()">
           <mat-icon>search</mat-icon>
         </button>
       </div>
     </div>
   </div>
 
-    <div class="row">
-     <div class="col-2">
+  <div class="row">
+    <div class="col">
       <button style="margin-left: 10px !important; margin-bottom: 10px !important;" class="btn btn-primary">
         <a routerLink="../register" routerLinkActive="active" class="nav-link" translate>ADDUSER</a>
       </button>
-     </div>
     </div>
-
-
-<table class="table table-striped">
+  </div>
+</div>
+<div class="ten">
+  <table class="table table-striped">
     <thead>
-        <tr>
-            <th translate>ID</th>
-            <th translate>FIRSTNAME</th>
-            <th translate>LASTNAME</th>
-            <th translate>GENDER</th>
-            <th translate>EMPLOYEEID</th>
-            <th translate>EMAIL</th>
-            <th translate>PHONENUMBER</th>
-            <th translate>DEPARTMENT<th>
-            <th translate>VIEWDETAIL</th>
-            <th translate>UPDATE</th>
-            <th translate>DELETE</th>
-        </tr>
+      <tr>
+        <th translate>ID</th>
+        <th translate>FIRSTNAME</th>
+        <th translate>LASTNAME</th>
+        <th translate>GENDER</th>
+        <th translate>EMPLOYEEID</th>
+        <th translate>EMAIL</th>
+        <th translate>PHONENUMBER</th>
+        <th translate>DEPARTMENT</th>
+        <th translate>VIEWDETAIL</th>
+        <th translate>UPDATE</th>
+        <th translate>DELETE</th>
+      </tr>
     </thead>
     <tbody>
-        <tr  *ngFor="
+      <tr *ngFor="
         let user of listUsers | paginate : {
                 itemsPerPage: pageSize,
                 currentPage: page,
                 totalItems: count
                 };
         let i = index
-        "
-        [class.active]="i == currentIndex"
-        (click)="setActiveUser(user, i)">
-            <td>{{user.id}}</td>
-            <td>{{user.first_name}}</td>
-            <td>{{user.last_name}}</td>
-            <td>{{user.gender}}</td>
-            <td>{{user.employee_id}}</td>
-            <td>{{user.email}}</td>
-            <td>{{user.phone}}</td>
-            <td>{{user.department}}</td>
-            <td style="text-align:center">
-              <button
-                (click)="viewUser(user.id)"
-                class="btn btn-success"
-              >
-              <mat-icon>visibility</mat-icon>
-              </button>
-            </td>
+        " [class.active]="i == currentIndex" (click)="setActiveUser(user, i)">
+        <td>{{user.id}}</td>
+        <td>{{user.first_name}}</td>
+        <td>{{user.last_name}}</td>
+        <td>{{user.gender}}</td>
+        <td>{{user.employee_id}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.phone}}</td>
+        <td>{{user.department}}</td>
+        <td style="text-align:center">
+          <button (click)="viewUser(user.id)" class="btn btn-success">
+            <mat-icon>visibility</mat-icon>
+          </button>
+        </td>
 
-            <td style="text-align:center">
-              <button
-                (click)="updateUser(user.id)"
-                class="btn btn-info"
-              >
-              <mat-icon>edit</mat-icon>
-              </button>
-            </td>
-            <td style="text-align:center">
-              <button
-                (click)="deleteUser(user.id)"
-                class="btn btn-danger"
-              >
-              <mat-icon>delete_outline</mat-icon>
-              </button>
-            </td>
-        </tr>
+        <td style="text-align:center">
+          <button (click)="updateUser(user.id)" class="btn btn-info">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+        <td style="text-align:center">
+          <button (click)="deleteUser(user.id)" class="btn btn-danger">
+            <mat-icon>delete_outline</mat-icon>
+          </button>
+        </td>
+      </tr>
     </tbody>
-</table>
-<div class="col-md-12">
-    <pagination-controls
-      previousLabel=""
-      nextLabel=""
-      [responsive]="true"
-      (pageChange)="handlePageChange($event)"
-    ></pagination-controls>
+  </table>
+  <div class="col-md-12">
+    <pagination-controls previousLabel="" nextLabel="" [responsive]="true" (pageChange)="handlePageChange($event)">
+    </pagination-controls>
   </div>
+</div>
 </div>
