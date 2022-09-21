@@ -55,15 +55,15 @@
             <td>{{loan[8]}} </td>
             <td>{{loan[7]}}</td>
                 <td><button *ngIf="loan[7].toString() === 'Chờ phê duyệt'" (click)="approval(loan[0])"
-                        class="btn btn-info"><b translate>APPROVE</b></button></td>
-                <td><button *ngIf="loan[7].toString() === 'Chờ phê duyệt'" (click)="reject(loan[0])" class="btn btn-danger">Từ
-                        chối</button></td>
+                    class="btn btn-info"><b translate>APPROVE</b></button></td>
+                <td><button *ngIf="loan[7].toString() === 'Chờ phê duyệt'" (click)="reject(loan[0])" 
+                    class="btn btn-danger"><b translate>REJECT</b></button></td>
             </tr>
         </tbody>
     </table>
 
     <div class="col-md-12">
-        <pagination-controls previousLabel="Prev" nextLabel="Next" [responsive]="true"
+        <pagination-controls previousLabel="{{'PREV' | translate}}" nextLabel="{{'NEXT' | translate}}" [responsive]="true"
             (pageChange)="handlePageChange($event)"></pagination-controls>
     </div>
     </div>

@@ -1,4 +1,4 @@
-<div style="padding-top:100px"></div>
+<div style="padding-top:100px">
 <h2 translate>UPDATEUSER</h2>
 <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
     <div class="container">
@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col-12">
                     <mat-form-field class="form-element" style="width: 50%;">
-                        <input type="text" matInput placeholder="Họ ：" formControlName="first_name" id="first_name"
+                        <input type="text" matInput placeholder="{{'FIRSTNAME' | translate}}" formControlName="first_name" id="first_name"
                             [(ngModel)]="user.first_name" name="first_name">
                         <mat-error
                             *ngIf="!formGroup.controls['first_name'].valid && formGroup.controls['first_name'].touched">
@@ -24,7 +24,7 @@
             <div class="row">
                 <div class="col-12">
                     <mat-form-field class="form-element" style="width: 50%;">
-                        <input type="text" matInput placeholder="Tên ：" formControlName="last_name" id="last_name"
+                        <input type="text" matInput placeholder="{{'LASTNAME' | translate}}" formControlName="last_name" id="last_name"
                             [(ngModel)]="user.last_name" name="last_name">
                         <mat-error
                             *ngIf="!formGroup.controls['last_name'].valid && formGroup.controls['last_name'].touched">
@@ -36,7 +36,7 @@
             <div class="row">
                 <div class="col-12">
                     <mat-form-field class="form-element" style="width: 50%;">
-                        <input type="email" matInput placeholder="Email ：" formControlName="email" id="email"
+                        <input type="email" matInput placeholder="{{'EMAIL' | translate}}" formControlName="email" id="email"
                             [(ngModel)]="user.email" name="email">
                         <mat-error *ngIf="!formGroup.controls['email'].valid && formGroup.controls['email'].touched">
                             <span translate>REQUIRED</span>
@@ -47,7 +47,7 @@
             <div class="row">
                 <div class="col-12">
                     <mat-form-field class="form-element" style="width: 50%;">
-                        <input type="text" matInput placeholder="Giới tính ：" formControlName="gender" id="gender"
+                        <input type="text" matInput placeholder="{{'GENDER' | translate}}" formControlName="gender" id="gender"
                             [(ngModel)]="user.gender" name="gender">
                     </mat-form-field>
                 </div>
@@ -55,7 +55,7 @@
             <div class="row">
                 <div class="col-12">
                     <mat-form-field class="form-element" style="width: 50%;">
-                        <input type="text" matInput placeholder="Mã số nhân viên ：" formControlName="employee_id"
+                        <input type="text" matInput placeholder="{{'EMPLOYEEID' | translate}}" formControlName="employee_id"
                             id="employee_id" [(ngModel)]="user.employee_id" name="employee_id">
                         <mat-error
                             *ngIf="!formGroup.controls['employee_id'].valid && formGroup.controls['employee_id'].touched">
@@ -67,7 +67,7 @@
             <div class="row">
                 <div class="col-12">
                     <mat-form-field class="form-element" style="width: 50%;">
-                        <input type="text" matInput placeholder="Số điện thoại ：" formControlName="phone" id="phone"
+                        <input type="text" matInput placeholder="{{'PHONENUMBER' | translate}}" formControlName="phone" id="phone"
                             [(ngModel)]="user.phone" name="phone">
                         <mat-error *ngIf="!formGroup.controls['phone'].valid && formGroup.controls['phone'].touched">
                             <span translate>REQUIRED</span>
@@ -78,7 +78,7 @@
             <div class="row">
                 <div class="col-12">
                     <mat-form-field class="form-element" style="width: 50%;">
-                        <input type="text" matInput placeholder="Bộ phận ：" formControlName="department" id="department"
+                        <input type="text" matInput placeholder="{{'DEPARTMENT' | translate}}" formControlName="department" id="department"
                             [(ngModel)]="user.department" name="department">
                         <mat-error
                             *ngIf="!formGroup.controls['department'].valid && formGroup.controls['department'].touched">
@@ -90,7 +90,7 @@
             <div class="row">
                 <div class="col-12">
                     <mat-form-field class="form-element" style="width: 50%;">
-                        <input type="password" matInput placeholder="Mật khẩu ：" formControlName="password"
+                        <input type="password" matInput placeholder="{{'PASSWORD' | translate}}" formControlName="password"
                             id="password" [(ngModel)]="user.password" name="password">
                         <mat-error
                             *ngIf="!formGroup.controls['password'].valid && formGroup.controls['password'].touched">
@@ -102,15 +102,18 @@
             <div class="row">
                 <div class="col-12">
                     <mat-form-field class="form-element" style="width: 50%;">
-                        <input type="password" matInput placeholder="Nhập lại mật khẩu ：" formControlName="rePassword"
+                        <input type="password" matInput placeholder="{{'CONFIRMPASSWORD' | translate}}" formControlName="rePassword"
                             id="rePassword" [(ngModel)]="user.rePassword" name="rePassword">
                         <mat-error *ngIf="user.rePassword != user.password">
-                            <span translate>REQUIRED</span>
+                            <span translate>NOTMATCH</span>
                         </mat-error>
                     </mat-form-field>
                 </div>
             </div>
 
 
-
-            <button class="btn btn-success" type="submit" translate>UPDATEUSER</button>
+            <button class="btn btn-success" type="submit" [disabled]="!formGroup.valid" translate>UPDATE</button>
+        </div>
+    </div>
+</form>
+</div>
