@@ -59,8 +59,10 @@
   "DEVICESEARCHMODEL": "Search by device name, operating system,...",
   "USERSEARCHMODEL": "Search by name, email,...",
   "LOANSEARCHMODEL": "Search by user name, device name,...",
-  "RETURNDEVICE":"Return device"
-
-
-
+  "RETURNDEVICE":"Return device",
+  "REASON": "Reason",
+  "NOTMATCH": "Password is not matched",  
+  "PREV": "Previous",
+  "NEXT": "Next",
+  "LOANHISTORY": "Device loan history"
   }

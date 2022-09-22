@@ -10,7 +10,7 @@
     "SEARCH":"Tìm kiếm",
     "TOTALDEVICE":"Tổng số thiết bị ",
     "OPERATINGSYSTEM":"Hệ điều hành ",
-    "SYSTEMMODEL":"Mô hình hệ thống",
+    "SYSTEMMODEL":"Kiểu máy",
     "SSD":"Ổ cứng ",
     "STATUS":"Tình trạng ",
     "VIEWDETAIL":"Xem thông tin ",
@@ -59,8 +59,10 @@
     "DEVICESEARCHMODEL": "Nhập tên thiết bị, hệ điều hành,...",
     "USERSEARCHMODEL": "Nhập tên, email,...",
     "LOANSEARCHMODEL": "Nhập tên người dùng, tên thiết bị,...",
-    "RETURNDEVICE":"Trả thiết bị"
-
-
-
-     }
+    "RETURNDEVICE":"Trả thiết bị",
+    "REASON": "Lí do mượn",
+    "NOTMATCH": "Mật khẩu không trùng khớp",
+    "PREV": "Trang trước",
+    "NEXT": "Trang kế",
+    "LOANHISTORY": "Lịch sử mượn thiết bị"
+}

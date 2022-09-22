@@ -26,11 +26,11 @@
       <a *ngIf="userLogin.id == null" routerLink="home/login" routerLinkActive="active" class="nav-link"><b translate>LOGIN</b></a>
 
 
-      <div *ngIf="userLogin.id != null" style="text-align: right;" translate="">
+      <div *ngIf="userLogin.id != null" style="text-align: right;" translate>
         HELLOADMIN &nbsp;
       </div>
 
-      <div *ngIf="userLogin.id != null" style="text-align: right;" translate="">
+      <div *ngIf="userLogin.id != null" style="text-align: right;" translate>
         {{ userLogin.first_name }}!
       </div>
 
