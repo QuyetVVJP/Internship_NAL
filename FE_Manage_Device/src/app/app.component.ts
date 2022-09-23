@@ -59,10 +59,7 @@ export class AppComponent implements OnInit {
     this.currentLanguage = 'jp';
   }
 
-  setVietnamese():void{
-    this.translate.use('vn');
-    this.currentLanguage = 'vn';
-  }
+
   viewUser(user_id: number) {
     this.router.navigate(['view-user/', user_id]);
   }

@@ -1,45 +1,47 @@
-<h2 style="padding-top:100px" translate> USERLIST</>
+<div style="padding-top:100px"></div>
+<h2 translate> USERLIST</h2>
 <div class="col-md-8">
     <div class="input-group mb-3">
       <input
         type="text"
         class="form-control"
-        placeholder="Nhập họ tên người dùng, email, mã số nhân viên, số điện thoại"
+        placeholder="{{'USERSEARCHMODEL' | translate}}"
         [(ngModel)]="term"
       />
       <div class="input-group-append">
         <button
           class="btn btn-outline-secondary"
           type="button"
-          (click)="searchByTerm()"
-        >
-          Tìm kiếm
+          (click)="searchByTerm()">
+          <mat-icon>search</mat-icon>
         </button>
       </div>
     </div>
   </div>
-<button class="navbar-nav">
-    <li  class="nav-item">
-        <a routerLink="../register" routerLinkActive="active" class="nav-link" translate>ADDUSER</a>
-      </li>
-  </button>
-  <div class="row">
 
-    <div class="nd">
+    <div class="row">
+     <div class="col-2">
+      <button style="margin-left: 10px !important; margin-bottom: 10px !important;" class="btn btn-primary">
+        <a routerLink="../register" routerLinkActive="active" class="nav-link" translate>ADDUSER</a>
+      </button>
+     </div>
+    </div>
+
+
 <table class="table table-striped">
     <thead>
         <tr>
             <th translate>ID</th>
-            <th translate>FRISTNAME</th>
+            <th translate>FIRSTNAME</th>
             <th translate>LASTNAME</th>
             <th translate>GENDER</th>
-            <th translate>NUMBER</th>
+            <th translate>EMPLOYEEID</th>
             <th translate>EMAIL</th>
             <th translate>PHONENUMBER</th>
-            <th translate>POSITION</th>
+            <th translate>DEPARTMENT<th>
             <th translate>VIEWDETAIL</th>
             <th translate>UPDATE</th>
-            <th translate>CLEAR</th>
+            <th translate>DELETE</th>
         </tr>
     </thead>
     <tbody>
@@ -61,7 +63,7 @@
             <td>{{user.email}}</td>
             <td>{{user.phone}}</td>
             <td>{{user.department}}</td>
-            <td>
+            <td style="text-align:center">
               <button
                 (click)="viewUser(user.id)"
                 class="btn btn-success"
@@ -70,7 +72,7 @@
               </button>
             </td>
 
-            <td>
+            <td style="text-align:center">
               <button
                 (click)="updateUser(user.id)"
                 class="btn btn-info"
@@ -78,7 +80,7 @@
               <mat-icon>edit</mat-icon>
               </button>
             </td>
-            <td>
+            <td style="text-align:center">
               <button
                 (click)="deleteUser(user.id)"
                 class="btn btn-danger"
@@ -89,16 +91,11 @@
         </tr>
     </tbody>
 </table>
-
-
 <div class="col-md-12">
     <pagination-controls
-      previousLabel="Prev"
-      nextLabel="Next"
+      previousLabel=""
+      nextLabel=""
       [responsive]="true"
       (pageChange)="handlePageChange($event)"
     ></pagination-controls>
   </div>
-</div>
-  </div>
-
