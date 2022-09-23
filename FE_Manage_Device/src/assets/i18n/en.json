@@ -64,5 +64,6 @@
   "NOTMATCH": "Password is not matched",  
   "PREV": "Previous",
   "NEXT": "Next",
-  "LOANHISTORY": "Device loan history"
+  "LOANHISTORY": "Device loan history",
+  "THANKYOU": "Thank you"
   }
