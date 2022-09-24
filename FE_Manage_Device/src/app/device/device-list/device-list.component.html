@@ -1,53 +1,12 @@
-<!-- <div class="row">
-        <div class="col-8" style="text-align: left !important;">
-            <img src="../../../assets/image/logoteamc.png" style="height:30px">
 
-            <a *ngIf="userLogin.name_role === 'ADMIN'" routerLink="home" routerLinkActive="active"
-            translate>DEVICEMANAGE</a>
-
-
-            <a *ngIf="userLogin.name_role === 'ADMIN'" routerLink="user-list" routerLinkActive="active"
-            translate>USERMANAGE </a >
-
-
-            <a *ngIf="userLogin.name_role === 'ADMIN'" routerLink="list" routerLinkActive="active"
-            translate >DEVICELOANMAGE</a >
-        </div>
-        <div class="col-4" style="text-align: right !important;">
-
-            <a  *ngIf="userLogin.id == null"  routerLink="register" routerLinkActive="active" class="nav-link"
-            translate >SIGNUP </a>
-
-
-            <a  *ngIf="userLogin.id == null" routerLink="login" routerLinkActive="active" class="nav-link"
-            translate >LOGIN</a>
-
-
-          <button
-            *ngIf="userLogin.id != null"
-            (click)="viewUser(userLogin.id)"
-            style="text-align: right;">
-            Xin chào {{ userLogin.first_name }}!
-          </button>
-
-          <button *ngIf="userLogin.id != null" >
-            <img
-              *ngIf="userLogin.avatar_url != null"
-              src="../{{ userLogin.avatar_url }}"
-              alt=""
-            />
-          </button>
-
-            <a *ngIf="userLogin.id != null" routerLink="logout" routerLinkActive="active" class="nav-link"
-            translate> LOGOUT</a >
-
-        </div>
-      </div> -->
 <div style="padding-top:100px" class="t">
+  
   <h1 class="text-center" style="color: rgb(209, 52, 209)">{{ title }}</h1>
+  
   <h2 style="padding-left: 10px !important;" translate> DEVICELIST </h2>
-
+  <div class="dau">
   <div class="row">
+    <div class="col-4"></div>
     <div class="col-2">
       <button style="margin-left: 10px !important; margin-bottom: 10px !important;"
         *ngIf="userLogin.name_role === 'ADMIN'" class="btn btn-primary">
@@ -59,10 +18,11 @@
         <b translate>EXPORTEXCELFILE</b>
       </button>
     </div>
+    <div class="col-4"></div>
   </div>
 
 
-  <div style="padding-left: 10px !important;" class="col-md-8">
+  <div style="padding-left: 10px !important;" class="col">
     <div class="input-group mb-3">
       <input type="text" class="form-control" placeholder="{{'DEVICESEARCHMODEL' | translate}}" [(ngModel)]="term" />
       <div class="input-group-append">
@@ -74,6 +34,7 @@
       </div>
     </div>
   </div>
+</div>
   <br />
   <h2 style="text-align: center" translate>TOTALDEVICE</h2>
   <h2 style="text-align: center">{{ total }}</h2>

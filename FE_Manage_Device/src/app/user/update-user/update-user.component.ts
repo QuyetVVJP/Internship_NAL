@@ -55,7 +55,7 @@ export class UpdateUserComponent implements OnInit {
     goToListUsers(){
       this.toastrService.info('Thành công', 'Cập nhật tài khoản');
 
-      this.router.navigate(['/home']);
+      this.router.navigate(['/view/user/',this.id]);
     }
     onSubmit(value){
 

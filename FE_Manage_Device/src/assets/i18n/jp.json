@@ -20,7 +20,7 @@
   "REMAININGDEVICENUMBER":"残り機器数",
   "BORROWEDDEVICENUMBER":"貸出中機器数",
   "AVAILABLE":"貸出可能",
-  "UNAVAILABEL":"貸出不可",
+  "UNAVAILABLE":"貸出不可",
   "USERLIST":"ユーザーリスト",
   "ADDUSER":"ユーザー追加",
   "FIRSTNAME":"姓",
@@ -55,7 +55,7 @@
   "USERINFORMATION":"ユーザー情報",
   "AVATAR":"写真",
   "UPDATEDEVICE":"デバイスをアップデート",
-  "EXPORTEXCELFILE": "エクセルファイルをエクスポート",
+  "EXPORTEXCELFILE": "Excelファイルを書き出す",
   "DEVICESEARCHMODEL": "デバイス名、オペレーティングシステムなど",
   "USERSEARCHMODEL": "名前、メールなど",
   "LOANSEARCHMODEL": "名前、デバイス名など",
@@ -64,7 +64,8 @@
   "NOTMATCH": "パスワードは一致していません",
   "PREV": "前へ",
   "NEXT": "次へ",
-  "LOANHISTORY": "借入の履歴"
+  "LOANHISTORY": "借入の履歴",
+  "THANKYOU": "ありがとうございます。"
 }
 
 
