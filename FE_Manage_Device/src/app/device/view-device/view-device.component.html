@@ -1,32 +1,35 @@
 <div style="padding-top:100px" class="t">
-<h3 translate>VIEWDETAIL</h3>
-<div>
-    <div>
-        <label><b translate>DEVICENAME</b> :</label>{{device.device_name}}
-    </div>
-    <div>
-        <label><b   translate>OS </b> :</label>{{device.os}}
-    </div>
-    <div>
-        <label ><b translate>SYSTEMMODEL </b> :</label>{{device.manufacturer}}
-    </div>
-    <div>
-        <label><b  translate>SSD</b> : </label>{{device.information}}
-    </div>
-    <div>
-        <label><b translate>QRCODE</b> : </label><img style="max-height:200px; max-width:200px; overflow: hidden" src="../{{device.path_QR}}" alt="">
-    </div>
-</div>
-<button *ngIf="device.status !== 'Đã cho mượn'" class="btn btn-primary">
+    <h3 translate>VIEWDETAIL</h3>
+    <div class="xem">
+        <div class="tt">
+            <div>
+                <label><b translate>DEVICENAME</b> :</label>{{device.device_name}}
+            </div>
+            <div>
+                <label><b translate>OS </b> :</label>{{device.os}}
+            </div>
+            <div>
+                <label><b translate>SYSTEMMODEL </b> :</label>{{device.manufacturer}}
+            </div>
+            <div>
+                <label><b translate>SSD</b> : </label>{{device.information}}
+            </div>
+            <div>
+                <label><b translate>QRCODE</b> : </label><img style="max-height:20px; max-width:20px; overflow: hidden"
+                    src="../{{device.path_QR}}" alt="">
+            </div>
+        </div>
+        <div class="nut">
+            <button *ngIf="device.status !== 'Đã cho mượn'" class="btn btn-primary">
 
-      <a routerLink="create" routerLinkActive="active" class="nav-link" translate>REGISTERTOBORROWDEVICE </a>
+                <a routerLink="create" routerLinkActive="active" class="nav-link" translate>REGISTERTOBORROWDEVICE </a>
 
-  </button>
+            </button>
 
-  <button *ngIf="device.status === 'Đã cho mượn' && user.id == userLogin.id"
-    (click)="returnDevice(device.id)"
-    class="btn btn-success"
-     translate>
-     RETURNDEVICE
-  </button>
+            <button *ngIf="device.status === 'Đã cho mượn' && user.id == userLogin.id" (click)="returnDevice(device.id)"
+                class="btn btn-success" translate>
+                RETURNDEVICE
+            </button>
+        </div>
+    </div>
 </div>

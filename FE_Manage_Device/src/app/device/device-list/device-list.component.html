@@ -1,40 +1,39 @@
-
 <div style="padding-top:100px" class="t">
-  
+
   <h1 class="text-center" style="color: rgb(209, 52, 209)">{{ title }}</h1>
-  
+
   <h2 style="padding-left: 10px !important;" translate> DEVICELIST </h2>
   <div class="dau">
-  <div class="row">
-    <div class="col-4"></div>
-    <div class="col-2">
-      <button style="margin-left: 10px !important; margin-bottom: 10px !important;"
-        *ngIf="userLogin.name_role === 'ADMIN'" class="btn btn-primary">
-        <a routerLink="/add-device" routerLinkActive="active" class="nav-link" translate>ADDDEVICE </a>
-      </button>
-    </div>
-    <div class="col-2" *ngIf="userLogin.name_role === 'ADMIN'">
-      <button class="btn btn-info" (click)="exportExcel()">
-        <b translate>EXPORTEXCELFILE</b>
-      </button>
-    </div>
-    <div class="col-4"></div>
-  </div>
-
-
-  <div style="padding-left: 10px !important;" class="col">
-    <div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="{{'DEVICESEARCHMODEL' | translate}}" [(ngModel)]="term" />
-      <div class="input-group-append">
-        <button class="btn btn-outline-secondary" type="button" (click)="searchByTerm()"
-          style="margin-right: 5px !important;">
-          <mat-icon>search</mat-icon>
+    <div class="row">
+      <div class="col-4"></div>
+      <div class="col-2">
+        <button style="margin-left: 10px !important; margin-bottom: 10px !important;"
+          *ngIf="userLogin.name_role === 'ADMIN'" class="btn btn-primary">
+          <a routerLink="/add-device" routerLinkActive="active" class="nav-link" translate>ADDDEVICE </a>
         </button>
+      </div>
+      <div class="col-2" *ngIf="userLogin.name_role === 'ADMIN'">
+        <button class="btn btn-info" (click)="exportExcel()">
+          <b translate>EXPORTEXCELFILE</b>
+        </button>
+      </div>
+      <div class="col-4"></div>
+    </div>
 
+
+    <div style="padding-left: 10px !important;" class="col">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="{{'DEVICESEARCHMODEL' | translate}}" [(ngModel)]="term" />
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" type="button" (click)="searchByTerm()"
+            style="margin-right: 5px !important;">
+            <mat-icon>search</mat-icon>
+          </button>
+
+        </div>
       </div>
     </div>
   </div>
-</div>
   <br />
   <h2 style="text-align: center" translate>TOTALDEVICE</h2>
   <h2 style="text-align: center">{{ total }}</h2>
@@ -110,8 +109,8 @@
         </tbody>
       </table>
       <div class="col-md-12">
-        <pagination-controls previousLabel="{{'PREV' | translate}}" nextLabel="{{'NEXT' | translate}}" [responsive]="true"
-          (pageChange)="handlePageChange($event)"></pagination-controls>
+        <pagination-controls previousLabel="{{'PREV' | translate}}" nextLabel="{{'NEXT' | translate}}"
+          [responsive]="true" (pageChange)="handlePageChange($event)"></pagination-controls>
       </div>
     </div>
     <div class="col-1"></div>

@@ -107,7 +107,7 @@ dl dd div a{
 button{
 border: 1px solid rgb(0, 0, 0);
 background-color: rgb(136, 169, 226);
-width: 100px;
+width: 120px;
 border-radius: 10px;
 }
 button:hover{
@@ -120,4 +120,5 @@ margin: auto;
 margin-bottom: 3px;
 justify-content: center;
 text-align: center;
+
 }

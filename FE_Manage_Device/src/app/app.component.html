@@ -6,24 +6,29 @@
         <button click (click)="setEnglish()">EN</button>
         <button click (click)="setJapanese()">JP</button>
       </div> -->
-      <img src="../../../assets/image/logoteamc.png"  routerLink="home" style="height:50px">
-      <a *ngIf="userLogin.name_role === 'ADMIN'" routerLink="home" routerLinkActive="active"><b translate>DEVICEMANAGEMENT</b></a>
+      <img src="../../../assets/image/logoteamc.png" routerLink="home" style="height:50px">
+      <a *ngIf="userLogin.name_role === 'ADMIN'" routerLink="home" routerLinkActive="active"><b
+          translate>DEVICEMANAGEMENT</b></a>
 
 
-      <a *ngIf="userLogin.name_role === 'ADMIN'" routerLink="home/user-list" routerLinkActive="active"><b translate>USERMANAGEMENT</b></a>
+      <a *ngIf="userLogin.name_role === 'ADMIN'" routerLink="home/user-list" routerLinkActive="active"><b
+          translate>USERMANAGEMENT</b></a>
 
 
-      <a *ngIf="userLogin.name_role === 'ADMIN'" routerLink="home/list" routerLinkActive="active"><b translate>DEVICELOANMANAGEMENT</b></a>
+      <a *ngIf="userLogin.name_role === 'ADMIN'" routerLink="home/list" routerLinkActive="active"><b
+          translate>DEVICELOANMANAGEMENT</b></a>
 
     </div>
     <div class="login">
 
 
 
-      <a *ngIf="userLogin.id == null" routerLink="home/register" routerLinkActive="active" class="nav-link"><b translate>REGISTER</b></a>
+      <a *ngIf="userLogin.id == null" routerLink="home/register" routerLinkActive="active" class="nav-link"><b
+          translate>REGISTER</b></a>
 
 
-      <a *ngIf="userLogin.id == null" routerLink="home/login" routerLinkActive="active" class="nav-link"><b translate>LOGIN</b></a>
+      <a *ngIf="userLogin.id == null" routerLink="home/login" routerLinkActive="active" class="nav-link"><b
+          translate>LOGIN</b></a>
 
 
       <div *ngIf="userLogin.id != null" style="text-align: right;" translate>
@@ -57,7 +62,8 @@
 
           <a (click)="viewUser(userLogin.id)" translate>UPDATE </a>
 
-          <a *ngIf="userLogin.id != null" routerLink="home/logout" routerLinkActive="active" class="nav-link" translate>LOGOUT</a>
+          <a *ngIf="userLogin.id != null" routerLink="home/logout" routerLinkActive="active" class="nav-link"
+            translate>LOGOUT</a>
         </div>
       </div>
     </div>
@@ -71,65 +77,69 @@
 
 <footer class="new_footer_area bg_color">
   <div class="new_footer_top">
-      <div class="container">
-          <div class="row">
-              <div class="col-lg-3 col-md-6">
-                  <div class="f_widget company_widget wow fadeInLeft" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInLeft;">
-                      
-                      
-                      <img src="../assets/image/logoteamc.png" style="height: 100px; width: 110px;" alt="">
-                      <p style="margin-left: 15px; color: brown; font-size: large; font-weight: 200;">Thank you</p>
-                    
-                  </div>
-              </div>
-              <div class="col-lg-3 col-md-6">
-                  <div class="f_widget about-widget pl_70 wow fadeInLeft" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInLeft;">
-                      <h3 class="f-title f_600 t_color f_size_18">Member</h3>
-                      <ul class="list-unstyled f_list">
-                       
-                          <li>NGUYEN THI MAI PHUONG (PM)</li>
-                          <li>VU VAN QUYET(PM, DEV)</li>
-                          
-                          <li>BUI THI NGA (PL)</li>
-                    
-                          <li>DO DUC LUONG (DEV)</li>
-                          <li>NGUYEN SI KHANG(DEV)</li>
-                          <li>NGUYEN NGHIA(DEV)</li>
-                      </ul>
-                  </div>
-              </div>
-              <div class="col-lg-3 col-md-6">
-                  <div class="f_widget about-widget pl_70 wow fadeInLeft" data-wow-delay="0.6s" style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInLeft;">
-                      <h3 class="f-title f_600 t_color f_size_18">About us</h3>
-                      <ul class="list-unstyled f_list">
-                         
-                        <i class="bi-facebook"></i>
-                      </ul>
-                  </div>
-              </div>
-              <div class="col-lg-3 col-md-6">
-                  <div class="f_widget social-widget pl_70 wow fadeInLeft" data-wow-delay="0.8s" style="visibility: visible; animation-delay: 0.8s; animation-name: fadeInLeft;">
-                      <h3 class="f-title f_600 t_color f_size_18">Contract</h3>
-                      <div class="contract">
-                        
-                      </div>
-                    
-                  </div>
-              </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-6">
+          <div class="f_widget company_widget wow fadeInLeft" data-wow-delay="0.2s"
+            style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInLeft;">
+
+
+            <img src="../assets/image/logoteamc.png" style="height: 100px; width: 110px;" alt="">
+            <p style="margin-left: 15px; color: brown; font-size: large; font-weight: 200;">Thank you</p>
+
           </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="f_widget about-widget pl_70 wow fadeInLeft" data-wow-delay="0.4s"
+            style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInLeft;">
+            <h3 class="f-title f_600 t_color f_size_18"></h3>
+            <h2>Project Manager</h2>
+            <ul class="list-unstyled f_list">
+
+              <li>NGUYEN THI MAI PHUONG </li>
+
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="f_widget about-widget pl_70 wow fadeInLeft" data-wow-delay="0.6s"
+            style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInLeft;">
+            <h3 class="f-title f_600 t_color f_size_18"></h3>
+            <h2>Project Leader</h2>
+            <ul class="list-unstyled f_list">
+              <li>BUI THI NGA </li>
+
+              <li>DO DUC LUONG </li>
+
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="f_widget social-widget pl_70 wow fadeInLeft" data-wow-delay="0.8s"
+            style="visibility: visible; animation-delay: 0.8s; animation-name: fadeInLeft;">
+            <h3 class="f-title f_600 t_color f_size_18"></h3>
+            <h2>Developers</h2>
+            <ul class="list-unstyled f_list">
+              <li>NGUYEN SI KHANG</li>
+              <li>NGUYEN NGHIA</li>
+              <li>VU VAN QUYET</li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <div class="footer_bg">
-          <div class="footer_bg_one"></div>
-          <div class="footer_bg_two"></div>
-      </div>
+    </div>
+    <div class="footer_bg">
+      <div class="footer_bg_one"></div>
+      <div class="footer_bg_two"></div>
+    </div>
   </div>
   <div class="footer_bottom">
-      <div class="container">
-          <div class="row align-items-center">
-              <div class="col-lg-12">
-                  <p class="mb-0 f_400">©Made by Team C</p>
-              </div>
-          </div>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-12">
+          <p class="mb-0 f_400">©Made by Team C</p>
+        </div>
       </div>
+    </div>
   </div>
 </footer>

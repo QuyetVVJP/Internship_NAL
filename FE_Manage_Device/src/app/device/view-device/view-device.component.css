@@ -1,4 +1,24 @@
 .t{
 min-height: 100vh;
 height: auto;
+text-align: center;
+
+}
+.xem{
+    
+    
+    margin-left: 10%;
+    height: auto;
+    width: 80%;
+    border: 1px solid #000;
+    
+}
+.tt{
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-left: 20%;
+text-align: left;
+}
+.nut{
+    
 }
