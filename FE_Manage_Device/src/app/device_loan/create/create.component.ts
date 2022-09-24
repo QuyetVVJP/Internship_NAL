@@ -9,7 +9,7 @@ import { User, UserDto } from 'src/app/user/user';
 import { UserService } from 'src/app/user/user.service';
 import { DeviceLoanService } from '../device-loan.service';
 import { DeviceLoan } from '../device-loan';
-
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
@@ -32,7 +32,9 @@ export class CreateComponent implements OnInit {
   value: any;
 
 
-  constructor(private useService:UserService,
+  constructor(
+    private translate: TranslateService,
+    private userService:UserService,
     private deviceService : DeviceService,
     private route: ActivatedRoute,
     private router:Router,
@@ -65,7 +67,7 @@ export class CreateComponent implements OnInit {
       // this.useService.getUserById(this.user_id).subscribe(data =>{
       //   this.user=data;
       // });
-      this.useService.getUserLogin().subscribe(res =>{
+      this.userService.getUserLogin().subscribe(res =>{
         this.userLogin = res;
       })
       // this.loanService.getLoanById(this.id).subscribe(data=>{
@@ -87,7 +89,7 @@ onSubmit(value){
   console.log(this.loan);
 
   this.loanService.createLoan(this.loan).subscribe(data =>{
-    this.toastrService.success('Thành công', 'Đăng ký mượn thiết bị');
+    this.toastrService.success(this.translate.instant('SUCCESSFULLYREGISTERED'));
     this.router.navigate(['/home']);
   },
   error => console.log(error));
