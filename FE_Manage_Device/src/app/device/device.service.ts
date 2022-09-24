@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from 'rxjs';
 import { Device,  DeviceChartData } from './device';
+import { environment } from './../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class DeviceService {
 
-  private baseURL = "http://localhost:8080/devices"
+  private baseURL = environment.apiUrl + "/devices"
   constructor(private httpClient: HttpClient) { }
 
   getAllDevice(): Observable<Device[]> {
@@ -45,7 +46,7 @@ export class DeviceService {
   }
 
   // uploadAvatar(imageFormData: FormData): Observable<object> {
-  //   return this.httpClient.post('http://localhost:8080/users/upload/image/', imageFormData);
+  //   return this.httpClient.post(environment.apiUrl + '/users/upload/image/', imageFormData);
   // }
 
 }

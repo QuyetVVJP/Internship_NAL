@@ -9,6 +9,7 @@ import { DeviceLoan, DeviceLoanDto } from 'src/app/device_loan/device-loan';
 import { DeviceLoanService } from 'src/app/device_loan/device-loan.service';
 import { User, UserDto } from '../user';
 import { UserService } from '../user.service';
+import { environment } from './../../../environments/environment';
 
 @Component({
   selector: 'app-view-user',
@@ -102,7 +103,7 @@ export class ViewUserComponent implements OnInit {
       const imageFormData = new FormData();
       imageFormData.append('image', this.uploadedImage, this.uploadedImage.name);
 
-      this.httpClient.post('http://localhost:8080/users/upload/image/'+id, imageFormData, {  responseType: 'text'  })
+      this.httpClient.post(environment.apiUrl + '/users/upload/image/'+id, imageFormData, {  responseType: 'text'  })
         .subscribe((response) => {
           //this.goToListUsers();
       },error => console.log(error)

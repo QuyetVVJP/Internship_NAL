@@ -4,12 +4,13 @@ import { Observable } from 'rxjs';
 import { Device } from '../device/device';
 import { UserDto } from '../user/user';
 import { DeviceLoan, DeviceLoanDto } from './device-loan';
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DeviceLoanService {
-  private baseURL ="http://localhost:8080/loan"
+  private baseURL = environment.apiUrl + "/loan"
   constructor(private httpClient: HttpClient) { }
   getAllLoan(): Observable<DeviceLoanDto[]> {
     return this.httpClient.get<DeviceLoanDto[]>(`${this.baseURL + '/list'}`);
