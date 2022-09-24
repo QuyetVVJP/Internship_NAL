@@ -26,6 +26,6 @@ public interface DeviceLoanRepository extends JpaRepository<DeviceLoan, Long> {
     @Query(value = "SELECT device_loan.user_id, device_loan.id, device_loan.device_id, device_loan.status, device_loan.borrow_date, device_loan.return_date, device.device_name, device_loan.reason  FROM device_loan JOIN device ON device_loan.device_id = device.id  WHERE device_loan.user_id = user_id ORDER BY device_loan.id DESC" , nativeQuery = true)
     Page<?> getDeviceLoanByUser(@Param("user_id") Long user_id, Pageable paging);
 
-    @Query(value = "SELECT * FROM device_loan WHERE id = :id", nativeQuery = true)
+    @Query(value = "SELECT * FROM device_loan WHERE device_id = :id", nativeQuery = true)
     Optional<DeviceLoan> findDeviceByDeviceID(@Param("id")Long id);
 }
