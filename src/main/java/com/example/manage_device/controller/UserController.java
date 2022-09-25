@@ -186,7 +186,7 @@ public class UserController {
 
     @GetMapping("/get-user-by-device-id/{id}")
     public  ResponseEntity<?> getUserByDeviceId(@PathVariable Long id){
-        DeviceLoan deviceLoan = deviceLoanService.getDeviceLoanByID(id).get();
+        DeviceLoan deviceLoan = deviceLoanService.getDeviceLoanByDeviceID(id).get();
         User user = userService.findById(deviceLoan.getId()).get();
         return  ResponseEntity.ok(user);
     }

@@ -32,14 +32,14 @@
   "PHONENUMBER":"電話番号",
   "DEPARTMENT":"部署",
   "NAME":"名前",
-  "BORROWEDDEVICE":"借入れたデバイス",
+  "BORROWEDDEVICE":"借出したデバイス",
   "BORROWDATE":"借入日",
   "RETURNDATE":"返却日",
   "REJECT":"却下",
   "APPROVE":"許可",
   "INFORMATION":"情報",
   "QRCODE":"QRコード",
-  "REGISTERTOBORROWDEVICE":"借入の申請",
+  "REGISTERTOBORROWDEVICE":"借出の申請",
   "REGISTER": "申請",
   "LOGIN":"ログイン",
   "ID":"ID",
@@ -64,8 +64,9 @@
   "NOTMATCH": "パスワードは一致していません",
   "PREV": "前へ",
   "NEXT": "次へ",
-  "LOANHISTORY": "借入の履歴",
-  "THANKYOU": "ありがとうございます。"
+  "LOANHISTORY": "借出の履歴",
+  "THANKYOU": "ありがとうございます。",
+  "SUCCESSFULLYREGISTERED": "申請成功"
 }
 
 
