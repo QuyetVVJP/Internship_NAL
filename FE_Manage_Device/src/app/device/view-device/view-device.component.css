@@ -4,21 +4,34 @@ height: auto;
 text-align: center;
 
 }
+h3{
+    margin-bottom: 30px;
+}
 .xem{
-    
-    
+
+
     margin-left: 10%;
     height: auto;
     width: 80%;
-    border: 1px solid #000;
-    
+
+
 }
 .tt{
     margin-bottom: 20px;
     margin-top: 20px;
     margin-left: 20%;
+    margin-right: 20%;
 text-align: left;
 }
-.nut{
+.ts{
+    display: flex;
+    margin-bottom: 20px;
     
+}
+label{
+    width: 40%;
+}
+.kq{
+
+    text-align: left;
 }

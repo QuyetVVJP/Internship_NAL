@@ -2,21 +2,26 @@
     <h3 translate>VIEWDETAIL</h3>
     <div class="xem">
         <div class="tt">
-            <div>
-                <label><b translate>DEVICENAME</b> :</label>{{device.device_name}}
+            <div class="ts">
+                <label><b translate>DEVICENAME</b> :</label>
+               <div class="kq">{{device.device_name}}</div>
             </div>
-            <div>
-                <label><b translate>OS </b> :</label>{{device.os}}
+            <div class="ts">
+                <label><b translate>OS </b> :</label>
+                <div class="kq">{{device.os}}</div>
             </div>
-            <div>
-                <label><b translate>SYSTEMMODEL </b> :</label>{{device.manufacturer}}
+            <div class="ts">
+                <label><b translate>SYSTEMMODEL </b> :</label>
+                <div class="kq">{{device.manufacturer}}</div>
             </div>
-            <div>
-                <label><b translate>SSD</b> : </label>{{device.information}}
+            <div class="ts">
+                <label><b translate>SSD</b> : </label>
+                <div class="kq">{{device.information}}</div>
             </div>
-            <div>
-                <label><b translate>QRCODE</b> : </label><img style="max-height:20px; max-width:20px; overflow: hidden"
-                    src="../{{device.path_QR}}" alt="">
+            <div class="ts">
+                <label><b translate>QRCODE</b> : </label>
+                <div class="kq"><img style="max-height:50px; max-width:50px; overflow: hidden"
+                    src="../{{device.path_QR}}" alt=""></div>
             </div>
         </div>
         <div class="nut">
